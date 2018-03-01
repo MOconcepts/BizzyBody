@@ -40,27 +40,27 @@ export class TutorialPage {
           {
             title: "For You",
             description: "Find events closest to you at any time.",
-            image: 'assets/img/ica-slidebox-img-1.png',
+            image: 'assets/img/find.png',
           },
           {
             title: "For You",
             description: "Get tickets at discounted prices",
-            image: 'assets/img/ica-slidebox-img-2.png',
+            image: 'assets/img/ticket.png',
           },
           {
             title: "For You",
             description: "Chat in real time with other event attendees",
-            image: 'assets/img/ica-slidebox-img-3.png',
+            image: 'assets/img/chat.png',
           },
           {
             title: "Dear Event Owner,",
             description: "Publish and promote your own events",
-            image: 'assets/img/ica-slidebox-img-3.png',
+            image: 'assets/img/promot.png',
           },
           {
             title: "Dear Event Owner,",
             description: "Sell tickets and monitor sales.",
-            image: 'assets/img/ica-slidebox-img-3.png',
+            image: 'assets/img/sell.png',
           }
        
         ];
