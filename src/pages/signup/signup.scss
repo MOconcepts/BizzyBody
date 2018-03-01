@@ -1,0 +1,40 @@
+page-signup {
+    .text-input::-moz-placeholder {
+        color: white;
+      }
+      
+      .text-input:-ms-input-placeholder,
+      .text-input-clear-icon {
+        color: white;
+      }
+      
+      .text-input::-webkit-input-placeholder {
+        text-indent: 0;
+        color: white;
+      }
+      .key .item-md.item-block .item-inner {
+          padding-right: 8px;
+          border-bottom: 1px solid #ffffff;
+      }
+
+      .select-text  {
+          color: #ffffff !important;
+          background-color: #fecb00 !important;
+    }
+    .label-md-white, .item-input .label-md-white, .item-select .label-md-white, .item-datetime .label-md-white {
+        color: #ffffff !important;
+
+  }
+
+  .select-md .select-icon .select-icon-inner {
+    color: #ffffff !important;
+    background-color: #fecb00 !important;
+
+  }
+
+
+  .login-container {
+    max-height: 100%;
+}
+
+}

@@ -1,0 +1,189 @@
+<ion-header no-margin no-padding>
+    <ion-toolbar color="bizzy">
+    </ion-toolbar>
+   </ion-header>
+  
+  <ion-content>
+      <div style="height: 150px; margin: 0; background-color: #fecb00;">
+        <ion-row>
+            <ion-col col-8>
+            <span style="color: #ffffff; margin-left: 30px; font-size: 28px; font-style: light;">Edit Profile</span>
+            </ion-col>
+            <ion-col col-4>
+            </ion-col>
+  
+    
+        </ion-row>
+            <img src="assets/icon/eko.svg" style="width: 100%; margin-top: 15px;">
+      </div>
+      <div>
+        <ion-segment [(ngModel)]="profile_segment">
+            <ion-segment-button value="main">
+              <p no-margin style="font-size: 12px; color: gray;">Account Details</p>
+            </ion-segment-button>
+            <ion-segment-button value="pref">
+                <p no-margin style="font-size: 12px; color: gray;">Preference</p>
+            </ion-segment-button>
+            <ion-segment-button value="pass">
+                <p no-margin style="font-size: 12px; color: gray;">Reset Password</p>
+            </ion-segment-button>
+          </ion-segment>
+          <hr no-padding no-margin>
+      </div>
+
+      <div [ngSwitch]="profile_segment" style="padding: 0px 20px 0px 30px;">
+        
+    <ion-list *ngSwitchCase="'main'">
+        <ion-grid>
+  
+        <ion-row>
+          <ion-col col-10 offset-1>
+                <div transparent text-center>
+                  
+      <ion-col align-self-center col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+            <ion-row>
+                         <!---Input field username-->
+          <ion-item col-6 no-padding transparent>
+                <ion-label color="dark" stacked>Firstname</ion-label>
+                <ion-input required type="text" [(ngModel)]="userData.fname"></ion-input>
+            </ion-item>
+
+          <!---Input field username-->
+          <ion-item col-6 no-padding transparent>
+                <ion-label color="dark" stacked>Surname</ion-label>
+                <ion-input required type="text" [(ngModel)]="userData.lname"></ion-input>
+            </ion-item>
+
+            <ion-item no-padding transparent>
+                <ion-label color="white" stacked>Gender</ion-label>
+                <ion-select class="formF" [(ngModel)]="userData.gender">
+    
+                    <ion-option value="Male">Male</ion-option>
+    
+                     <ion-option value="Female">Female</ion-option>
+    
+                </ion-select>
+              </ion-item>
+              <!---Input field username-->
+<ion-item col-6 no-padding transparent>
+     <ion-label color="dark" stacked>Birthday</ion-label>
+     <ion-datetime displayFormat="MM-DD" pickerFormat="MMMM DD" [(ngModel)]="userData.bd"></ion-datetime>
+ </ion-item>
+
+<!---Input field username-->
+<ion-item col-6 no-padding transparent>
+     <ion-label color="dark" stacked>Phone Number</ion-label>
+     <ion-input type="text" [(ngModel)]="userData.phone"></ion-input>
+ </ion-item>
+ <!---Input field username-->
+<ion-item col-6 no-padding transparent>
+<ion-label color="dark" stacked>Facebook Username</ion-label>
+<ion-input type="text" [(ngModel)]="userData.fb"></ion-input>
+</ion-item>
+
+<!---Input field username-->
+<ion-item col-6 no-padding transparent>
+<ion-label color="dark" stacked>Twitter</ion-label>
+<ion-input type="text" [(ngModel)]="userData.twt"></ion-input>
+</ion-item>
+<!---Input field username-->
+<ion-item col-6 no-padding transparent>
+<ion-label color="dark" stacked>Instagram</ion-label>
+<ion-input type="text" [(ngModel)]="userData.ig"></ion-input>
+</ion-item>
+
+<!---Input field username-->
+<ion-item col-6 no-padding transparent>
+<ion-label color="dark" stacked>Website</ion-label>
+<ion-input type="text" [(ngModel)]="userData.web"></ion-input>
+</ion-item>
+
+
+            </ion-row>
+            <!---Register button-->
+            <div style="padding-top: 20px;">
+                    <button ion-button block text-capitalize style="color: #ffffff" (click)="editProfile()">Submit</button>
+            </div>
+        </ion-col>
+                </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  
+      </ion-list>
+      <ion-list *ngSwitchCase="'pref'">
+
+          <ion-grid>
+  
+              <ion-row>
+                <ion-col col-10 offset-1>
+                      <div transparent text-center>
+                        
+            <ion-col align-self-center col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+                  <ion-row>
+                      <ion-item no-padding transparent>
+                          <ion-label color="white" stacked>Where?</ion-label>
+                          <ion-select class="formF" [(ngModel)]="pref.where">
+                              <ion-option value=""><span style="color:#ffffff !important;">Event City</span></ion-option>
+              
+                              <ion-option value="1">Lagos Mainland, Nigeria</ion-option>
+              
+                               <ion-option value="2">Lagos Island, Nigeria</ion-option>
+              
+                               <ion-option value="3">Abuja, Nigeria</ion-option>
+              
+                               <ion-option value="4">PH, Nigeria</ion-option>
+              
+                               <ion-option value="5">Other States, Nigeria</ion-option>
+              
+                               <ion-option value="6">Accra, Ghana</ion-option>
+              
+                               <ion-option value="7">Yonder</ion-option>
+              
+                          </ion-select>
+                        </ion-item>
+                  </ion-row>
+                  <!---Register button-->
+                  <div style="padding-top: 20px;">
+                          <button ion-button block text-capitalize style="color: #ffffff" (click)="updatePref()">Submit</button>
+                  </div>
+              </ion-col>
+                      </div>
+                </ion-col>
+              </ion-row>
+          </ion-grid>
+
+      </ion-list>
+      <ion-list *ngSwitchCase="'pass'">
+
+          <ion-grid>
+  
+              <ion-row>
+                <ion-col col-10 offset-1>
+                      <div transparent text-center>
+                        
+            <ion-col align-self-center col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+                  <ion-row>
+                      <ion-item no-padding transparent>
+                          <ion-label color="dark" stacked>Enter New Passwod</ion-label>
+                          <ion-input required type="password" [(ngModel)]="pass.p1"></ion-input>
+                      </ion-item>
+                      <ion-item no-padding transparent>
+                          <ion-label color="dark" stacked>Repeat Password</ion-label>
+                          <ion-input required type="password" [(ngModel)]="pass.p2"></ion-input>
+                      </ion-item>
+                  </ion-row>
+                  <!---Register button-->
+                  <div style="padding-top: 20px;">
+                          <button ion-button block text-capitalize style="color: #ffffff" (click)="updatePass()">Submit</button>
+                  </div>
+              </ion-col>
+                      </div>
+                </ion-col>
+              </ion-row>
+          </ion-grid>
+
+      </ion-list>
+      </div>
+    </ion-content>
+    

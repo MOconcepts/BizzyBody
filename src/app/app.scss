@@ -1,0 +1,287 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+/* latin-ext */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Raleway Thin'), local('Raleway-Thin'), url(https://fonts.gstatic.com/s/raleway/v12/1Ptsg8zYS_SKggPNwE44Q4FqL_KWxWMT.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Raleway Thin'), local('Raleway-Thin'), url(https://fonts.gstatic.com/s/raleway/v12/1Ptsg8zYS_SKggPNwE44TYFqL_KWxQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 200;
+  src: local('Raleway ExtraLight'), local('Raleway-ExtraLight'), url(https://fonts.gstatic.com/s/raleway/v12/1Ptrg8zYS_SKggPNwOIpWqhPANqczVsq4A.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 200;
+  src: local('Raleway ExtraLight'), local('Raleway-ExtraLight'), url(https://fonts.gstatic.com/s/raleway/v12/1Ptrg8zYS_SKggPNwOIpWqZPANqczVs.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Raleway Light'), local('Raleway-Light'), url(https://fonts.gstatic.com/s/raleway/v12/1Ptrg8zYS_SKggPNwIYqWqhPANqczVsq4A.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Raleway Light'), local('Raleway-Light'), url(https://fonts.gstatic.com/s/raleway/v12/1Ptrg8zYS_SKggPNwIYqWqZPANqczVs.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway'), local('Raleway-Regular'), url(https://fonts.gstatic.com/s/raleway/v12/1Ptug8zYS_SKggPNyCMIT4ttDfCmxA.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway'), local('Raleway-Regular'), url(https://fonts.gstatic.com/s/raleway/v12/1Ptug8zYS_SKggPNyC0IT4ttDfA.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Raleway Medium'), local('Raleway-Medium'), url(https://fonts.gstatic.com/s/raleway/v12/1Ptrg8zYS_SKggPNwN4rWqhPANqczVsq4A.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Raleway Medium'), local('Raleway-Medium'), url(https://fonts.gstatic.com/s/raleway/v12/1Ptrg8zYS_SKggPNwN4rWqZPANqczVs.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Raleway Bold'), local('Raleway-Bold'), url(https://fonts.gstatic.com/s/raleway/v12/1Ptrg8zYS_SKggPNwJYtWqhPANqczVsq4A.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Raleway Bold'), local('Raleway-Bold'), url(https://fonts.gstatic.com/s/raleway/v12/1Ptrg8zYS_SKggPNwJYtWqZPANqczVs.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+  * {
+    font-family: 'Raleway', sans-serif;
+  }
+
+  /* Card Content */
+//.card {
+  //width: 100vw !important;
+//}
+
+.bg{
+  background-image: url('../assets/img/chat-back.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.pgTitle1 {
+  color: #ffffff; 
+  margin-left: 30px; 
+  margin-bottom: 0;
+}
+.pgTitle2 {
+  color: #ffffff; 
+  margin-left: 30px; 
+  font-size: 25px; 
+  font-weight: 400; 
+}
+.formF{
+  font-size: 20px; 
+  padding: 20px 0px;
+}
+.popover-md .popover-content {
+  left: 220px !important;
+  max-width: 150px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+}
+
+.item-md ion-icon[item-left] + .item-inner, .item-md ion-icon[item-left] + .item-input, .item-md ion-icon[item-start] + .item-inner, .item-md ion-icon[item-start] + .item-input
+{
+  margin-left: 0px;
+}
+.label-md {
+  margin: 15px 8px 13px 0;
+  font-size: 12px;
+}
+
+.mytoolbar{
+  height: 100px !important;
+}
+
+/* ==========================================================================
+ Countdown styles
+ ========================================================================== */
+
+ul.countdown {
+  list-style: none;
+  display: block;
+}
+
+.countdown p { font-size: 8px !important; color: #ffffff !important; }
+
+ul.countdown li { display: inline-block; }
+
+ul.countdown li span { font-size: 30px;  color: #ffffff !important }
+
+ul.countdown li.seperator {
+  font-size: 30px;
+  line-height: 50px;
+  color: #ffffff;
+  vertical-align: top;
+}
+
+ul.countdown li p {
+  font-size: 10px;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  color: #000;
+}
+
+.card-ios {
+ width: unset !important;
+  background: white;
+  -webkit-box-shadow: #fff;
+  box-shadow: #fff;
+}
+
+.card-md{
+  width: unset;
+}
+
+.card, .list-inset {
+    overflow: hidden;
+    margin: 20px 30px;
+    border-radius: 5px;
+    background-color: #fff; }
+  
+  .card {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.14); }
+    .card .item {
+      border-left: 0;
+      border-right: 0; }
+    .card .item:first-child {
+      border-top: 0; }
+    .card .item:last-child {
+      border-bottom: 0; }
+  
+  .padding .card, .padding .list-inset {
+    margin-left: 0;
+    margin-right: 0; }
+  
+  .card .item:first-child, .list-inset .item:first-child, .padding > .list .item:first-child {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px; }
+    .card .item:first-child .item-content, .list-inset .item:first-child .item-content, .padding > .list .item:first-child .item-content {
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px; }
+  .card .item:last-child, .list-inset .item:last-child, .padding > .list .item:last-child {
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px; }
+    .card .item:last-child .item-content, .list-inset .item:last-child .item-content, .padding > .list .item:last-child .item-content {
+      border-bottom-right-radius: 2px;
+      border-bottom-left-radius: 2px; }
+  
+  .card .item:last-child, .list-inset .item:last-child {
+    margin-bottom: -1px; }
+  
+  .card .item, .list-inset .item, .padding > .list .item, .padding-horizontal > .list .item {
+    margin-right: 0;
+    margin-left: 0; }
+    .card .item.item-input input, .list-inset .item.item-input input, .padding > .list .item.item-input input, .padding-horizontal > .list .item.item-input input {
+      padding-right: 44px; }
+  
+  .padding-left > .list .item {
+    margin-left: 0; }
+  
+  .padding-right > .list .item {
+    margin-right: 0; }
+
+ion-fab {
+  position: fixed;
+}
+
+ion-fab[bottom] {
+  bottom: 80px;
+}
+
+ion-header{
+  padding-top: 10px;
+}
+
+[header-background-image] {
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  @include darkening-blend-mode;
+  [header-title] {
+      padding-right: 10%;
+  }
+  img {
+      position: relative;
+      display: block;
+      padding-top: 24px;
+      max-width: 60px;
+  }
+  p {
+      font-size: 14px !important;
+      color: theme-colors('textColors', 'secondaryBase');
+  }
+}
+
+// Settings Style distance icon text
+[main-menu] .item-inner {
+  margin-left: 6px !important;
+}

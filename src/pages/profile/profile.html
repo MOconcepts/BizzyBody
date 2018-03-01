@@ -1,0 +1,244 @@
+<ion-header no-margin no-padding>
+    <ion-toolbar color="bizzy">
+        <ion-buttons end>
+            <button ion-button icon-only (click)="openPopover($event)">
+              <ion-icon color="white" name="more"></ion-icon>
+            </button>
+          </ion-buttons>
+    </ion-toolbar>
+   </ion-header>
+<ion-content>
+    <div style="height: 120px; margin: 0; background-color: #fecb00;">
+  <ion-row style="padding: 10px 30px;">
+      <!-- Avatar -->
+      <ion-col col-3>
+        <img src="https://bizzybody.ng/uploads/users/{{userDetails.img}}" class="avatar" alt="">
+      </ion-col>
+      <!-- Information about user -->
+      <ion-col col-9>
+      <h2 no-margin no-padding style="color: #ffffff; padding-left: 20px !important;">{{userDetails.name}}</h2>
+      <ion-row style="color: #ffffff;" end>
+         <!-- Information about user -->
+         <ion-col col-4 text-center>
+            <h6>{{lent}}</h6>
+            <p no-padding no-margin>events</p>
+          </ion-col>
+          <ion-col col-4 text-center>
+            <h6>0</h6>
+            <p no-paddin no-margin>tickets</p>
+          </ion-col>
+          <ion-col col-4 text-center>
+            <h6>{{lentIn}}</h6>
+            <p no-paddin no-margin>likes</p>
+          </ion-col>
+      </ion-row>
+      </ion-col>
+    </ion-row>
+      </div>
+
+  <!-- Segments -->
+  <div>
+    <ion-segment [(ngModel)]="profile_segment">
+        <ion-segment-button value="myEvent">
+          <ion-icon color="gray" style="font-size: 22px;" name="ios-calendar-outline"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="like">
+          <ion-icon color="gray" style="font-size: 22px;" name="ios-checkmark-circle-outline"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="following">
+          <ion-icon color="gray" style="font-size: 22px;" name="ios-contacts-outline"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="follow">
+          <ion-icon color="gray" style="font-size: 22px;" name="ios-thumbs-up-outline"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="coins">
+          <ion-icon color="gray" style="font-size: 22px;" name="ios-cube-outline"></ion-icon>
+        </ion-segment-button>
+      </ion-segment>
+      <hr no-padding no-margin>
+  </div>
+
+  <!-- Segment content -->
+  <div [ngSwitch]="profile_segment" style="padding: 0px 20px 0px 30px;">
+    <!-- <ion-list *ngSwitchCase="'myEvent'">
+      <ion-grid>
+        <ion-row >
+          <ion-col col-4 class="grid_img" *ngFor="let i of (evnt)">
+            <img class="sqr" src="https://bizzybody.ng/uploads/events/{{i.image}}" alt="">
+          </ion-col>
+        </ion-row>
+
+        <ion-card *ngIf="noRecords">
+            <ion-item>
+              No Records
+            </ion-item>
+          </ion-card>
+
+          <ion-fab right bottom>
+            <button ion-fab color="bizzy"><ion-icon color="white" name="add"></ion-icon></button>   
+        </ion-fab>
+      </ion-grid>
+    </ion-list> -->
+
+    <ion-list *ngSwitchCase="'myEvent'">
+      <div *ngIf="lent != 0;else other_content"> 
+      <div>
+        <h3 style="color: gray; font-size: 16px;">MY PUBLISHED EVENTS</h3>
+      </div>
+      <ion-item no-padding no-lines>
+        <ion-row *ngFor="let i of (evnt)" style="padding: 10px 0px;">
+          <ion-col col-4 no-padding>
+              <ion-card class="card" no-margin>
+          <img src="https://bizzybody.ng/uploads/events/{{i.image}}" alt="" style="height: 100px; object-fit: cover;">
+                </ion-card>
+      </ion-col>
+
+      <ion-col col-8 style="padding-left: 20px;">
+        <h5 text-wrap style="font-weight:500; text-transform: uppercase; padding-bottom: 8px;">{{i.title}}</h5>
+
+        <p style="color: #000000; font-size: 12px;"><ion-icon name="ios-calendar-outline" color="bizzy" style="font-size: unset;"></ion-icon>  {{i.countdown | date:'fullDate'}} </p>
+        <p text-wrap style="color: #4F4F4F; font-size: 10px;"><ion-icon color="bizzy" name="ios-navigate-outline" style="font-size: unset;"></ion-icon>  {{i.place}} | {{i.loc_city}}</p>
+      </ion-col>
+    </ion-row>
+      </ion-item>
+      <ion-fab right bottom>
+          <button ion-fab color="bizzy" (click)="openWithInAppBrowser('https://bizzybody.ng/post/app/' + userDetails.user_id)"><ion-icon color="white" name="add"></ion-icon></button>   
+      </ion-fab>
+    </div>
+
+    <ng-template #other_content>
+        <div no-padding>
+          <ion-row style="padding: 20px 0px;">
+        <ion-col col-12 text-center>
+          <img height="150px" src="assets/icon/event.png">
+          <p style="color: #4F4F4F;">Your have no events published yet.<br>
+              Feel free to publish an event you are hosting.</p>
+
+              <button ion-button padding color="bizzy" (click)="openWithInAppBrowser('https://bizzybody.ng/post/app/' + userDetails.user_id)" style="color: #ffffff;font-weight: bolder;">PUBLISH YOUR FIRST EVENT</button>
+        </ion-col>
+      </ion-row>
+    </div>
+    </ng-template>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'like'">
+        <div *ngIf="lentIn != 0;else other_content1"> 
+        <div>
+          <h3 style="color: gray; font-size: 16px;">EVENTS I CHECKED INTO</h3>
+        </div>
+        <ion-item no-padding no-lines>
+          <ion-row *ngFor="let i of (evntIn)" style="padding: 10px 0px;">
+            <ion-col col-4 no-padding>
+                <ion-card class="card" no-margin>
+            <img src="https://bizzybody.ng/uploads/events/{{i.image}}" alt="" style="height: 100px; object-fit: cover;">
+                  </ion-card>
+        </ion-col>
+  
+        <ion-col col-8 style="padding-left: 20px;">
+          <h5 text-wrap style="font-weight:500; text-transform: uppercase; padding-bottom: 8px;">{{i.title}}</h5>
+  
+          <p style="color: #000000; font-size: 12px;"><ion-icon name="ios-calendar-outline" color="bizzy" style="font-size: unset;"></ion-icon>  {{i.countdown | date:'fullDate'}} </p>
+          <p text-wrap style="color: #4F4F4F; font-size: 10px;"><ion-icon color="bizzy" name="ios-navigate-outline" style="font-size: unset;"></ion-icon>  {{i.place}} | {{i.loc_city}}</p>
+        </ion-col>
+      </ion-row>
+        </ion-item>
+      </div>
+  
+      <ng-template #other_content1>
+          <div no-padding>
+            <ion-row style="padding: 20px 0px;">
+          <ion-col col-12 text-center>
+            <img height="150px" src="assets/icon/event.png">
+            <p style="color: #4F4F4F;">Your have not checked into any Event.<br>
+                Let's show you some Fun.</p>
+  
+                <button ion-button padding color="bizzy" style="color: #ffffff;font-weight: bolder;"  (click)="goToSearch()">BROWSE EVENTS</button>
+          </ion-col>
+        </ion-row>
+      </div>
+      </ng-template>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'following'">
+        <div *ngIf="lentffMe != 0;else other_content2"> 
+        <div>
+          <h3 style="color: gray; font-size: 16px;">USERS FOLLOWING ME</h3>
+        </div>
+        <ion-item no-padding no-lines>
+          <ion-row *ngFor="let i of (ffMe)" style="padding: 10px 0px;">
+              <ion-col col-4 no-padding>
+                  <ion-card class="card" no-margin>
+              <img src="https://bizzybody.ng/uploads/users/{{i.img}}" alt="" style="height: 80px; object-fit: cover;">
+                    </ion-card>
+          </ion-col>
+    
+          <ion-col col-8 style="padding-left: 20px;">
+            <h3 text-wrap style="font-weight:500; text-transform: uppercase; padding-top: 30px; padding-bottom: 8px;">{{i.username}}</h3>
+          </ion-col>
+      </ion-row>
+        </ion-item>
+      </div>
+  
+      <ng-template #other_content2>
+          <div no-padding>
+            <ion-row style="padding: 20px 0px;">
+          <ion-col col-12 text-center>
+            <img height="150px" src="assets/icon/event.png">
+            <p style="color: #4F4F4F;">You have no follower at this time</p>
+
+          </ion-col>
+        </ion-row>
+      </div>
+      </ng-template>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'follow'">
+        <div *ngIf="lentff != 0;else other_content3"> 
+        <div>
+          <h3 style="color: gray; font-size: 16px;">USERS I FOLLOWING</h3>
+        </div>
+        
+        <ion-item no-padding no-lines>
+            <ion-row *ngFor="let i of (Iff)" style="padding: 10px 0px;">
+              <ion-col col-4 no-padding>
+                  <ion-card class="card" no-margin>
+              <img src="https://bizzybody.ng/uploads/users/{{i.img}}" alt="" style="height: 80px; object-fit: cover;">
+                    </ion-card>
+          </ion-col>
+    
+          <ion-col col-8 style="padding-left: 20px;">
+            <h3 text-wrap style="font-weight:500; text-transform: uppercase; padding-top: 30px; padding-bottom: 8px;">{{i.username}}</h3>
+          </ion-col>
+        </ion-row>
+          </ion-item>
+      </div>
+  
+      <ng-template #other_content3>
+          <div no-padding>
+            <ion-row style="padding: 20px 0px;">
+          <ion-col col-12 text-center>
+            <img height="150px" src="assets/icon/event.png">
+            <p style="color: #4F4F4F;">You are not following any one at this time</p>
+
+          </ion-col>
+        </ion-row>
+      </div>
+      </ng-template>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'coins'">
+          <div no-padding>
+            <ion-row style="padding: 20px 0px;">
+          <ion-col col-12 text-center>
+            <img height="150px" src="assets/icon/event.png">
+            <p style="color: #4F4F4F;">Watch this Space <br>
+            Coin features coming soon!</p>
+
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-list>
+
+  </div>
+  
+</ion-content>

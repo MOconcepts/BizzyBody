@@ -1,0 +1,26 @@
+<ion-header no-shadow no-padding no-margin>
+  <ion-navbar color="bizzy">
+    <ion-buttons end *ngIf="showSkip">
+      <button ion-button (click)="startApp()" color="white">Skip <ion-icon style="padding-left: 10px;" name="arrow-forward"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-bounce>
+  <ion-slides style="background-color: #fecb00;" pager="true" dir="{{dir}}" (ionSlideWillChange)="onSlideChangeStart($event)">
+    <ion-slide *ngFor="let slide of slides">
+      <img [src]="slide.image" class="slide-image" />
+      <h2 class="slide-title" [innerHTML]="slide.title"></h2>
+      <p [innerHTML]="slide.description"></p>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/img/ica-slidebox-img-4.png" class="slide-image" />
+      <h2 class="slide-title">Dear Event Owner,</h2>
+      <p>Get quick and valuable feedback about your event</p>
+      <button ion-button icon-end large clear color="white" (click)="startApp()">
+        Enter to See the FUN!
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

@@ -1,0 +1,159 @@
+<ion-header no-margin no-padding>
+    <ion-toolbar color="bizzy">
+        <ion-buttons end>
+            <button ion-button icon-only (click)="goToProfile()">
+                <ion-avatar>
+                  <img height="25px" width="25px" style=" object-fit: cover;border-radius: 100px;" src="https://bizzybody.ng/uploads/users/{{userDetails.img}}">
+                </ion-avatar>
+              </button>
+            <button ion-button icon-only (click)="openPopover($event)">
+              <ion-icon color="white" name="more"></ion-icon>
+            </button>
+          </ion-buttons>
+    </ion-toolbar>
+   </ion-header>
+  
+  <ion-content  no-padding no-margin no-bounce>
+    <div style="height: 250px; margin: 0; background-color: #fecb00;">
+      <ion-row>
+          <ion-col col-8>
+          <p style="margin-left: 30px; margin-bottom: 0;"><img src="assets/icon/search.svg" style="height: 20px; width: auto;"></p>
+          <span style="color: #ffffff; margin-left: 30px; font-size: 28px; font-style: light;">Search Events</span>
+          </ion-col>
+          <ion-col col-4>
+          <!-- <img src="assets/icon/ticket.svg" style="color: #ffffff; height: 80px; width: auto; margin-right: 30px;"> -->
+          </ion-col>
+
+          <ion-col class="key" col-10>
+              <ion-item style="background-color: transparent; padding-top: 20px; margin-left: 20px; margin-bottom: 0;">
+                  <ion-input style="color: #ffffff;" color="white" type="text" [(ngModel)]="search.key" placeholder="Search Keyword" clearInput="true"></ion-input>
+                </ion-item>
+          </ion-col>
+  
+      </ion-row>
+          <img src="assets/icon/eko.svg" style="width: 100%; margin-top: 15px;">
+    </div>
+  <div style="margin-top:40px; margin-bottom: 40px;">
+        <ion-grid>
+
+                <!-- <ion-row style="margin: 0 10px;">
+                    <ion-col col-6 *ngFor="let ticket of (tickets)">
+              <ion-card  class="card" (click)="goTicketInfo(ticket)">
+
+                      <img style="max-height: 100px; object-fit: cover;" width="100%" src="https://bizzybody.ng/uploads/events/{{ticket.image}}"> 
+                    <ion-row>
+                            <ion-col col-12>
+                              <ion-item>
+                            <h2 text-wrap style="font-size: 14px;">{{ticket.title}}</h2>
+                          </ion-item>
+                            </ion-col >
+                          </ion-row>
+              
+                </ion-card>
+            </ion-col>
+        </ion-row> -->
+
+        <ion-row ion-row style="margin: 0 30px;">
+          <ion-col col-10>
+              <ion-item>
+                <ion-label stacked>What?</ion-label>
+                <ion-select class="formF" [(ngModel)]="search.what">
+                    <ion-option value="">Event Category</ion-option>
+    
+                    <ion-option value="3">Business</ion-option>
+    
+                    <ion-option value="2">Competition</ion-option>
+    
+                    <ion-option value="1"> - Audition</ion-option>
+                    <ion-option value="4"> - Awards</ion-option>
+    
+                    <ion-option value="5"> - Computer Game</ion-option>
+    
+                    <ion-option value="6"> - Pagaent</ion-option>
+    
+                    <ion-option value="7"> - Sport</ion-option>
+    
+                    <ion-option value="8">Concert &amp; Show</ion-option>
+    
+                    <ion-option value="9"> - Comedy Show</ion-option>
+    
+                    <ion-option value="10"> - Fashion</ion-option>
+    
+                    <ion-option value="11"> - Music Concert</ion-option>
+    
+                    <ion-option value="12"> - Performing Art</ion-option>
+    
+                    <ion-option value="13">Conference</ion-option>
+    
+                    <ion-option value="14"> - Exhibition</ion-option>
+    
+                    <ion-option value="15"> - Networking</ion-option>
+    
+                    <ion-option value="16"> - Roundtable</ion-option>
+    
+                    <ion-option value="17"> - Seminar</ion-option>
+    
+                    <ion-option value="18"> - Symposium</ion-option>
+    
+                    <ion-option value="19"> - Workshop</ion-option>
+    
+                    <ion-option value="20">Movies</ion-option>
+    
+                    <ion-option value="21">Party</ion-option>
+    
+                    <ion-option value="22"> - Festival &amp; Carnival</ion-option>
+    
+                    <ion-option value="23"> - Nightlife</ion-option>
+    
+                    <ion-option value="24"> - Open Entry Party</ion-option>
+    
+                    <ion-option value="25"> - Private Party</ion-option>
+    
+                    <ion-option value="26">Product Launch</ion-option>
+    
+                    <ion-option value="27">Religious</ion-option>
+    
+                    <ion-option value="28"> - Ceremony</ion-option>
+    
+                    <ion-option value="29"> - Meeting</ion-option>
+    
+                    <ion-option value="30">Team Building Event</ion-option>
+    
+                    <ion-option value="31">Yard Sale</ion-option>
+    
+                </ion-select>
+              </ion-item>
+              <ion-item style="padding-top: 30px;">
+                <ion-label stacked>Where?</ion-label>
+                <ion-select class="formF" [(ngModel)]="search.where">
+                    <ion-option value="">Event City</ion-option>
+    
+                    <ion-option value="1">Lagos Mainland, Nigeria</ion-option>
+    
+                     <ion-option value="2">Lagos Island, Nigeria</ion-option>
+    
+                     <ion-option value="3">Abuja, Nigeria</ion-option>
+    
+                     <ion-option value="4">PH, Nigeria</ion-option>
+    
+                     <ion-option value="5">Other States, Nigeria</ion-option>
+    
+                     <ion-option value="6">Accra, Ghana</ion-option>
+    
+                     <ion-option value="7">Yonder</ion-option>
+    
+                </ion-select>
+              </ion-item>
+          </ion-col>
+        </ion-row>
+
+       
+        
+      <ion-fab right bottom>
+          <button ion-fab color="bizzy" (click)="searchDb()"><ion-icon color="white" name="ios-arrow-dropright-outline"></ion-icon></button>   
+      </ion-fab>
+      </ion-grid>
+
+  </div>
+  </ion-content>
+  

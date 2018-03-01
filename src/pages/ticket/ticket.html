@@ -1,0 +1,81 @@
+<ion-header no-margin no-padding>
+    <ion-toolbar color="bizzy">
+        <ion-buttons end>
+            <button ion-button icon-only (click)="goToProfile()">
+                <ion-avatar>
+                  <img height="25px" width="25px" style=" object-fit: cover;border-radius: 100px;" src="https://bizzybody.ng/uploads/users/{{userDetails.img}}">
+                </ion-avatar>
+              </button>
+            <button ion-button icon-only (click)="openPopover($event)">
+              <ion-icon color="white" name="more"></ion-icon>
+            </button>
+          </ion-buttons>
+    </ion-toolbar>
+   </ion-header>  
+      
+      <ion-content  no-padding no-margin>
+          <div *ngIf="lent != 0;else other_content"> 
+        <div style="height: 200px; margin: 0; background-color: #fecb00;">
+          <ion-row>
+              <ion-col col-8>
+              <p class="pgTitle1">Get</p>
+              <span class="pgTitle2">Tickets</span>
+              <p style="margin-left: 30px; padding-bottom:5px; color: #ffffff; font-size: 18px; font-weight: 400; font-style: medium;">at 5% discount!</p>
+              </ion-col>
+              <ion-col col-4>
+              <!-- <img src="assets/icon/ticket.svg" style="color: #ffffff; height: 80px; width: auto; margin-right: 30px;"> -->
+              </ion-col>
+      
+          </ion-row>
+        </div>
+      <div style="margin-top:-100px; margin-bottom: 40px;">         
+              <ion-grid>
+                    <ion-row style="margin: 0 30px;">
+                        <ion-col col-6 *ngFor="let ticket of (tickets)">
+                  <!-- Cards -->
+                  <ion-card class="card" (click)="goTicketInfo(ticket)">
+
+                          <img style="max-height: 80px; object-fit: cover;" width="100%" src="https://bizzybody.ng/uploads/events/{{ticket.image}}"> 
+                        <ion-row>
+                                <ion-col col-12>
+                                  <ion-item>
+                                <h2 style="font-size: 12px; text-transform: uppercase;">{{ticket.title}}</h2>
+                              </ion-item>
+                                </ion-col >
+                              </ion-row>
+                  
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+          </ion-grid>
+
+          </div>                     
+      </div>
+      <ng-template #other_content>
+
+          <div style="height: 180px; margin: 0; background-color: #fecb00;">
+          <ion-row>
+            <ion-col col-8>
+            <p style="color: #ffffff; margin-left: 30px; margin-bottom: 0;">Get</p>
+            <span style="color: #ffffff; margin-left: 30px; font-size: 28px; font-weight: 100; font-style: light;">Tickets</span>
+            <p style="margin-left: 30px; padding-bottom:5px; color: #ffffff; font-size: 18px; font-weight: 300; font-style: medium;">at 5% discount!</p>
+            </ion-col>
+            <ion-col col-4>
+            <!-- <img src="assets/icon/ticket.svg" style="color: #ffffff; height: 80px; width: auto; margin-right: 30px;"> -->
+            </ion-col>
+    
+        </ion-row>
+                  <img src="assets/icon/eko.svg" style="width: 100%; margin-top: 15px;">
+            </div>
+            <div no-padding>
+                <ion-row style="padding: 50px 0px;">
+              <ion-col col-12 text-center>
+                <img height="150px" src="assets/icon/ticket.png">
+                <p style="color: #4F4F4F;">Sorry, there are no tickets for sale<br>
+                    on BizzyBody at the moment.</p>
+              </ion-col>
+            </ion-row>
+          </div>
+
+      </ng-template>
+      </ion-content>

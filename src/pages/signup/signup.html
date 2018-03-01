@@ -1,0 +1,86 @@
+<ion-header no-margin no-padding>
+        <ion-navbar color="bizzy">
+        </ion-navbar>
+      </ion-header>
+<ion-content no-margin no-padding scroll="false">
+        <section class="login-container">
+        <div text-center style="height: 200px; margin: 0; background-color: #fecb00;">
+      
+            <img src="assets/img/logo.png" style="width: 20%;">
+            <ion-row>
+                    <ion-col class="key" col-10 offset-1>
+                            <ion-item transparent>
+                                  <ion-label color="white" stacked>Where?</ion-label>
+                                  <ion-select required class="formF" [(ngModel)]="userData.where">
+                                      <ion-option value=""><span style="color:#ffffff !important;">Event City</span></ion-option>
+                      
+                                      <ion-option value="1">Lagos Mainland, Nigeria</ion-option>
+                      
+                                       <ion-option value="2">Lagos Island, Nigeria</ion-option>
+                      
+                                       <ion-option value="3">Abuja, Nigeria</ion-option>
+                      
+                                       <ion-option value="4">PH, Nigeria</ion-option>
+                      
+                                       <ion-option value="5">Other States, Nigeria</ion-option>
+                      
+                                       <ion-option value="6">Accra, Ghana</ion-option>
+                      
+                                       <ion-option value="7">Yonder</ion-option>
+                      
+                                  </ion-select>
+                                </ion-item>
+                              </ion-col>
+            </ion-row>
+        </div>
+      <div style="margin-top:20px; margin-bottom: 20px;">
+            <ion-grid>
+      
+            <ion-row ion-row style="margin: 0 30px;">
+              <ion-col col-10 offset-1>
+                    <div transparent text-center>
+                      
+          <ion-col align-self-center col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+                <ion-row>
+                             <!---Input field username-->
+              <ion-item col-6 no-padding transparent>
+                    <ion-label color="dark" stacked>Firstname</ion-label>
+                    <ion-input required type="text" [(ngModel)]="userData.fname"></ion-input>
+                </ion-item>
+
+              <!---Input field username-->
+              <ion-item col-6 no-padding transparent>
+                    <ion-label color="dark" stacked>Surname</ion-label>
+                    <ion-input required type="text" [(ngModel)]="userData.lname"></ion-input>
+                </ion-item>
+
+                </ion-row>
+                <!---Input field username-->
+                <ion-item no-padding transparent>
+                    <ion-label color="dark" stacked>Username</ion-label>
+                    <ion-input required type="text" [(ngModel)]="userData.username"></ion-input>
+                </ion-item>
+                <!---Input field password-->
+                <ion-item no-padding transparent>
+                    <ion-label color="dark" stacked>Password</ion-label>
+                    <ion-input required type="password" [(ngModel)]="userData.password"></ion-input>
+                </ion-item>
+                <!---Input field email-->
+                <ion-item no-padding transparent>
+                    <ion-label color="dark" stacked>Email</ion-label>
+                    <ion-input requiredtype="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required [(ngModel)]="userData.email"></ion-input>
+                </ion-item>
+                <!---Register button-->
+                <div style="padding-top: 20px;">
+                        <button ion-button block text-capitalize style="color: #ffffff" (click)="signup()">Submit</button>
+                </div>
+            </ion-col>
+                    </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+      
+      </div>
+    </section>
+      </ion-content>
+      

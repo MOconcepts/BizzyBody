@@ -1,0 +1,67 @@
+<ion-header no-margin no-padding>
+    <ion-toolbar color="bizzy">
+        <ion-buttons end>
+            <button ion-button icon-only (click)="openPopover($event)">
+              <ion-icon color="white" name="more"></ion-icon>
+            </button>
+          </ion-buttons>
+    </ion-toolbar>
+   </ion-header>
+  
+  <ion-content>
+      <div style="height: 182px; margin: 0; background-color: #fecb00;">
+        <ion-row>
+            <ion-col col-8>
+            <p style="margin-left: 30px; margin-bottom: 0;"><img src="assets/icon/search.svg" style="height: 20px; width: auto;"></p>
+            <span style="color: #ffffff; margin-left: 30px; font-size: 28px; font-style: light;">Search Events</span>
+            </ion-col>
+            <ion-col col-4>
+            </ion-col>
+  
+    
+        </ion-row>
+            <img src="assets/icon/eko.svg" style="width: 100%; margin-top: 15px;">
+      </div>
+  
+      <div style="margin-top:40px; margin-bottom: 20px; padding: 0px 20px 0px 30px;">
+
+          <div *ngIf="lent != 0;else other_content">          
+            <ion-list>
+              <div>
+                <h6>{{lent}} match(es)</h6>
+              </div>
+              <ion-item no-padding>
+                <ion-row *ngFor="let i of (srch)" style="padding: 10px 0px;"  (click)="goBizzyEvent(i)">
+                  <ion-col col-4 no-padding>
+                      <ion-card class="card" no-margin>
+                  <img src="https://bizzybody.ng/uploads/events/{{i.image}}" alt="" style="height: 100px; object-fit: cover;">
+                        </ion-card>
+              </ion-col>
+        
+              <ion-col col-8 style="padding-left: 20px;">
+                <h5 text-wrap style="font-weight:500; text-transform: uppercase; padding-bottom: 8px;">{{i.title}}</h5>
+        
+                <p style="color: #000000; font-size: 12px;"><ion-icon name="ios-calendar-outline" color="bizzy" style="font-size: unset;"></ion-icon>  {{i.countdown | date:'fullDate'}} </p>
+                <p text-wrap style="color: #4F4F4F; font-size: 10px;"><ion-icon name="ios-navigate-outline" style="font-size: unset;" color="bizzy"></ion-icon>  {{i.place}} | {{i.loc_city}}</p>
+              </ion-col>
+            </ion-row>
+              </ion-item>
+        
+            </ion-list>
+          </div>
+
+          <ng-template #other_content>
+              <div no-padding>
+                <ion-row style="padding: 10px 0px;">
+              <ion-col col-12 text-center>
+                <img height="150px" src="assets/icon/search.png">
+                <p style="color: #4F4F4F;">Hmmm, we are not getting any results.<br>
+                    Our bad - try adjusting your search criteria</p>
+              </ion-col>
+            </ion-row>
+          </div>
+          </ng-template>
+
+    </div>
+    </ion-content>
+    

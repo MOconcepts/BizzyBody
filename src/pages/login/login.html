@@ -1,0 +1,43 @@
+<ion-header no-margin no-padding>
+        <ion-navbar color="bizzy">
+        </ion-navbar>
+      </ion-header>
+<ion-content no-margin no-padding scroll="false">
+    <section class="login-container">
+        <div text-center style="height: 250px; margin: 0; background-color: #fecb00;">
+      
+            <img src="assets/img/logo.png" style="width: 20%; margin-top: 50px;">
+              <img src="assets/icon/eko.svg" style="width: 100%; margin-top: 0px;">
+        </div>
+      <div style="margin-top:20px; margin-bottom: 20px;">
+            <ion-grid>
+      
+            <ion-row ion-row style="margin: 0 30px;">
+              <ion-col col-10 offset-1>
+                    <div transparent text-center>
+                      
+          <ion-col align-self-center col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+                <!---Input field username-->
+                <ion-item no-padding transparent>
+                    <ion-label color="dark" stacked>Username</ion-label>
+                    <ion-input required type="text" [(ngModel)]="userData.username"></ion-input>
+                </ion-item>
+                <!---Input field password-->
+                <ion-item no-padding transparent>
+                    <ion-label color="dark" stacked>Password</ion-label>
+                    <ion-input required type="password" [(ngModel)]="userData.password"></ion-input>
+                </ion-item>
+                <!---Register button-->
+                <div style="padding-top: 20px;">
+                        <button ion-button block text-capitalize style="color: #ffffff" (click)="login()">Submit</button>
+                </div>
+            </ion-col>
+                    </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+      
+      </div>
+    </section>
+      </ion-content>
+      

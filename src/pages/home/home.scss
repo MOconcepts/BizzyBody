@@ -1,0 +1,56 @@
+page-home {
+    $num-of-tabs: 4;
+   
+    @mixin tabs {
+      @for $i from 1 through $num-of-tabs {
+        &:nth-of-type(#{$i}) {
+          &.segment-activated {
+            ~ .slide {
+              left: calc((100% / #{$num-of-tabs}) * #{$i - 1});
+            }
+          }
+        }
+      }
+    }
+    .svgImg {
+      height: 80px; 
+      width: auto;
+    }
+    .divPad {
+      padding: 0px 20px 0px 30px;
+    }
+  
+    .swiper-slide {
+        overflow-y: scroll;
+        display: block;
+        }
+
+        .swiper-container {
+            height: unset;
+          }
+    ion-segment {
+        display: block;
+        white-space: nowrap;
+        font-size: 0;
+        overflow: auto;
+    }
+    
+    .segment-button {
+        display: inline-block!important;
+        min-width: 100px!important;
+        width: auto!important;
+        border: 0 !important;
+        @include tabs;
+      }
+     
+      .slide {
+        background: #FECB00;
+        width: calc(100% / #{$num-of-tabs});
+        height: 4px;
+        position: absolute;
+        left: 0;
+        top: calc(100% - 4px);
+        transition: left 0.3s ease-out;
+      }
+
+}

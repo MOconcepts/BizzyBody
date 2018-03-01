@@ -1,0 +1,55 @@
+<!--- Theme Parallax - Product -->
+<ion-header no-padding>
+  <ion-navbar color="bizzytop">
+    <ion-buttons end>
+        <button ion-button icon-only (click)="openPopover($event)">
+          <ion-icon color="white" name="more"></ion-icon>
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+  </ion-header>
+
+  <ion-content elastic-header>
+    <!-- Parallax Big Image -->
+    <ion-item no-lines background-size id="elastic-header" [ngStyle]="{'background-image': 'url(https://bizzybody.ng/uploads/events/' + ticket.image + ')'}">
+    </ion-item>
+    <!--Content-->
+    <ion-grid no-padding >
+      <ion-row>
+        <ion-item color="bizzy">
+          <h1 style="color: #ffffff; padding-left: 30px;">Available Ticket Prices</h1>
+        </ion-item>
+
+        <div class="divPad">
+            <h2 style="font-weight: 100; font-size: 30px;">{{ticket.title}}</h2>
+            <div style="padding-right: 20px;" *ngFor="let i of (ticketType)">
+                <hr>
+                <p style="font-size: 16px; font-weight: 200; padding-top: 10px;">
+                  <ion-icon name="ios-pricetag-outline" item-start></ion-icon>
+                  {{i.type}} | &#x20A6;{{i.amount}}</p>
+            </div>
+
+        </div>
+
+        <!-- <ion-col col-12 *ngFor="let i of (ticketType)">
+            <ion-card class="card">
+                <ion-card-header text-center>
+                  {{i.type}} | &#x20A6;{{i.amount}}
+                </ion-card-header>
+                <ion-card-content>
+                </ion-card-content>
+              </ion-card>
+        </ion-col> -->
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+
+  <ion-footer >
+      <ion-toolbar color="bizzy">
+        <ion-row>
+          <ion-col col-6 style="padding-left: 30px;">
+              <button ion-button color="white" style="color:#FECB00; border-radius: 5px;" (click)="openWithInAppBrowser('https://bizzybody.ng/apps/' + this.ticketId)">Get Ticket</button>
+          </ion-col>
+        </ion-row>
+      </ion-toolbar>
+    </ion-footer>
