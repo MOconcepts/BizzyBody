@@ -17,6 +17,9 @@ import { NgxContentLoadingModule } from 'ngx-content-loading';
 import { MomentModule } from 'angular2-moment';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { FormsModule } from '@angular/forms';
+
+import 'intl';
+import 'intl/locale-data/jsonp/en';
  
 
 
