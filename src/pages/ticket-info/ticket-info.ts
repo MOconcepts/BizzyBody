@@ -110,7 +110,7 @@ export class TicketInfoPage {
           color: '#FECB00'
       },
       toolbar: {
-          height: 40,
+          height: 50,
           color: '#FECB00'
       },
       title: {
@@ -120,7 +120,7 @@ export class TicketInfoPage {
       closeButton: {
         wwwImage: 'assets/images/close.png',
         wwwImagePressed: 'assets/images/close.png',
-        wwwImageDensity: 3,
+        wwwImageDensity: 1,
           align: 'left',
           event: 'closePressed'
       },
@@ -130,7 +130,10 @@ export class TicketInfoPage {
    //this.iab.create(url,target,this.options);
 
   const browser: ThemeableBrowserObject = this.iab.create(url,target,options);
-    
+
+  browser.on('closePressed').subscribe(data => {
+    browser.close();
+  })
 } 
 
   ionViewDidLoad() {

@@ -48,7 +48,8 @@ export class BizzyEventPage implements OnInit {
   resposeData2 : any;
   data2: any;
   ffId: any;
-
+  disableButton;
+  
   //apiUrl = 'https://rest.bizzybody.ng/api/v1/events/';
 
   constructor(
@@ -106,7 +107,7 @@ export class BizzyEventPage implements OnInit {
   }
 
   checkIn() {
-
+    this.disableButton = true;
     this.authService.postData(this.data, "checkIn").then((result) =>{
     this.resposeData = result;
     console.log(this.resposeData);

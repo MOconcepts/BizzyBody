@@ -196,10 +196,10 @@
             </ng-template>
         </ion-col>
         <ion-col col-6 >
-          <ion-list no-margin>
+          <ion-list no-margin no-lines>
             <ion-item transparent>
-              <!-- <ion-icon name="share" color="white" item-end style="padding-right: 20px;"></ion-icon> -->
-               <ion-icon color="white" name="checkmark-circle-outline" item-end (click)="checkIn()"></ion-icon>
+              <button ion-button icon-only item-end [disabled]="disableButton" (click)="checkIn()"><ion-icon color="white" name="checkmark-circle-outline"></ion-icon></button>
+               
             </ion-item>
           </ion-list>
         </ion-col>
