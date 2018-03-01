@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { PrivacyPage } from './privacy';
+import { ShowPage } from './show';
 
 @NgModule({
   declarations: [
-    PrivacyPage,
+    ShowPage,
   ],
   imports: [
-    IonicPageModule.forChild(PrivacyPage),
+    IonicPageModule.forChild(ShowPage),
   ],
 })
-export class PrivacyPageModule {}
+export class ShowPageModule {}

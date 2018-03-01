@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class ContactPage {
 
   getPage: any;
-  
+
   constructor(public navCtrl: NavController, public http: HttpClient, public restProvider: RestProvider) {
 
     this.Privacy();
@@ -20,16 +20,17 @@ export class ContactPage {
   Privacy() {
     this.restProvider.getPage()
     .then(data => {
-      this.getPage = data[0];
+      this.getPage = data;
       console.log(this.getPage);
     })
     .catch(err => {
       console.error(err)
     })
     ;
-  }   
+  } 
+  
+showPage(show) {
+  this.navCtrl.push('ShowPage', {show: show});
+}
 
-  goToPrivacy() {
-    this.navCtrl.push('PrivacyPage');
-  }
 }

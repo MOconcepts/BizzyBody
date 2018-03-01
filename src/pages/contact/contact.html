@@ -13,8 +13,10 @@
 
 <ion-content>
     <ion-list>
-      <ion-list-header>About</ion-list-header>
-      <button ion-item (click)="goToPrivacy()"> Privacy</button>
+      <ion-list-header >About</ion-list-header>
+      <div *ngFor="let show of (getPage)">
+          <button ion-item (click)="showPage(show)"> {{show.info_title}}</button>
+      </div>
     </ion-list>
   <ion-list>
     <ion-list-header>Social</ion-list-header>
