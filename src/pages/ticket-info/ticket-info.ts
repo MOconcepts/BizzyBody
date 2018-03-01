@@ -120,7 +120,7 @@ export class TicketInfoPage {
       closeButton: {
         wwwImage: 'assets/images/close.png',
         wwwImagePressed: 'assets/images/close.png',
-        wwwImageDensity: 1,
+        wwwImageDensity: 2,
           align: 'left',
           event: 'closePressed'
       },
