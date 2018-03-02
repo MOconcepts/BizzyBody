@@ -152,7 +152,7 @@
               <ion-col col-8 style="padding-left: 20px;">
                 <h5 text-wrap style="font-weight:500; text-transform: uppercase; padding-bottom: 8px;">{{event.title}}</h5>
         
-                <p style="color: #4F4F4F; font-size: 10px;"><ion-icon name="ios-calendar-outline" color="bizzy" style="font-size: unset;"></ion-icon>  {{event.countdown | date:'fullDate'}} </p>
+                <p style="color: #4F4F4F; font-size: 10px;"><ion-icon name="ios-calendar-outline" color="bizzy" style="font-size: unset;"></ion-icon>  {{event.countdown | moment:'dddd, MMMM D, YYYY'}} </p>
                 <p text-wrap style="color: #4F4F4F; font-size: 10px;"><ion-icon name="ios-navigate-outline" color="bizzy"></ion-icon>  {{event.place}} | {{event.loc_city}}</p>
               </ion-col>
             </ion-row>
@@ -184,7 +184,7 @@
       <ion-row>
         <ion-col col-6 style="padding-left: 30px;">
         <div *ngIf="event.ticket == 1;else tix2"> 
-            <button ion-button color="white" style="color:#FECB00; border-radius: 5px;">Get Ticket</button>
+            <button ion-button color="white" style="color:#FECB00; border-radius: 5px;" (click)="goTicketInfo(event)">Get Ticket</button>
         </div>
         <ng-template #tix2>
             <div *ngIf="event.ticket == 2;else tix0"> 
