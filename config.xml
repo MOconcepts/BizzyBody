@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="ng.bizzybody.event" version="0.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>BizzyBody</name>
-    <description>An awesome Ionic/Cordova app.</description>
+    <description>The BizzyBody NG.</description>
     <author email="hi@mmosix.me" href="http://mmosix.me/">Oyewole Mose</author>
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -87,9 +87,4 @@
     <content src="index.html" />
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.3.1" />
     <engine name="android" spec="7.0.0" />
-<<<<<<< HEAD
-    <engine name="ios" spec="4.5.4" />
-=======
-    <allow-navigation href="http://192.168.43.27:8100" />
->>>>>>> fe6223a1e81949728360ec981a7745e93155f8c3
 </widget>
