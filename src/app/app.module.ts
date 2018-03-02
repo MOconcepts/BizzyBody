@@ -14,7 +14,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AuthService } from '../providers/auth-service';
 import { Common } from '../providers/common';
 import { NgxContentLoadingModule } from 'ngx-content-loading';
-import { MomentModule } from 'angular2-moment';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { FormsModule } from '@angular/forms';
 
@@ -30,14 +29,15 @@ export function createTranslateLoader(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [MyApp],
+  declarations: [
+    MyApp,
+  ],
   imports: [
     BrowserModule, 
     FormsModule,
     HttpClientModule,
     HttpModule,
     NgxContentLoadingModule,
-    MomentModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

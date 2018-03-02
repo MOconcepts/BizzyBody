@@ -53,10 +53,10 @@
             <div>
                 <p style="font-size: 16px; font-weight: 200; padding-top: 10px;">
                   <ion-icon name="ios-calendar-outline" item-start></ion-icon>
-                  {{event.countdown | date:'fullDate'}} </p>
+                  {{event.countdown | moment:'dddd, MMMM D, YYYY'}} </p>
       
                 <p style="font-size: 16px; font-weight: 200;">  <ion-icon name="ios-clock-outline" item-start></ion-icon>
-                  {{event.countdown | date:'HH : MM'}} hrs </p>
+                  {{event.countdown | moment:'HH : MM'}} hrs </p>
             </div>
             <div style="padding-top: 16px">
                 <p style="font-size: 16px; font-weight: 100;"> <ion-icon name="ios-navigate-outline" item-start></ion-icon>

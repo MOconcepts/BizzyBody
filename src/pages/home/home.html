@@ -157,8 +157,8 @@
                           <ion-col col-12>
                             
                             <ion-item>
-                                <p style="color: #4F4F4F; font-size: 14px;"><ion-icon name="ios-calendar-outline" color="bizzy"></ion-icon>  {{event.countdown | date:'mediumDate'}}        <span style="padding-left: 20px;">
-                                    <ion-icon name="ios-clock-outline" color="bizzy"></ion-icon>  {{event.countdown | date:'shortTime'}}
+                                <p style="color: #4F4F4F; font-size: 14px;"><ion-icon name="ios-calendar-outline" color="bizzy"></ion-icon>  {{event.countdown | moment:'MMM D, YYYY'}}        <span style="padding-left: 20px;">
+                                    <ion-icon name="ios-clock-outline" color="bizzy"></ion-icon>   {{event.countdown | moment:'HH:mm'}}
                                 </span></p>
                                 <p style="color: #4F4F4F; font-size: 14px;"><ion-icon name="ios-navigate-outline" color="bizzy"></ion-icon>  {{event.place}} | {{event.loc_city}}</p>
                           
@@ -215,7 +215,7 @@
               <ion-col col-8 style="padding-left: 20px;">
                 <h5 text-wrap style="font-weight:500; text-transform: uppercase; padding-bottom: 8px;">{{event.title}}</h5>
         
-                <p style="color: #4F4F4F; font-size: 10px;"><ion-icon name="ios-calendar-outline" color="bizzy" style="font-size: unset;"></ion-icon>  {{event.countdown | date:'fullDate'}} </p>
+  <p style="color: #4F4F4F; font-size: 10px;"><ion-icon name="ios-calendar-outline" color="bizzy" style="font-size: unset;"></ion-icon>  {{event.countdown | moment:'dddd, MMMM D, YYYY'}} </p>
                 <p text-wrap style="color: #4F4F4F; font-size: 10px;"><ion-icon name="ios-navigate-outline" color="bizzy"></ion-icon>  {{event.place}} | {{event.loc_city}}</p>
               </ion-col>
             </ion-row>
@@ -242,8 +242,8 @@
                     <ion-col col-12>
                          
                       <ion-item>
-                        <p style="color: #4F4F4F; font-size: 14px;"><ion-icon name="ios-calendar-outline" color="bizzy"></ion-icon>  {{event.countdown | date:'mediumDate'}}        <span style="padding-left: 20px;">
-                            <ion-icon name="ios-clock-outline" color="bizzy"></ion-icon>  {{event.countdown | date:'shortTime'}}
+                        <p style="color: #4F4F4F; font-size: 14px;"><ion-icon name="ios-calendar-outline" color="bizzy"></ion-icon>  {{event.countdown | moment:'MMM D, YYYY'}}        <span style="padding-left: 20px;">
+                            <ion-icon name="ios-clock-outline" color="bizzy"></ion-icon>   {{event.countdown | moment:'HH:mm'}}
                         </span></p>
                         <p style="color: #4F4F4F; font-size: 14px;"><ion-icon name="ios-navigate-outline" color="bizzy"></ion-icon>  {{event.place}} | {{event.loc_city}}</p>
                   
