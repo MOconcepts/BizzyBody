@@ -1,6 +1,6 @@
 {
   "name": "BizzyBody",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
   "private": true,
@@ -36,7 +36,7 @@
     "@ngx-translate/http-loader": "^2.0.1",
     "angular2-jwt": "^0.2.3",
     "angular2-moment": "^1.8.0",
-    "cordova-android": "7.0.0",
+    "cordova-android": "6.4.0",
     "cordova-ios": "4.5.4",
     "cordova-plugin-camera": "^4.0.2",
     "cordova-plugin-device": "^2.0.1",
@@ -77,8 +77,8 @@
       "cordova-plugin-x-socialsharing": {}
     },
     "platforms": [
-      "android",
-      "ios"
+      "ios",
+      "android"
     ]
   }
 }

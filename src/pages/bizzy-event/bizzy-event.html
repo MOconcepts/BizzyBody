@@ -67,11 +67,10 @@
 
 
             <div style="padding-top: 16px">
-            <button style="border-radius: 5px; color: gray;" ion-button outline color="gray"  ion-button icon-right> Checkin Event <ion-icon color="gray" name="checkmark-circle-outline" (click)="checkIn()"></ion-icon></button>
+  <button style="border-radius: 5px; color: gray;" ion-button outline color="gray" ion-button icon-right [disabled]="disableButton" (click)="checkIn()"> Checkin Event <ion-icon color="gray" name="checkmark-circle-outline"></ion-icon></button>
             </div>
 
         </div>
-        
       <ion-row>
           <ion-col col-12>
           </ion-col>

@@ -45,3 +45,15 @@
 
 </div>
 </ion-content>
+
+<ion-footer>
+  <div *ngIf="userDetails.access == 1;" style="background-color:#FECB00;">
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 style="padding-left: 30px;">
+          <button ion-button color="white" style="color:#FECB00; border-radius: 5px;" (click)="addRoom()">Add Room</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div> 
+</ion-footer>

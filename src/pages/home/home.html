@@ -250,8 +250,11 @@
                 </ion-item>
                     </ion-col >
                   </ion-row> 
-            
               </ion-card>
+            
+              <ion-fab right bottom>
+                <button ion-fab color="bizzy" (click)="goToChat()"><ion-icon color="white" name="ios-chatbubbles-outline"></ion-icon></button>   
+            </ion-fab>
 </div>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="page < totalPage">
       <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>

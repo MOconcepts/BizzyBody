@@ -142,6 +142,9 @@ export class HomePage {
   goToProfile() {
     this.navCtrl.parent.select(4);
   }
+  goToChat() {
+    this.navCtrl.parent.select(2);
+  } 
 
   goBizzyEvent(event) {
     this.navCtrl.push('BizzyEventPage', {event: event});

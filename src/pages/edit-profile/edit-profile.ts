@@ -26,9 +26,9 @@ public userDetails: any;
   resposeData : any;
  userData: any;
  pass: any;
+ pref: any;
  public profile_segment:string;
 
- pref = {"where":""};
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService : AuthService, private toastCtrl:ToastController){  
     const data = JSON.parse(localStorage.getItem("userData"));
     this.userDetails = data.userData;
@@ -44,6 +44,8 @@ public userDetails: any;
                       "web":this.userDetails.web,
                       "user":this.userDetails.username,
                       "uid":this.userDetails.user_id };
+
+                     this.pref = {"where":this.userDetails.city};
       
  this.pass = {"p1":"","p2":"",
  "user":this.userDetails.username,

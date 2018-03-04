@@ -38,14 +38,13 @@ export class Login {
     this.presentToast("Please give valid username and password");
   }
     
-
-
     }, (err) => {
       //Connection failed message
+    this.presentToast('Username is incorrect, please check again or create an account');
     });
    }
    else{
-    this.presentToast("Give username and password");
+    this.presentToast("Enter your username and password");
    }
   
   }

@@ -31,15 +31,18 @@ export class Signup {
       this.navCtrl.push('TabsPage');
     }
     else{
-      this.presentToast("Please provide valid username, password and email");
+      this.presentToast("Please provide valid data");
     }
     
     }, (err) => {
       //Connection failed message
+    this.presentToast(err);
     });
   }
   else {
-    console.log("Give valid information.");
+
+    this.presentToast("All form fields are required - Please check and try again.");
+    console.log("All form fields are required - Please check and try again.");
   }
   
   }

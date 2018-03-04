@@ -12,7 +12,6 @@ const config = {
   storageBucket: "bizzybody-3c9cc.appspot.com",
 };
 
-
 @Component({
   templateUrl: 'app.html'
 })
@@ -26,6 +25,7 @@ export class MyApp {
   }
   initializeApp() {
     this._platform.ready().then(() => {
+
       // do whatever you need to do here.
       setTimeout(() => {
         this._SplashScreen.hide();

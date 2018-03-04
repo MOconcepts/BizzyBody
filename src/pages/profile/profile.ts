@@ -120,7 +120,7 @@ export class Profile {
   }
 
   public openWithInAppBrowser(url : string){
-    let target = "_self";
+    let target = "_blank";
 
     const options: ThemeableBrowserOptions = {
       statusbar: {
