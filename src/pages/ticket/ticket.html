@@ -3,7 +3,7 @@
         <ion-buttons end>
             <button ion-button icon-only (click)="goToProfile()">
                 <ion-avatar>
-                  <img height="25px" width="25px" style=" object-fit: cover;border-radius: 100px;" src="https://bizzybody.ng/uploads/users/{{userDetails.img}}">
+                    <img clSrc="https://res.cloudinary.com/bizzybody-ng/image/upload/c_fill,g_faces,h_25,r_50,w_25/users/{{userDetails.img}}" style=" object-fit: cover;border-radius: 100px;">
                 </ion-avatar>
               </button>
             <button ion-button icon-only (click)="openPopover($event)">
@@ -14,6 +14,9 @@
    </ion-header>  
       
       <ion-content  no-padding no-margin>
+          <ion-refresher (ionRefresh)="doRefresh($event)">
+              <ion-refresher-content style="background-color:#fecb00;"></ion-refresher-content>
+            </ion-refresher>
           <div *ngIf="lent != 0;else other_content"> 
         <div style="height: 200px; margin: 0; background-color: #fecb00;">
           <ion-row>
@@ -35,11 +38,18 @@
                   <!-- Cards -->
                   <ion-card class="card" (click)="goTicketInfo(ticket)">
 
-                          <img style="max-height: 80px; object-fit: cover;" width="100%" src="https://bizzybody.ng/uploads/events/{{ticket.image}}"> 
+                      <cs-ghost class="img2 square isLoading">
+                          <cl-image public-id="events/{{ticket.image}}" >
+                            <cl-transformation gravity="face" height="230" width="460" crop="fill">
+                            </cl-transformation>
+                          </cl-image>
+                      </cs-ghost>
                         <ion-row>
                                 <ion-col col-12>
                                   <ion-item>
+                                      <cs-ghost class="lg isLoading">
                                 <h2 style="font-size: 12px; text-transform: uppercase;">{{ticket.title}}</h2>
+                                      </cs-ghost>
                               </ion-item>
                                 </ion-col >
                               </ion-row>

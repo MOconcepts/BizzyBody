@@ -17,37 +17,41 @@
                     <div transparent text-center>
                       
           <ion-col align-self-center col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+
+  <form class="login-form auth-form" [formGroup]="userData" (ngSubmit)="login(userData.value)" >
+
                 <!---Input field username-->
                 <ion-item no-padding transparent>
-                    <ion-label color="dark" stacked>Username</ion-label>
-                    <ion-input required type="text" [(ngModel)]="userData.username"></ion-input>
-                </ion-item>
-                <!---Input field password-->
-                <ion-item no-padding transparent>
-                    <ion-label color="dark" stacked>Password</ion-label>
-                    <ion-input required type="password" [(ngModel)]="userData.password"></ion-input>
-                </ion-item>
+                  <ion-label color="dark" stacked>Username</ion-label>
+                  <ion-input #input required type="text" formControlName="username"></ion-input>
+              </ion-item>
+              
+    <show-hide-container>
+      <!---Input field password-->
+      <ion-item no-padding transparent>
+          <ion-label color="dark" stacked>Password</ion-label>
+          <ion-input #input required type="password" formControlName="password" show-hide-input></ion-input>
+      </ion-item>
+    </show-hide-container>
+
                 <!---Register button-->
                 <div style="padding-top: 20px;">
-                        <button ion-button block text-capitalize style="color: #ffffff" (click)="login()">Submit</button>
-                </div>
+                  <button ion-button block text-capitalize style="color: #ffffff" class="auth-action-button login-button" type="submit" [disabled]="!userData.valid">Submit</button>
+          </div>
+  </form>
             </ion-col>
                     </div>
               </ion-col>
             </ion-row>
           </ion-grid>
       
+          <ion-row>
+              <ion-col col-12 text-center>
+                  <p style="font-size: 10px;">By using this app, you agree to BizzyBodyNG’s <br>
+                      <a href="https://bizzybody.ng/terms" target="_blank"><span>Terms of Use</span></a> and <a href="http://bizzybody.ng/privacy" target="_blank"><span>Privacy Policy</span></a></p>
+              </ion-col>
+            </ion-row>
       </div>
     </section>
       </ion-content>
-      <ion-footer >
-        <ion-toolbar color="white">
-          <ion-row>
-            <ion-col col-12 text-center>
-                <p style="font-size: 10px;">By using this app, you agree to BizzyBodyNG’s <br>
-                    <a href="https://bizzybody.ng/terms" target="_blank"><span>Terms of Use</span></a> and <a href="http://bizzybody.ng/privacy" target="_blank"><span>Privacy Policy</span></a></p>
-            </ion-col>
-          </ion-row>
-        </ion-toolbar>
-      </ion-footer>
       

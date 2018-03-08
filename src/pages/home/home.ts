@@ -3,6 +3,8 @@ import { App, NavController, LoadingController, IonicPage, NavParams } from 'ion
 import { RestProvider } from '../../providers/rest/rest';
 import { Common } from "../../providers/common";
 import { PopoverController} from 'ionic-angular';
+
+import { GhotsProvider } from '../../providers/ghots/ghots';
 /**
  * Generated class for the IndexPage page.
  *
@@ -36,6 +38,7 @@ export class HomePage {
     public app: App,
     public navParams: NavParams, 
     public restProvider: RestProvider, 
+		private _ghotsPrv: GhotsProvider,
     public common: Common,
     public loadingCtrl: LoadingController
     // private modal: ModalController
@@ -44,11 +47,30 @@ export class HomePage {
       this.userDetails = data.userData;
       this.locId = this.userDetails.location_id;
 
+      this._setLoaded()
+
     this.locEvents();
     this.tixEvents();
     this.getEvents();
   }
+  doRefresh(refresher) {
+    this._setLoaded()
+    this.locEvents();
+    this.tixEvents();
+    this.getEvents();
 
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 3000);
+  }
+
+	private _setLoaded() {
+		setTimeout(() => {
+			this._ghotsPrv.setLoading(false)
+		}, 8000);
+  }
+  
   openPopover(myEvent) {
     let popover = this.popoverCtrl.create('PopPage');
     popover.present({
@@ -56,12 +78,12 @@ export class HomePage {
     });
   }
   locEvents() {
-    this.common.presentLoading();
+    // this.common.presentLoading();
     this.restProvider.locEvents(this.locId)
     .then(data => {
       this.myLoc = data;
       this.locLent = this.myLoc.length;
-      this.common.closeLoading();
+      // this.common.closeLoading();
       console.log(this.myLoc);
     })
     .catch(err => {

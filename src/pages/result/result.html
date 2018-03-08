@@ -32,18 +32,29 @@
               </div>
               <ion-item no-padding>
                 <ion-row *ngFor="let i of (srch)" style="padding: 10px 0px;"  (click)="goBizzyEvent(i)">
-                  <ion-col col-4 no-padding>
-                      <ion-card class="card" no-margin>
-                  <img src="https://bizzybody.ng/uploads/events/{{i.image}}" alt="" style="height: 100px; object-fit: cover;">
-                        </ion-card>
-              </ion-col>
-        
-              <ion-col col-8 style="padding-left: 20px;">
-                <h5 text-wrap style="font-weight:500; text-transform: uppercase; padding-bottom: 8px;">{{i.title}}</h5>
-        
-                <p style="color: #000000; font-size: 12px;"><ion-icon name="ios-calendar-outline" color="bizzy" style="font-size: unset;"></ion-icon>  {{i.countdown | moment:'dddd, MMMM D, YYYY'}} </p>
-                <p text-wrap style="color: #4F4F4F; font-size: 10px;"><ion-icon name="ios-navigate-outline" style="font-size: unset;" color="bizzy"></ion-icon>  {{i.place}} | {{i.loc_city}}</p>
-              </ion-col>
+                    <ion-col col-4 no-padding>
+                        <ion-card class="card" no-margin>
+                            <cs-ghost class="img2 square isLoading">
+                            <cl-image public-id="events/{{i.image}}" >
+                              <cl-transformation gravity="faces" height="100" radius="5" width="105" crop="fill">
+                              </cl-transformation>
+                            </cl-image>
+                            </cs-ghost>
+                          </ion-card>
+                </ion-col>
+          
+                <ion-col col-8 style="padding-left: 20px;">
+                    <cs-ghost class="lg isLoading">
+                  <h5 text-wrap style="font-weight:500; text-transform: uppercase; padding-bottom: 8px;">{{i.title}}</h5>
+                    </cs-ghost>
+  
+                    <cs-ghost class="lg isLoading">
+                      <p style="color: #4F4F4F; font-size: 10px;"><ion-icon name="ios-calendar-outline" color="bizzy" style="font-size: unset;"></ion-icon>  {{i.countdown | moment:'dddd, MMMM D, YYYY'}} </p>
+                    </cs-ghost>
+                    <cs-ghost class="lg isLoading">
+                  <p text-wrap style="color: #4F4F4F; font-size: 10px;"><ion-icon name="ios-navigate-outline" color="bizzy"></ion-icon>  {{i.place}} | {{i.loc_city}}</p>
+                    </cs-ghost>
+                </ion-col>
             </ion-row>
               </ion-item>
         

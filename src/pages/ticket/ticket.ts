@@ -4,6 +4,8 @@ import { RestProvider } from '../../providers/rest/rest';
 import { Common } from "../../providers/common";
 import { PopoverController} from 'ionic-angular';
 
+import { GhotsProvider } from '../../providers/ghots/ghots';
+
 
 /**
  * Generated class for the TicketPage page.
@@ -27,12 +29,29 @@ export class TicketPage {
     public popoverCtrl: PopoverController,
     public navCtrl: NavController, 
               public app: App, 
+              private _ghotsPrv: GhotsProvider,
               public navParams: NavParams, 
               public restProvider: RestProvider,
               public common: Common) {
                 const data = JSON.parse(localStorage.getItem("userData"));
                 this.userDetails = data.userData;
+
+                this._setLoaded()
     this.getTickets();
+  }
+  doRefresh(refresher) {
+    this._setLoaded()
+    this.getTickets();
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 3000);
+  }
+  private _setLoaded() {
+		setTimeout(() => {
+			this._ghotsPrv.setLoading(false)
+		}, 8000);
   }
 
   openPopover(myEvent) {
@@ -42,12 +61,10 @@ export class TicketPage {
     });
   }
   getTickets() {
-    this.common.presentLoading();
     this.restProvider.getTickets()
     .then(data => {
       this.tickets = data;
       this.lent = this.tickets.length;
-      this.common.closeLoading();
       console.log(this.lent);
 
     })

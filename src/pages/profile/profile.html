@@ -11,8 +11,8 @@
     <div style="height: 120px; margin: 0; background-color: #fecb00;">
   <ion-row style="padding: 10px 30px;">
       <!-- Avatar -->
-      <ion-col col-3>
-        <img src="https://bizzybody.ng/uploads/users/{{userDetails.img}}" class="avatar" alt="">
+      <ion-col col-3 (click)="presentActionSheet()">
+              <img clSrc="https://res.cloudinary.com/bizzybody-ng/image/upload/c_fill,g_faces,h_85,r_50,w_85/users/{{userDetails.img}}" style=" object-fit: cover;border-radius: 100px;" class="avatar">
       </ion-col>
       <!-- Information about user -->
       <ion-col col-9>
@@ -60,25 +60,6 @@
 
   <!-- Segment content -->
   <div [ngSwitch]="profile_segment" style="padding: 0px 20px 0px 30px;">
-    <!-- <ion-list *ngSwitchCase="'myEvent'">
-      <ion-grid>
-        <ion-row >
-          <ion-col col-4 class="grid_img" *ngFor="let i of (evnt)">
-            <img class="sqr" src="https://bizzybody.ng/uploads/events/{{i.image}}" alt="">
-          </ion-col>
-        </ion-row>
-
-        <ion-card *ngIf="noRecords">
-            <ion-item>
-              No Records
-            </ion-item>
-          </ion-card>
-
-          <ion-fab right bottom>
-            <button ion-fab color="bizzy"><ion-icon color="white" name="add"></ion-icon></button>   
-        </ion-fab>
-      </ion-grid>
-    </ion-list> -->
 
     <ion-list *ngSwitchCase="'myEvent'">
       <div *ngIf="lent != 0;else other_content"> 
@@ -87,18 +68,29 @@
       </div>
       <ion-item no-padding no-lines>
         <ion-row *ngFor="let i of (evnt)" style="padding: 10px 0px;">
-          <ion-col col-4 no-padding>
-              <ion-card class="card" no-margin>
-          <img src="https://bizzybody.ng/uploads/events/{{i.image}}" alt="" style="height: 100px; object-fit: cover;">
-                </ion-card>
-      </ion-col>
+            <ion-col col-4 no-padding>
+                <ion-card class="card" no-margin>
+                    <cs-ghost class="img2 square isLoading">
+                    <cl-image public-id="events/{{i.image}}" >
+                      <cl-transformation gravity="faces" height="100" radius="5" width="105" crop="fill">
+                      </cl-transformation>
+                    </cl-image>
+                    </cs-ghost>
+                  </ion-card>
+        </ion-col>
+  
+        <ion-col col-8 style="padding-left: 20px;">
+            <cs-ghost class="lg isLoading">
+          <h5 text-wrap style="font-weight:500; text-transform: uppercase; padding-bottom: 8px;">{{i.title}}</h5>
+            </cs-ghost>
 
-      <ion-col col-8 style="padding-left: 20px;">
-        <h5 text-wrap style="font-weight:500; text-transform: uppercase; padding-bottom: 8px;">{{i.title}}</h5>
-
-        <p style="color: #000000; font-size: 12px;"><ion-icon name="ios-calendar-outline" color="bizzy" style="font-size: unset;"></ion-icon>  {{i.countdown | moment:'dddd, MMMM D, YYYY'}} </p>
-        <p text-wrap style="color: #4F4F4F; font-size: 10px;"><ion-icon color="bizzy" name="ios-navigate-outline" style="font-size: unset;"></ion-icon>  {{i.place}} | {{i.loc_city}}</p>
-      </ion-col>
+            <cs-ghost class="lg isLoading">
+              <p style="color: #4F4F4F; font-size: 10px;"><ion-icon name="ios-calendar-outline" color="bizzy" style="font-size: unset;"></ion-icon>  {{i.countdown | moment:'dddd, MMMM D, YYYY'}} </p>
+            </cs-ghost>
+            <cs-ghost class="lg isLoading">
+          <p text-wrap style="color: #4F4F4F; font-size: 10px;"><ion-icon name="ios-navigate-outline" color="bizzy"></ion-icon>  {{i.place}} | {{i.loc_city}}</p>
+            </cs-ghost>
+        </ion-col>
     </ion-row>
       </ion-item>
       <ion-fab right bottom>
@@ -128,18 +120,29 @@
         </div>
         <ion-item no-padding no-lines>
           <ion-row *ngFor="let i of (evntIn)" style="padding: 10px 0px;">
-            <ion-col col-4 no-padding>
-                <ion-card class="card" no-margin>
-            <img src="https://bizzybody.ng/uploads/events/{{i.image}}" alt="" style="height: 100px; object-fit: cover;">
-                  </ion-card>
-        </ion-col>
+              <ion-col col-4 no-padding>
+                  <ion-card class="card" no-margin>
+                      <cs-ghost class="img2 square isLoading">
+                      <cl-image public-id="events/{{i.image}}" >
+                        <cl-transformation gravity="faces" height="100" radius="5" width="105" crop="fill">
+                        </cl-transformation>
+                      </cl-image>
+                      </cs-ghost>
+                    </ion-card>
+          </ion-col>
+    
+          <ion-col col-8 style="padding-left: 20px;">
+              <cs-ghost class="lg isLoading">
+            <h5 text-wrap style="font-weight:500; text-transform: uppercase; padding-bottom: 8px;">{{i.title}}</h5>
+              </cs-ghost>
   
-        <ion-col col-8 style="padding-left: 20px;">
-          <h5 text-wrap style="font-weight:500; text-transform: uppercase; padding-bottom: 8px;">{{i.title}}</h5>
-  
-          <p style="color: #000000; font-size: 12px;"><ion-icon name="ios-calendar-outline" color="bizzy" style="font-size: unset;"></ion-icon>  {{i.countdown | moment:'dddd, MMMM D, YYYY'}} </p>
-          <p text-wrap style="color: #4F4F4F; font-size: 10px;"><ion-icon color="bizzy" name="ios-navigate-outline" style="font-size: unset;"></ion-icon>  {{i.place}} | {{i.loc_city}}</p>
-        </ion-col>
+              <cs-ghost class="lg isLoading">
+                <p style="color: #4F4F4F; font-size: 10px;"><ion-icon name="ios-calendar-outline" color="bizzy" style="font-size: unset;"></ion-icon>  {{i.countdown | moment:'dddd, MMMM D, YYYY'}} </p>
+              </cs-ghost>
+              <cs-ghost class="lg isLoading">
+            <p text-wrap style="color: #4F4F4F; font-size: 10px;"><ion-icon name="ios-navigate-outline" color="bizzy"></ion-icon>  {{i.place}} | {{i.loc_city}}</p>
+              </cs-ghost>
+          </ion-col>
       </ion-row>
         </ion-item>
       </div>

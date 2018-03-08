@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import {AuthService} from "../../providers/auth-service";
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 /**
  * Generated class for the Login page.
  *
@@ -13,21 +14,37 @@ import {AuthService} from "../../providers/auth-service";
   templateUrl: 'login.html',
 })
 export class Login {
+  @ViewChild('input') myInput ;
   
   resposeData : any;
-  userData = {"username":"", "password":""};
+  public userData: FormGroup;
+  // userData = {"username":"", "password":""};
 
-  constructor(public navCtrl: NavController, public authService: AuthService, private toastCtrl:ToastController) {
+  constructor(public navCtrl: NavController, public authService: AuthService, private toastCtrl:ToastController,
+    private _FB: FormBuilder) {
+
+
+      this.userData	 = _FB.group({
+        'username'        : ['', Validators.required],
+        'password'        : ['', Validators.required]
+     });
+
   }
+  ionViewLoaded() {
 
+    setTimeout(() => {
+      this.myInput.setFocus();
+    },150);
+
+ }
   ionViewDidLoad() {
     console.log('ionViewDidLoad Login');
   }
 
   login(){
-   if(this.userData.username && this.userData.password){
+   if(this.userData.value){
     this.presentToast("Connecting...");
-    this.authService.postData(this.userData, "login").then((result) =>{
+    this.authService.postData(this.userData.value, "login").then((result) =>{
     this.resposeData = result;
     console.log(this.resposeData);
     if(this.resposeData.userData){
@@ -35,7 +52,7 @@ export class Login {
      this.navCtrl.setRoot('TabsPage');
   }
   else{
-    this.presentToast("Please give valid username and password");
+    this.presentToast(this.resposeData.error.text);
   }
     
     }, (err) => {
@@ -58,7 +75,7 @@ export class Login {
   presentToast(msg) {
     let toast = this.toastCtrl.create({
       message: msg,
-      duration: 2000
+      duration: 8000
     });
     toast.present();
   }

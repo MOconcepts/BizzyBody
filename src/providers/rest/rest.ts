@@ -67,6 +67,25 @@ export class RestProvider {
     });
   }
 
+  getCheckIn(uid, eId) {
+  return new Promise(resolve => {
+    this.httpc.get(this.apiUrl+'/getCheckIn/'+uid+'/'+eId).subscribe(data => {
+      resolve(data);
+    }, err => {
+      console.log(err);
+    });
+  });
+}
+getFollowIn(uid, ffId) {
+return new Promise(resolve => {
+  this.httpc.get(this.apiUrl+'/getFollowIn/'+uid+'/'+ffId).subscribe(data => {
+    resolve(data);
+  }, err => {
+    console.log(err);
+  });
+});
+}
+
   tixEvents() {
     return new Promise(resolve => {
       this.httpc.get(this.apiUrl+'/tixEvents').subscribe(data => {

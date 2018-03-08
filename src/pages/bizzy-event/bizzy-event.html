@@ -17,7 +17,10 @@
     <!-- Cards -->
     <ion-card no-padding no-margin class="card">
       
-      <img src="https://bizzybody.ng/uploads/events/{{event.image}}">
+        <cl-image public-id="events/{{event.image}}"> 
+          <cl-transformation gravity="face" height="300" crop="fill">
+            </cl-transformation>
+          </cl-image>
 
     <ion-row  style="background-color:#FECB00">
         <ion-col col-10>
@@ -66,9 +69,14 @@
             </div>
 
 
+            <div *ngIf="checkLent == 0;else other_content"> 
             <div style="padding-top: 16px">
   <button style="border-radius: 5px; color: gray;" ion-button outline color="gray" ion-button icon-right [disabled]="disableButton" (click)="checkIn()"> Checkin Event <ion-icon color="gray" name="checkmark-circle-outline"></ion-icon></button>
             </div>
+            </div>
+            <ng-template #other_content>
+  <button style="border-radius: 5px; color:#FECB00;" ion-button outline color="bizzy" ion-button icon-right disabled> Checked in<ion-icon color="bizzy" name="checkmark-circle-outline"></ion-icon></button>
+            </ng-template>
 
         </div>
       <ion-row>
@@ -121,11 +129,22 @@
         <ion-list>
           <ion-item>
             <ion-avatar item-start>
-              <img src="https://bizzybody.ng/uploads/users/{{event.img}}">
+                <img clSrc="https://res.cloudinary.com/bizzybody-ng/image/upload/c_fill,g_faces,h_75,r_50,w_75/users/{{event.img}}" style=" object-fit: cover;border-radius: 100px;">
             </ion-avatar>
             <h1> Publisher</h1>
             <p style="font-size: 16px; font-weight: 100;">{{event.username}}</p>
-            <ion-icon name="person-add" item-end color="bizzy" (click)="followIn()"></ion-icon>
+
+            <div *ngIf="event.username != userDetails.username ;then ff">
+                </div>
+                <ng-template #ff>
+                  <div *ngIf="ffLent == 0;else other_content2" item-end>
+                    <button style="border-radius: 5px; font-size: 10px; color: gray;" item-end ion-button outline small color="gray" ion-button icon-right (click)="followIn()"> Follow</button>
+                   </div>
+                </ng-template>
+                <ng-template #other_content2>
+      <button style="border-radius: 5px; font-size: 10px; color:#FECB00;" item-end ion-button outline small color="bizzy" ion-button icon-right disabled> Following</button>
+                </ng-template>
+
           </ion-item>
         </ion-list>
       </ion-card-content>
@@ -143,8 +162,10 @@
               <ion-item no-padding>
                 <ion-row *ngFor="let event of (similarE)" style="padding: 10px 0px;" (click)="goBizzyEvent(event)">
                   <ion-col col-4 no-padding>
-                      <ion-card class="card" no-margin>
-                  <img src="https://bizzybody.ng/uploads/events/{{event.image}}" alt="" style="height: 100px; border-radius: 5px; object-fit: cover;">
+                      <ion-card class="card" no-margin> <cl-image public-id="events/{{event.image}}" >
+                            <cl-transformation gravity="faces" height="100" radius="5" width="105" crop="fill">
+                            </cl-transformation>
+                          </cl-image>
                         </ion-card>
               </ion-col>
         
@@ -194,13 +215,8 @@
               <button ion-button disabled color="white" style="color:#FECB00; border-radius: 5px;">No Event Ticket</button>
             </ng-template>
         </ion-col>
-        <ion-col col-6 >
-          <ion-list no-margin no-lines>
-            <ion-item transparent>
-              <button ion-button transparent icon-only item-end [disabled]="disableButton" (click)="checkIn()"><ion-icon color="white" name="checkmark-circle-outline"></ion-icon></button>
-               
-            </ion-item>
-          </ion-list>
+        <ion-col col-6 style="padding-right: 20px;" *ngIf="checkLent == 0">
+                    <button style="float:right; border-radius: 5px; color: #ffffff;" ion-button outline color="white" ion-button icon-right [disabled]="disableButton" (click)="checkIn()"> Checkin <ion-icon color="white" name="checkmark-circle-outline"></ion-icon></button>
         </ion-col>
       </ion-row>
     </ion-toolbar>

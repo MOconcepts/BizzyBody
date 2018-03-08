@@ -166,6 +166,20 @@
 .toolbar-ios-bizzy .toolbar-title-ios, .toolbar-ios-bizzy .bar-button-clear-ios, .toolbar-ios-bizzy .bar-button-default-ios {
   color: #ffffff;
 }
+
+.refresher-pulling-icon, 
+.refresher-refreshing-icon {
+  text-align: center;
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  font-size: 30px;
+  color: #fff !important;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+}
+.refresher-refreshing .spinner-crescent circle {
+  stroke: #fff !important;
+}
 /* ==========================================================================
  Countdown styles
  ========================================================================== */

@@ -41,6 +41,7 @@ export class BizzyEventPage implements OnInit {
   cId: any;
   eId: any;
   similarE: any;
+  getCheck: any;
   tabBarElement: any;
   userDetails: any;
   data: any;
@@ -49,6 +50,9 @@ export class BizzyEventPage implements OnInit {
   resposeData2 : any;
   data2: any;
   ffId: any;
+  checkLent: any;
+  ffLent: any;
+  getFollow: any;
   disableButton;
   
   //apiUrl = 'https://rest.bizzybody.ng/api/v1/events/';
@@ -78,7 +82,8 @@ export class BizzyEventPage implements OnInit {
     this.data2 = {"ff_id": this.ffId, "ffn_id": this.uid};
     
     this.smEvents();
-    console.log(new Date());
+    this.getCheckIn();
+    this.getFollowIn();
 
   } 
 
@@ -108,10 +113,28 @@ export class BizzyEventPage implements OnInit {
     toast.present();
   }
 
+  getCheckIn() {
+    this.restProvider.getCheckIn(this.uid, this.eId)
+    .then(data => {
+      this.getCheck = data;
+      this.checkLent = this.getCheck.length;
+    })
+  }
+
+  getFollowIn() {
+    this.restProvider.getFollowIn(this.uid, this.ffId)
+    .then(data => {
+      this.getFollow = data;
+      this.ffLent = this.getFollow.length;
+      console.log(this.ffLent);
+    })
+  }
+
   checkIn() {
     this.disableButton = true;
     this.authService.postData(this.data, "checkIn").then((result) =>{
     this.resposeData = result;
+    this.getCheckIn();
     console.log(this.resposeData);
 
     this.presentToast("Event checkin was successful");
@@ -125,12 +148,12 @@ export class BizzyEventPage implements OnInit {
 
 
   followIn() {
-
     this.authService.postData(this.data2, "followIn").then((result) =>{
     this.resposeData2 = result;
-    console.log(this.resposeData);
+    this.getFollowIn();
+    console.log(this.resposeData2);
 
-    this.presentToast("You are now following"+ this.event.username);
+    this.presentToast("You are now following " + this.event.username);
     
     }, (err) => {
       this.presentToast(err);
