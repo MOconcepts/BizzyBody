@@ -19,8 +19,6 @@ import { FormsModule } from '@angular/forms';
 
 import 'intl';
 import 'intl/locale-data/jsonp/en';
- 
-
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.

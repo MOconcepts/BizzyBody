@@ -96,7 +96,7 @@
       <ion-col col-8 style="padding-left: 20px;">
         <h5 text-wrap style="font-weight:500; text-transform: uppercase; padding-bottom: 8px;">{{i.title}}</h5>
 
-        <p style="color: #000000; font-size: 12px;"><ion-icon name="ios-calendar-outline" color="bizzy" style="font-size: unset;"></ion-icon>  {{i.countdown | date:'fullDate'}} </p>
+        <p style="color: #000000; font-size: 12px;"><ion-icon name="ios-calendar-outline" color="bizzy" style="font-size: unset;"></ion-icon>  {{i.countdown | moment:'dddd, MMMM D, YYYY'}} </p>
         <p text-wrap style="color: #4F4F4F; font-size: 10px;"><ion-icon color="bizzy" name="ios-navigate-outline" style="font-size: unset;"></ion-icon>  {{i.place}} | {{i.loc_city}}</p>
       </ion-col>
     </ion-row>
@@ -114,7 +114,7 @@
           <p style="color: #4F4F4F;">Your have no events published yet.<br>
               Feel free to publish an event you are hosting.</p>
 
-              <button ion-button padding color="bizzy" (click)="openWithInAppBrowser('https://bizzybody.ng/post/app/' + userDetails.user_id)" style="color: #ffffff;font-weight: bolder;">PUBLISH YOUR FIRST EVENT</button>
+              <button ion-button padding color="bizzy" (click)="openWithInAppBrowser('http://bizzybody.ng/post/app/' + userDetails.user_id)" style="color: #ffffff;font-weight: bolder;">PUBLISH YOUR FIRST EVENT</button>
         </ion-col>
       </ion-row>
     </div>
@@ -137,7 +137,7 @@
         <ion-col col-8 style="padding-left: 20px;">
           <h5 text-wrap style="font-weight:500; text-transform: uppercase; padding-bottom: 8px;">{{i.title}}</h5>
   
-          <p style="color: #000000; font-size: 12px;"><ion-icon name="ios-calendar-outline" color="bizzy" style="font-size: unset;"></ion-icon>  {{i.countdown | date:'fullDate'}} </p>
+          <p style="color: #000000; font-size: 12px;"><ion-icon name="ios-calendar-outline" color="bizzy" style="font-size: unset;"></ion-icon>  {{i.countdown | moment:'dddd, MMMM D, YYYY'}} </p>
           <p text-wrap style="color: #4F4F4F; font-size: 10px;"><ion-icon color="bizzy" name="ios-navigate-outline" style="font-size: unset;"></ion-icon>  {{i.place}} | {{i.loc_city}}</p>
         </ion-col>
       </ion-row>

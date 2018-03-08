@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "180160240530",
+    "firebase_url": "https://bizzybody-3c9cc.firebaseio.com",
+    "project_id": "bizzybody-3c9cc",
+    "storage_bucket": "bizzybody-3c9cc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:180160240530:android:3e3d964cbebe68e4",
+        "android_client_info": {
+          "package_name": "ng.bizzybody.event"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "180160240530-jf3ahu7lef4sob19nflct5nrlpvrar71.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZtfzNPtJIICc6PcWSTBqb4GuiRMc30QY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -9,6 +9,7 @@ import { PopoverController} from 'ionic-angular';
 import {AuthService} from "../../providers/auth-service";
 
 import { SocialSharing } from '@ionic-native/social-sharing';
+import moment from 'moment'
 /**
  * Generated class for the BizzyEventPage page.
  *
@@ -77,6 +78,7 @@ export class BizzyEventPage implements OnInit {
     this.data2 = {"ff_id": this.ffId, "ffn_id": this.uid};
     
     this.smEvents();
+    console.log(new Date());
 
   } 
 
@@ -168,6 +170,10 @@ facebookShare(){
     })
 }
 
+goTicketInfo(event) {
+  this.navCtrl.push('TicketInfoPage', {ticket: event});
+}
+
   ionViewWillEnter() {
     this.tabBarElement.style.display = 'none';
   }
@@ -177,7 +183,9 @@ facebookShare(){
   }
   ngOnInit() {
 
-    this._trialEndsAt = this.event.countdown;
+    let count = moment(this.event.countdown).format('ddd MMM DD YYYY HH:mm')
+
+    this._trialEndsAt = count;
 
     Observable.interval(1000).map((x) => {
             this._diff = Date.parse(this._trialEndsAt) - Date.parse(new Date().toString());
