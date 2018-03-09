@@ -5,7 +5,7 @@ import {AuthService} from "../../providers/auth-service";
 import { File } from '@ionic-native/file';
 import { Transfer, TransferObject } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
-import { Camera } from '@ionic-native/camera';import { NativeGeocoder, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
+import { Camera } from '@ionic-native/camera';
 
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
@@ -27,9 +27,6 @@ declare var google: any;
 })
 export class PostPage {
   tabBarElement: any;
-  address: any;
-  lat: any;
-  lng: any;
   resposeData: any;
 
   lastImage: string = null;
@@ -38,10 +35,22 @@ export class PostPage {
   public userDetails: any;
   public post: FormGroup;
 
+  address:any = {
+    place: '',
+    set: false,
+};
+placesService:any;
+map: any;
+markers = [];
+placedetails: any;
+
+latitude: number = 0;
+longitude: number = 0;
+eventPlace: any;
+geo: any
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private camera: Camera,
-    private nativeGeocoder: NativeGeocoder, 
     private transfer: Transfer, 
     private file: File, 
     public platform: Platform,
@@ -52,9 +61,7 @@ export class PostPage {
     public loadingCtrl: LoadingController,
     private toastCtrl:ToastController,
     private _FB: FormBuilder) { 
-    this.address = {
-    place: ''
-  };
+
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
     const data = JSON.parse(localStorage.getItem("userData"));
     this.userDetails = data.userData;
@@ -211,32 +218,26 @@ public postEvent(){
     let modal = this.modalCtrl.create('AutocompletePage');
     let me = this;
     modal.onDidDismiss(data => {
-      this.address.place = data.description;
-      this.locConvert(this.address.place);
-      console.log(data);
+      this.address.place = data;
+      
+    this.geo = this.address.place;
+    this.geoCode(this.geo);//convert Address to lat and long
     });
     modal.present();
   }
 
-  locConvert(loc) {
+  //convert Address string to lat and long
+  geoCode(address:any) {
+    let geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ 'address': address }, (results, status) => {
+    this.latitude = results[0].geometry.location.lat();
+    this.longitude = results[0].geometry.location.lng();
+    this.eventPlace = results[0].place;
+   // alert("lat: " + this.latitude + ", long: " + this.longitude);
 
-     this.presentToast(loc);
-      
-      this.nativeGeocoder.forwardGeocode('loc')
-    .then((coordinates: NativeGeocoderForwardResult)=>{
-
-      this.lat = coordinates.latitude;
-      this.lng = coordinates.longitude;
-
-      this.display(this.lat, this.lat);
-
-  }).catch((error: any) => console.log(error));
-  }
-
-  display(loc1, loc2) {
-
-    this.presentToast('The coordinates are latitude=' + loc1 + ' and longitude=' + loc2);
-  }
+    this.presentToast("lat: " + this.latitude + ", long: " + this.longitude);
+   });
+ }
 
   ionViewWillEnter() {
     this.tabBarElement.style.display = 'none';

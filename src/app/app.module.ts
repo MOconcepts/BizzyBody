@@ -26,7 +26,6 @@ import { File } from '@ionic-native/file';
 import { Transfer } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
-import { NativeGeocoder } from '@ionic-native/native-geocoder';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -62,7 +61,6 @@ export function createTranslateLoader(http: HttpClient) {
     SplashScreen,
     RestProvider,
     Common,
-    NativeGeocoder,
     SocialSharing,
     AuthService,
     ThemeableBrowser,

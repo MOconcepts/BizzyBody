@@ -38,10 +38,37 @@
             </div>
           </section>
 
+          <ion-item no-lines *ngIf="!address.place">
+              <button ion-button outline block (click)="showAddressModal()"> Click to enter event address
+                  <ion-icon name="ios-navigate"></ion-icon></button>
+          </ion-item>
+
+              <ion-item no-lines *ngIf="address.place">
+                  <ion-label stacked>Event Location</ion-label>
+                <ion-input style="font-size: 12px;" [(ngModel)]="address.place" type="text" placeholder="Use button to add" readonly="true"></ion-input>
+              </ion-item>
+
           <form style="width: 100%;;" class="login-form auth-form" [formGroup]="post" (ngSubmit)="postEvent(post.value)" >
-            <ion-item>
-                <ion-input type="text" formControlName="title" placeholder="Event Title" clearInput="true"></ion-input>
-                <ion-input type="text" formControlName="pub" value="{{userDetails.user_id}}" hidden></ion-input>
+              <ion-item>
+                <ion-label stacked>Where?</ion-label>
+                <ion-select formControlName="where">
+                    <ion-option value="">Event City</ion-option>
+    
+                    <ion-option value="1">Lagos Mainland, Nigeria</ion-option>
+    
+                     <ion-option value="2">Lagos Island, Nigeria</ion-option>
+    
+                     <ion-option value="3">Abuja, Nigeria</ion-option>
+    
+                     <ion-option value="4">PH, Nigeria</ion-option>
+    
+                     <ion-option value="5">Other States, Nigeria</ion-option>
+    
+                     <ion-option value="6">Accra, Ghana</ion-option>
+    
+                     <ion-option value="7">Yonder</ion-option>
+    
+                </ion-select>
               </ion-item>
           <ion-item>
             <ion-label stacked>What?</ion-label>
@@ -112,39 +139,10 @@
             </ion-select>
           </ion-item>
           <ion-item>
-            <ion-label stacked>Where?</ion-label>
-            <ion-select formControlName="where">
-                <ion-option value="">Event City</ion-option>
-
-                <ion-option value="1">Lagos Mainland, Nigeria</ion-option>
-
-                 <ion-option value="2">Lagos Island, Nigeria</ion-option>
-
-                 <ion-option value="3">Abuja, Nigeria</ion-option>
-
-                 <ion-option value="4">PH, Nigeria</ion-option>
-
-                 <ion-option value="5">Other States, Nigeria</ion-option>
-
-                 <ion-option value="6">Accra, Ghana</ion-option>
-
-                 <ion-option value="7">Yonder</ion-option>
-
-            </ion-select>
-          </ion-item>
-
-          <ion-col col-10>
-              <ion-item>
-                  <ion-label stacked>Event Location</ion-label>
-                <ion-input style="font-size: 12px;" formControlName="place" type="text" placeholder="Use button to add" readonly="true"></ion-input>
-              </ion-item>
-              </ion-col>
-
-              <ion-col col-2>
-                <button ion-button outline small (click)="showAddressModal()">
-                  <ion-icon color="white" name="ios-navigate"></ion-icon></button>
-              </ion-col>
-
+              <ion-input type="text" formControlName="title" placeholder="Event Title" clearInput="true"></ion-input>
+              <ion-input type="text" formControlName="pub" value="{{userDetails.user_id}}" hidden></ion-input>
+              <ion-input type="text" formControlName="place" value="{{address.place}}" hidden></ion-input>
+            </ion-item>
           <ion-row>
             <ion-col col-6>
           <ion-item>
