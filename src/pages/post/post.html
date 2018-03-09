@@ -1,16 +1,11 @@
 <ion-header no-margin no-padding>
-    <ion-toolbar color="bizzy">
+    <ion-navbar color="bizzy">
         <ion-buttons end>
-            <button ion-button icon-only>
-                <ion-avatar>
-                  <img height="30px" width="auto" style="border-radius: 50px;" src="https://bizzybody.ng/uploads/users/{{userDetails.img}}">
-                </ion-avatar>
-              </button>
             <button ion-button icon-only>
               <ion-icon color="white" name="more"></ion-icon>
             </button>
           </ion-buttons>
-    </ion-toolbar>
+    </ion-navbar>
    </ion-header>
   
   <ion-content  no-padding no-margin>
@@ -26,36 +21,31 @@
       </ion-row>
           <img src="assets/icon/eko.svg" style="width: 100%; margin-top: 15px;">
     </div>
-  <div style="margin-top:40px; margin-bottom: 40px;">
+  <div style="margin-bottom: 40px;">
         <ion-grid>
 
-                <!-- <ion-row style="margin: 0 10px;">
-                    <ion-col col-6 *ngFor="let ticket of (tickets)">
-              <ion-card  class="card" (click)="goTicketInfo(ticket)">
-
-                      <img style="max-height: 100px; object-fit: cover;" width="100%" src="https://bizzybody.ng/uploads/events/{{ticket.image}}"> 
-                    <ion-row>
-                            <ion-col col-12>
-                              <ion-item>
-                            <h2 text-wrap style="font-size: 14px;">{{ticket.title}}</h2>
-                          </ion-item>
-                            </ion-col >
-                          </ion-row>
-              
-                </ion-card>
-            </ion-col>
-        </ion-row> -->
-
         <ion-row ion-row style="margin: 0 30px;"> 
-            <div>
-              <button ion-button block (click)="getImage()">Add Event Image</button>
+        <section class="form-section">
+            <!-- <img src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null">
+            <h3 [hidden]="lastImage !== null">Please Select Image!</h3> -->
+
+            <button *ngIf="!lastImage" ion-button block outline large class="upload-image-button" (click)="presentActionSheet()">
+              <ion-icon name="camera"></ion-icon>
+              <h3 class="button-title">Please Select Image!</h3>
+            </button>
+            <div style="margin-top: 20px;" [hidden]="lastImage === null">
+            <img src="{{pathForImage(lastImage)}}" style="border-radius: 5px; width: 100%;">
             </div>
+          </section>
+
+          <form style="width: 100%;;" class="login-form auth-form" [formGroup]="post" (ngSubmit)="postEvent(post.value)" >
             <ion-item>
-                <ion-input type="text"  [(ngModel)]="post.title" placeholder="Event Title" clearInput="true"></ion-input>
+                <ion-input type="text" formControlName="title" placeholder="Event Title" clearInput="true"></ion-input>
+                <ion-input type="text" formControlName="pub" value="{{userDetails.user_id}}" hidden></ion-input>
               </ion-item>
           <ion-item>
             <ion-label stacked>What?</ion-label>
-            <ion-select [(ngModel)]="post.what">
+            <ion-select formControlName="what">
                 <ion-option value="">Event Category</ion-option>
 
                 <ion-option value="3">Business</ion-option>
@@ -123,7 +113,7 @@
           </ion-item>
           <ion-item>
             <ion-label stacked>Where?</ion-label>
-            <ion-select [(ngModel)]="post.where">
+            <ion-select formControlName="where">
                 <ion-option value="">Event City</ion-option>
 
                 <ion-option value="1">Lagos Mainland, Nigeria</ion-option>
@@ -146,32 +136,34 @@
           <ion-col col-10>
               <ion-item>
                   <ion-label stacked>Event Location</ion-label>
-                <ion-input style="font-size: 12px;" [(ngModel)]="address.place" type="text" placeholder="Use button to add" readonly="true"></ion-input>
+                <ion-input style="font-size: 12px;" formControlName="place" type="text" placeholder="Use button to add" readonly="true"></ion-input>
               </ion-item>
               </ion-col>
 
               <ion-col col-2>
-                <button ion-button (click)="showAddressModal()">
+                <button ion-button outline small (click)="showAddressModal()">
                   <ion-icon color="white" name="ios-navigate"></ion-icon></button>
               </ion-col>
 
-          <ion-col col-6>
+          <ion-row>
+            <ion-col col-6>
           <ion-item>
               <ion-label stacked>Start Time</ion-label>
-              <ion-datetime style="font-size: 12px;" displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="post.timeStarts"></ion-datetime>
+              <ion-datetime style="font-size: 12px;" displayFormat="MMM DD, YYYY HH:mm" formControlName="timeStarts"></ion-datetime>
             </ion-item>
           </ion-col>
 
           <ion-col col-6>
           <ion-item>
               <ion-label stacked>Stop Time</ion-label>
-              <ion-datetime style="font-size: 12px;" displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="post.timeStops"></ion-datetime>
+              <ion-datetime style="font-size: 12px;" displayFormat="MMM DD, YYYY HH:mm" formControlName="timeStops"></ion-datetime>
             </ion-item>
           </ion-col>
+        </ion-row>
 
               <ion-item>
                   <ion-label stacked>About Event</ion-label>
-                  <ion-textarea type="text"  [(ngModel)]="post.about" clearInput="true"></ion-textarea>
+                  <ion-textarea rows="5" type="text" formControlName="about"></ion-textarea>
                 </ion-item>
 
                 <div>
@@ -180,37 +172,36 @@
                   <ion-col col-6>
                       <ion-item>
                           <ion-label stacked>Event Website</ion-label>
-                          <ion-input type="text"  [(ngModel)]="post.web"></ion-input>
+                          <ion-input type="text" formControlName="web"></ion-input>
                         </ion-item>
                       </ion-col>
             
                       <ion-col col-6>
                           <ion-item>
                               <ion-label stacked>Contact Phone</ion-label>
-                              <ion-input type="text"  [(ngModel)]="post.phone"></ion-input>
+                              <ion-input type="text" formControlName="phone"></ion-input>
                             </ion-item>
                       </ion-col>
   
                       <ion-col col-6>
                           <ion-item>
                               <ion-label stacked>Twitter Handle</ion-label>
-                              <ion-input type="text"  [(ngModel)]="post.twt"></ion-input>
+                              <ion-input type="text" formControlName="twt"></ion-input>
                             </ion-item>
                           </ion-col>
                 
                           <ion-col col-6>
                               <ion-item>
                                   <ion-label stacked>Facbook Page Name</ion-label>
-                                  <ion-input type="text"  [(ngModel)]="post.fb"></ion-input>
+                                  <ion-input type="text" formControlName="fb"></ion-input>
                                 </ion-item>
                           </ion-col>
+                          <ion-fab right bottom>
+                              <button ion-fab color="bizzy" type="submit" [disabled]="!post.valid"><ion-icon color="white" name="ios-arrow-dropright-outline"></ion-icon></button>   
+                          </ion-fab>
+                        </form>
                 
         </ion-row>
-        
-      <ion-fab right bottom>
-          <button ion-fab color="bizzy" (click)="postEvent()"><ion-icon color="white" name="ios-arrow-dropright-outline"></ion-icon></button>   
-      </ion-fab>
-
       </ion-grid>
 
   </div>

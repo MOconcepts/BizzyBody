@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ActionSheetController,  LoadingController, Loading, ToastController, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ActionSheetController, LoadingController, Loading, ToastController, Platform } from 'ionic-angular';
 
 import { AuthService } from "../../providers/auth-service";
 import { RestProvider } from '../../providers/rest/rest';

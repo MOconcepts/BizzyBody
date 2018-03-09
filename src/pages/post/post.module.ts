@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { PostPage } from './post';
 
@@ -9,5 +9,6 @@ import { PostPage } from './post';
   imports: [
     IonicPageModule.forChild(PostPage),
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
 export class PostPageModule {}
