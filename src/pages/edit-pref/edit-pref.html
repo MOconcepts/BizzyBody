@@ -1,0 +1,66 @@
+<ion-header no-margin no-padding>
+    <ion-navbar color="bizzy">
+    </ion-navbar>
+   </ion-header>
+  
+  <ion-content>
+      <div style="height: 150px; margin: 0; background-color: #fecb00;">
+        <ion-row>
+            <ion-col col-12>
+            <span style="color: #ffffff; margin-left: 30px; font-size: 28px; font-style: light;">Profile Preference</span>
+            </ion-col>
+            <ion-col col-4>
+            </ion-col>
+  
+    
+        </ion-row>
+            <img src="assets/icon/eko.svg" style="width: 100%; margin-top: 15px;">
+      </div>
+
+      <div style="padding: 0px 20px 0px 30px;">
+              <ion-row>
+                <ion-col col-10 offset-1>
+                      <div transparent text-center>
+                        
+            <ion-col align-self-center col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+
+  <form [formGroup]="pref" (ngSubmit)="updatePref(pref.value)" >
+                  <ion-row>
+                      <ion-item no-padding transparent>
+                          <ion-label color="white" stacked>Where?</ion-label>
+                          <ion-select class="formF" formControlName="where">
+                              <ion-option value=""><span style="color:#ffffff !important;">Event City</span></ion-option>
+              
+                              <ion-option value="1">Lagos Mainland, Nigeria</ion-option>
+              
+                               <ion-option value="2">Lagos Island, Nigeria</ion-option>
+              
+                               <ion-option value="3">Abuja, Nigeria</ion-option>
+              
+                               <ion-option value="4">PH, Nigeria</ion-option>
+              
+                               <ion-option value="5">Other States, Nigeria</ion-option>
+              
+                               <ion-option value="6">Accra, Ghana</ion-option>
+              
+                               <ion-option value="7">Yonder</ion-option>
+              
+                          </ion-select>
+
+                        </ion-item>
+                  </ion-row>
+                  <ion-input type="text" formControlName="uid" value="{{userDetails.user_id}}" hidden></ion-input>
+                  <ion-input type="text" formControlName="user" value="{{userDetails.username}}" hidden></ion-input>
+                  <!---Register button-->
+                  <div style="padding-top: 20px;">
+                <button ion-button block text-capitalize style="color: #ffffff" type="submit" [disabled]="!pref.valid">Submit</button>
+                  </div>
+                </form>
+              </ion-col>
+                      </div>
+                </ion-col>
+              </ion-row>
+
+      </div>
+    </ion-content>
+    

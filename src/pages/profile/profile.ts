@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ActionSheetController, LoadingController, Loading, ToastController, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ActionSheetController, LoadingController, Loading, ToastController, Platform, AlertController } from 'ionic-angular';
 
 import { AuthService } from "../../providers/auth-service";
 import { RestProvider } from '../../providers/rest/rest';
@@ -25,7 +25,10 @@ export class Profile {
   @ViewChild("updatebox") updatebox;
   public userDetails: any;
   public resposeData: any;
+  resposeData2 : any;
   public dataSet: any;
+  public eSet: any;
+  public cSet: any;
   public noRecords: boolean;
   lastImage: string = null;
   loading: Loading;
@@ -35,6 +38,7 @@ export class Profile {
   };
 
   usr: any;
+  user: any;
   evnt: any;
   lent: any;
   lentIn: any;
@@ -51,6 +55,7 @@ export class Profile {
     private camera: Camera, 
     private transfer: Transfer, 
     private file: File, 
+    private alertCtrl: AlertController,
     private filePath: FilePath, 
     public actionSheetCtrl: ActionSheetController, 
     public toastCtrl: ToastController, 
@@ -66,14 +71,8 @@ export class Profile {
       this.userDetails = data.userData;
       this.userPostData.token = this.userDetails.token;
       this.usr = this.userDetails.user_id;
+      this.user = this.userDetails.username;
 
-      this._setLoaded()
-      this.reload();
-      
-      this.myEvents();
-      this.myCheckIn();
-      this.Ifollow();
-      this.followingMe();
       // this.lnt = this.evnt.length;
   }
 
@@ -146,7 +145,7 @@ private copyFileToLocalDir(namePath, currentName, newFileName) {
 
 
   // Destination URL
-  var url = "http://bizzybody.ng/appUpload.php";
+  var url = "http://bizzybody.ng/appUserPhoto.php";
  
   // File for Upload
   var targetPath = this.pathForImage(this.lastImage);
@@ -159,7 +158,7 @@ private copyFileToLocalDir(namePath, currentName, newFileName) {
     fileName: filename,
     chunkedMode: false,
     mimeType: "multipart/form-data",
-    params : {'fileName': filename}
+    params : {'id': this.usr, 'username': this.user}
   };
  
   const fileTransfer: TransferObject = this.transfer.create();
@@ -171,9 +170,12 @@ private copyFileToLocalDir(namePath, currentName, newFileName) {
  
   // Use the FileTransfer to upload the image
   fileTransfer.upload(targetPath, url, options).then(data => {
-    this.loading.dismissAll()
-    
-    this.presentToast(data+' Profile Picture has been updated.');
+    this.resposeData = data;
+    this.presentToast('Profile Picture has been updated.');
+
+    localStorage.setItem('userData', JSON.stringify(this.resposeData) )
+    this.loading.dismissAll();
+    this.navCtrl.push('TabsPage');
   }, err => {
     this.loading.dismissAll()
     this.presentToast('Error while uploading file.');
@@ -228,11 +230,12 @@ public pathForImage(img) {
     this.restProvider.myEvents(this.usr)
     .then(data => {
       this.evnt = data;
+      this.eSet = this.evnt;
       this.lent = this.evnt.length;
       this.noRecords = false
       
      // this.common.closeLoading();
-      console.log(this.lent);
+      console.log(this.eSet);
     })
     .catch(err => {
       console.error(err)
@@ -243,8 +246,8 @@ public pathForImage(img) {
     this.restProvider.myCheckIn(this.usr)
     .then(data => {
       this.evntIn = data;
+      this.cSet = this.evntIn;
       this.lentIn = this.evntIn.length;
-      console.log(this.lentIn);
     })
     .catch(err => {
       console.error(err)
@@ -252,10 +255,28 @@ public pathForImage(img) {
   } 
 
   
+  followIn(i) {
+    var data2 = {"id": i.id, "ff_id": i.user_id, "ffn_id": this.usr};
+    console.log(data2);
+    this.authService.postData(data2, "followBack").then((result) =>{
+    this.resposeData2 = result;
+    this.followingMe();
+    this.Ifollow();
+    console.log(this.resposeData2);
+
+    this.presentToast("You are now following " + i.username);
+    
+    }, (err) => {
+      //Connection failed message
+    });
+  
+  }
+
   followingMe() {
     this.restProvider.followingMe(this.usr)
     .then(data => {
       this.ffMe = data;
+      console.log(this.ffMe);
       this.lentffMe = this.ffMe.length;
     })
     .catch(err => {
@@ -267,12 +288,135 @@ public pathForImage(img) {
     this.restProvider.Ifollow(this.usr)
     .then(data => {
       this.Iff = data;
+      this.dataSet = this.Iff;
       this.lentff = this.Iff.length;
+      this.followingMe();
     })
     .catch(err => {
       console.error(err)
     });
   } 
+
+  goToUser(uza) {
+    this.navCtrl.push('UserPage', {pub: uza});
+  }
+
+
+  deleteEvent(e_id, eIndex) {
+    if (e_id > 0) {
+      let alert = this.alertCtrl.create({
+        title: "Delete Event",
+        message: "are you sure of this action?",
+        buttons: [
+          {
+            text: "Cancel",
+            role: "cancel",
+            handler: () => {
+              console.log("Cancel clicked");
+            }
+          },
+          {
+            text: "Continue",
+            handler: () => {
+              var delete_e = {'id': e_id};
+              this.authService.postData(delete_e, "deleteEvent").then(
+                result => {
+                  this.resposeData = result;
+                  if (this.resposeData.success) {
+                    this.eSet.splice(eIndex, 1);
+                  } else {
+                    console.log("No access");
+                  }
+                },
+                err => {
+                  //Connection failed message
+                }
+              );
+            }
+          }
+        ]
+      });
+      alert.present();
+    }
+  }
+
+  unFollow(f_id, msgIndex) {
+    if (f_id > 0) {
+      let alert = this.alertCtrl.create({
+        title: "Unfollow User",
+        message: "are you sure of this action?",
+        buttons: [
+          {
+            text: "Cancel",
+            role: "cancel",
+            handler: () => {
+              console.log("Cancel clicked");
+            }
+          },
+          {
+            text: "Continue",
+            handler: () => {
+              var delete_f = {'id': f_id};
+              this.authService.postData(delete_f, "deleteFollow").then(
+                result => {
+                  this.resposeData = result;
+                  if (this.resposeData.success) {
+                    this.dataSet.splice(msgIndex, 1);
+                  } else {
+                    console.log("No access");
+                  }
+                },
+                err => {
+                  //Connection failed message
+                }
+              );
+            }
+          }
+        ]
+      });
+      alert.present();
+    }
+  }
+
+  checkOut(c_id, cIndex) {
+    if (c_id > 0) {
+      let alert = this.alertCtrl.create({
+        title: "Checkout from event",
+        message: "are you sure of this action?",
+        buttons: [
+          {
+            text: "Cancel",
+            role: "cancel",
+            handler: () => {
+              console.log("Cancel clicked");
+            }
+          },
+          {
+            text: "Continue",
+            handler: () => {
+              var updt_c = {'id': c_id};
+              this.authService.postData(updt_c, "checkOut").then(
+                result => {
+                  this.resposeData = result;
+                  if (this.resposeData.success) {
+                    this.cSet.splice(cIndex, 1);
+                    this.myCheckIn();
+                  } else {
+                    console.log("No access");
+                  }
+                },
+                err => {
+                  //Connection failed message
+                }
+              );
+            }
+          }
+        ]
+      });
+      alert.present();
+    }
+  }
+
   // Define segment for everytime when profile page is active
   ionViewWillEnter() {
     this.profile_segment = 'myEvent';
@@ -283,7 +427,7 @@ public pathForImage(img) {
   }
 
   public openWithInAppBrowser(url : string){
-    let target = "_system";
+    let target = "_self";
 
     const options: ThemeableBrowserOptions = {
       statusbar: {
@@ -315,6 +459,44 @@ public pathForImage(img) {
 
 goToSearch() {
   this.navCtrl.parent.select(3);
-} 
+}   
+
+goBizzyEvent(i) {
+  this.navCtrl.push('BizzyEventPage', {event: i});
+}
+
+public openMore(eid) {
+  let actionSheet = this.actionSheetCtrl.create({
+    title: 'This event',
+    buttons: [
+      {
+        text: 'has Ticket ( create event ticket(s) )',
+        handler: () => {
+          this.openWithInAppBrowser('https://bizzybody.ng/appTicket/event/' + eid);
+        }
+      },
+      {
+        text: 'has Form ( Generate event form )',
+        handler: () => {
+          this.openWithInAppBrowser('https://bizzybody.ng/appForm/event/' + eid);
+        }
+      },
+      {
+        text: 'Cancel',
+        role: 'cancel'
+      }
+    ]
+  });
+  actionSheet.present();
+}
+
+ionViewDidEnter(){
+  this._setLoaded()
+  
+  this.myEvents();
+  this.myCheckIn();
+  this.Ifollow();
+  this.followingMe();
+}
 
 }

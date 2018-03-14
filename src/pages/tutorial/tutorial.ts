@@ -20,10 +20,6 @@ export class TutorialPage {
   dir: string = 'ltr';
 
   constructor(public navCtrl: NavController, public menu: MenuController, translate: TranslateService, public platform: Platform) {   
-    if(localStorage.getItem('userData')){
-    this.navCtrl.setRoot('TabsPage');
-  }
-    this.dir = platform.dir();
     translate.get(["TUTORIAL_SLIDE1_TITLE",
       "TUTORIAL_SLIDE1_DESCRIPTION",
       "TUTORIAL_SLIDE2_TITLE",
@@ -76,6 +72,14 @@ export class TutorialPage {
 
   onSlideChangeStart(slider) {
     this.showSkip = !slider.isEnd();
+  }
+
+  ionViewWillEnter(){
+    if(localStorage.getItem('userData')){
+      this.navCtrl.setRoot('TabsPage');
+    }
+
+    this.dir = this.platform.dir();
   }
 
 }

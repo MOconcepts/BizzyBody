@@ -61,33 +61,26 @@ geo: any
     public loadingCtrl: LoadingController,
     private toastCtrl:ToastController,
     private _FB: FormBuilder) { 
-
-    this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
-    const data = JSON.parse(localStorage.getItem("userData"));
-    this.userDetails = data.userData;
-
+      this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
+      const data = JSON.parse(localStorage.getItem("userData"));
+      this.userDetails = data.userData;
     this.post	 = _FB.group({
-      'title'        : ['', Validators.required],
+      'title'       : ['', Validators.required],
       'what'        : ['', Validators.required],
-      'where'        : ['', Validators.required],
-      'timeStarts'        : ['', Validators.required],
-      'timeStops'        : [''],
-      'about'        : [''],
-      'web'        : [''],
-      'phone'        : [''],
-      'twt'        : [''],
-      'fb'        : [''],
-      'place'        : [''],
-      'pub'        : ['']
+      'where'       : ['', Validators.required],
+      'timeStarts'  : ['', Validators.required],
+      'timeStops'   : [''],
+      'about'       : [''],
+      'web'         : [''],
+      'phone'       : [''],
+      'twt'         : [''],
+      'fb'          : [''],
+      'place'       : [''],
+      'lng'         : [''],
+      'lat'         : [''],
+      'map'         : [''],
+      'pub'         : ['']
    });
-
-    // this.post.pub = this.userDetails.id;
-    // this.post.loc = this.address.place;
-
-
-  //post = { "title": "", "what": "", "where": "", "loc": "", "start": "", "stop": "", "map": "", "lng": "", "lat": "", "tags": "", "info": "", "web": "", "phone": "", "twt": "", "fb": "", "pub": "" };
-
-
   }
  
   public presentActionSheet() {
@@ -232,10 +225,7 @@ public postEvent(){
     geocoder.geocode({ 'address': address }, (results, status) => {
     this.latitude = results[0].geometry.location.lat();
     this.longitude = results[0].geometry.location.lng();
-    this.eventPlace = results[0].place;
-   // alert("lat: " + this.latitude + ", long: " + this.longitude);
-
-    this.presentToast("lat: " + this.latitude + ", long: " + this.longitude);
+    this.eventPlace = results[0].formatted_address;
    });
  }
 

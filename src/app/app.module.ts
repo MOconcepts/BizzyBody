@@ -1,7 +1,7 @@
 import { NgModule, ErrorHandler, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler, Picker } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -26,6 +26,13 @@ import { File } from '@ionic-native/file';
 import { Transfer } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
+import { AppVersion } from '@ionic-native/app-version';
+import { AppRate } from '@ionic-native/app-rate';
+import { OneSignal } from '@ionic-native/onesignal';
+
+
+import { SuperTabsModule } from '../ionic2-super-tabs/src';
+// import { SuperTabsModule } from 'ionic2-super-tabs';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -43,6 +50,7 @@ export function createTranslateLoader(http: HttpClient) {
     HttpClientModule,
     HttpModule,
     NgxContentLoadingModule,
+    SuperTabsModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -63,8 +71,11 @@ export function createTranslateLoader(http: HttpClient) {
     Common,
     SocialSharing,
     AuthService,
+    OneSignal,
     ThemeableBrowser,
     File,
+    AppVersion,
+    AppRate,
     Transfer,
     Camera,
     FilePath,

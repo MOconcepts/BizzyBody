@@ -5,3 +5,5 @@ export const POST_PAGE = 'PostPage';
 export const AUTOCOMPLETE_PAGE = 'AutocompletePage';
 export const EDIT_PROFILE_PAGE = 'EditProfilePage';
 export const SHOW_PAGE = 'ShowPage';
+export const EDIT_PREF_PAGE = 'EditPrefPage';
+export const USER_PAGE = 'UserPage';

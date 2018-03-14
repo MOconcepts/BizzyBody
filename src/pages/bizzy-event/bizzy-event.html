@@ -18,32 +18,36 @@
     <ion-card no-padding no-margin class="card">
       
         <cl-image public-id="events/{{event.image}}"> 
-          <cl-transformation gravity="face" height="300" crop="fill">
-            </cl-transformation>
+          <!-- <cl-transformation gravity="face" height="300" crop="fill">
+            </cl-transformation> -->
           </cl-image>
 
     <ion-row  style="background-color:#FECB00">
         <ion-col col-10>
-            <div text-center>
-                <!-- <h1 style="margin: 10px 20px; font-size: 35px; color: #ffffff;">{{_days}}: {{_hours}}: {{_minutes}}: {{_seconds}}</h1> -->
-                <ul class="countdown" style="padding-left: unset;">
-                    <li> <span class="days">{{_days}}</span>
-                      <p class="timeRefDays">days</p>
-                    </li>
-                    <li style="padding: 0 8px; color:#ffffff;">:</li>
-                    <li> <span class="hours">{{_hours}}</span>
-                      <p class="timeRefHours">hours</p>
-                    </li>
-                    <li style="padding: 0 8px; color:#ffffff;">:</li>
-                    <li> <span class="minutes">{{_minutes}}</span>
-                      <p class="timeRefMinutes">minutes</p>
-                    </li>
-                    <li style="padding: 0 8px; color:#ffffff;">:</li>
-                    <li> <span class="seconds">{{_seconds}}</span>
-                      <p class="timeRefSeconds">seconds</p>
-                    </li>
-                  </ul>
-                </div>
+          <div *ngIf="date > event.countdown;else count">
+            <h1 style="color:#ffffff; font-size: 30px; padding: 10px 30px;">Past Event</h1>
+          </div>
+          <ng-template #count>
+              <div text-center>
+                  <ul class="countdown" style="padding-left: unset;">
+                      <li> <span class="days">{{_days}}</span>
+                        <p class="timeRefDays">days</p>
+                      </li>
+                      <li style="padding: 0 8px; color:#ffffff;">:</li>
+                      <li> <span class="hours">{{_hours}}</span>
+                        <p class="timeRefHours">hours</p>
+                      </li>
+                      <li style="padding: 0 8px; color:#ffffff;">:</li>
+                      <li> <span class="minutes">{{_minutes}}</span>
+                        <p class="timeRefMinutes">minutes</p>
+                      </li>
+                      <li style="padding: 0 8px; color:#ffffff;">:</li>
+                      <li> <span class="seconds">{{_seconds}}</span>
+                        <p class="timeRefSeconds">seconds</p>
+                      </li>
+                    </ul>
+                  </div>
+          </ng-template>
         </ion-col>
         <!-- <ion-col col-4 >
             <button ion-button color="white" style="margin-top: 18px; color:#FECB00;">Get Tix</button>
@@ -68,12 +72,14 @@
                 </span> </p>
             </div>
 
-
+            <div *ngIf="event.countdown > date; then next"></div>
+            <ng-template #next>
             <div *ngIf="checkLent == 0;else other_content"> 
-            <div style="padding-top: 16px">
-  <button style="border-radius: 5px; color: gray;" ion-button outline color="gray" ion-button icon-right [disabled]="disableButton" (click)="checkIn()"> Checkin Event <ion-icon color="gray" name="checkmark-circle-outline"></ion-icon></button>
-            </div>
-            </div>
+                <div style="padding-top: 16px">
+      <button style="border-radius: 5px; color: gray;" ion-button outline color="gray" ion-button icon-right [disabled]="disableButton" (click)="checkIn()"> Checkin Event <ion-icon color="gray" name="checkmark-circle-outline"></ion-icon></button>
+                </div>
+                </div>
+            </ng-template>
             <ng-template #other_content>
   <button style="border-radius: 5px; color:#FECB00;" ion-button outline color="bizzy" ion-button icon-right disabled> Checked in<ion-icon color="bizzy" name="checkmark-circle-outline"></ion-icon></button>
             </ng-template>
@@ -114,9 +120,8 @@
           Location
         </ion-card-header>
     
-        <ion-card-content>
-          <div #map id="map"></div>
-            <div class="item item-text-wrap" style="color: #4F4F4F; font-size: 12px;"><ion-icon name="navigate" style="font-size: unset;"></ion-icon>  {{event.place}} | {{event.loc_city}}</div>
+        <ion-card-content style="height: 200px;">
+            <div #map id="map"></div>
         </ion-card-content>
         </div>
       </ion-card>
@@ -128,8 +133,9 @@
       <ion-card-content>
         <ion-list>
           <ion-item>
-            <ion-avatar item-start>
-                <img clSrc="https://res.cloudinary.com/bizzybody-ng/image/upload/c_fill,g_faces,h_75,r_50,w_75/users/{{event.img}}" style=" object-fit: cover;border-radius: 100px;">
+            <ion-avatar item-start (click)="goToUser()">
+                <!-- <img clSrc="https://res.cloudinary.com/bizzybody-ng/image/upload/c_fill,g_faces,h_75,r_50,w_75/users/{{event.img}}" style=" object-fit: cover;border-radius: 100px;"> -->
+                <img src="https://res.cloudinary.com/bizzybody-ng/image/upload/c_fill,g_faces,h_200,r_50,w_200/users/{{event.img}}"  class="avatar">
             </ion-avatar>
             <h1> Publisher</h1>
             <p style="font-size: 16px; font-weight: 100;">{{event.username}}</p>
@@ -190,34 +196,42 @@
 
           
         </ion-card> -->
-        <ion-fab right bottom>
-            <button ion-fab mini><ion-icon color="white" name="share"></ion-icon></button>
-            <ion-fab-list side="left">
-              <button ion-fab (click)="facebookShare()"><ion-icon color="facebook" name="logo-facebook"></ion-icon></button>
-              <button ion-fab (click)="twitterShare()"><ion-icon color="twitter" name="logo-twitter"></ion-icon></button>
-              <button ion-fab (click)="whatsappShare()"><ion-icon color="secondary" name="logo-whatsapp"></ion-icon></button>
-            </ion-fab-list>
-          </ion-fab>
+        <div *ngIf="event.countdown > date; then next2"></div>
+
+        <ng-template #next2>
+            <ion-fab right bottom>
+                <button ion-fab mini><ion-icon color="white" name="share"></ion-icon></button>
+                <ion-fab-list side="left">
+                  <button ion-fab (click)="facebookShare()"><ion-icon color="facebook" name="logo-facebook"></ion-icon></button>
+                  <button ion-fab (click)="twitterShare()"><ion-icon color="twitter" name="logo-twitter"></ion-icon></button>
+                  <button ion-fab (click)="whatsappShare()"><ion-icon color="secondary" name="logo-whatsapp"></ion-icon></button>
+                </ion-fab-list>
+              </ion-fab>
+        </ng-template>
   </ion-content>
   <ion-footer >
     <ion-toolbar color="bizzy">
-      <ion-row>
-        <ion-col col-6 style="padding-left: 30px;">
-        <div *ngIf="event.ticket == 1;else tix2"> 
-            <button ion-button color="white" style="color:#FECB00; border-radius: 5px;" (click)="goTicketInfo(event)">Get Ticket</button>
+        <div *ngIf="event.countdown > date; then next3">
         </div>
-        <ng-template #tix2>
-            <div *ngIf="event.ticket == 2;else tix0"> 
-                <button ion-button color="white" style="color:#FECB00; border-radius: 5px;">Fill Form</button>
-            </div>
-          </ng-template>
-          <ng-template #tix0>
-              <button ion-button disabled color="white" style="color:#FECB00; border-radius: 5px;">No Event Ticket</button>
-            </ng-template>
-        </ion-col>
-        <ion-col col-6 style="padding-right: 20px;" *ngIf="checkLent == 0">
-                    <button style="float:right; border-radius: 5px; color: #ffffff;" ion-button outline color="white" ion-button icon-right [disabled]="disableButton" (click)="checkIn()"> Checkin <ion-icon color="white" name="checkmark-circle-outline"></ion-icon></button>
-        </ion-col>
-      </ion-row>
+        <ng-template #next3>
+            <ion-row>
+              <ion-col col-6 style="padding-left: 30px;">
+              <div *ngIf="event.ticket == 1;else tix2"> 
+                  <button ion-button color="white" style="color:#FECB00; border-radius: 5px;" (click)="goTicketInfo(event)">Get Ticket</button>
+              </div>
+              <ng-template #tix2>
+                  <div *ngIf="event.ticket == 2;else tix0"> 
+                      <button ion-button color="white" style="color:#FECB00; border-radius: 5px;">Fill Form</button>
+                  </div>
+                </ng-template>
+                <ng-template #tix0>
+                    <button ion-button disabled color="white" style="color:#FECB00; border-radius: 5px;">No Event Ticket</button>
+                  </ng-template>
+              </ion-col>
+              <ion-col col-6 style="padding-right: 20px;" *ngIf="checkLent == 0">
+                          <button style="float:right; border-radius: 5px; color: #ffffff;" ion-button outline color="white" ion-button icon-right [disabled]="disableButton" (click)="checkIn()"> Checkin <ion-icon color="white" name="checkmark-circle-outline"></ion-icon></button>
+              </ion-col>
+            </ion-row>
+        </ng-template>
     </ion-toolbar>
   </ion-footer>

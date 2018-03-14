@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild  } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events, ToastController } from 'ionic-angular';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { HttpClient } from '@angular/common/http';
@@ -16,6 +16,8 @@ import moment from 'moment'
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+
+declare const google;
 
 @IonicPage()
 @Component({
@@ -36,6 +38,12 @@ export class BizzyEventPage implements OnInit {
   
   private _seconds: number;
 
+  @ViewChild('map') mapElement: ElementRef;
+   map: any;
+
+   labels: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+   labelIndex = 0;
+
   event: any;
   params: any = {};
   cId: any;
@@ -54,6 +62,8 @@ export class BizzyEventPage implements OnInit {
   ffLent: any;
   getFollow: any;
   disableButton;
+  
+  public date: string = new Date().toISOString();
   
   //apiUrl = 'https://rest.bizzybody.ng/api/v1/events/';
 
@@ -87,6 +97,9 @@ export class BizzyEventPage implements OnInit {
 
   } 
 
+  ionViewDidLoad() {
+    this.startMap();
+  }
   openPopover(myEvent) {
     let popover = this.popoverCtrl.create('PopPage');
     popover.present({
@@ -223,6 +236,10 @@ goBizzyEvent(event) {
   this.navCtrl.push('BizzyEventPage', {event: event});
 }
 
+goToUser(pub) {
+  this.navCtrl.push('UserPage', {pub: this.event.publisher});
+}
+
 getDays(t){
   return Math.floor( t/(1000*60*60*24) );
 }
@@ -239,8 +256,31 @@ getSeconds(t){
   return Math.floor( (t/1000) % 60 );
 }
 
-  ionViewDidLoad() {
-    console.log( this.navParams.get('event'));
-  }
+startMap() {
+  let posMaceio = { lat: parseFloat(this.event.lat), lng: parseFloat(this.event.lng) }
+  this.map = new google.maps.Map(this.mapElement.nativeElement, {
+    zoom: 14,
+    center: posMaceio,
+    mapTypeId: 'roadmap'
+  });
+  
+  let marker = new google.maps.Marker({
+    position: posMaceio,
+    map: this.map
+  });
+
+  var infowindow = new google.maps.InfoWindow({
+    content: "<strong><ion-icon name='navigate' style='font-size: unset;'></ion-icon> Event Location</strong><br> "+ this.event.place
+  });
+
+  marker.addListener('click', function() {
+    infowindow.open(this.map, marker);
+  });
+
+  infowindow.open(this.map,marker);
+
+  this.map.set('styles', [{"featureType":"landscape","stylers":[{"hue":"#FFBB00"},{"saturation":43.400000000000006},{"lightness":37.599999999999994},{"gamma":1}]},{"featureType":"road.highway","stylers":[{"hue":"#FFC200"},{"saturation":-61.8},{"lightness":45.599999999999994},{"gamma":1}]},{"featureType":"road.arterial","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":51.19999999999999},{"gamma":1}]},{"featureType":"road.local","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":52},{"gamma":1}]},{"featureType":"water","stylers":[{"hue":"#0078FF"},{"saturation":-13.200000000000003},{"lightness":2.4000000000000057},{"gamma":1}]},{"featureType":"poi","stylers":[{"hue":"#00FF6A"},{"saturation":-1.0989010989011234},{"lightness":11.200000000000017},{"gamma":1}]}]);
+
+}
 
 }

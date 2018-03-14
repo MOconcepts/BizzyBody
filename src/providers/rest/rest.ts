@@ -55,6 +55,15 @@ export class RestProvider {
         console.log(err);
       });
     });
+  }  
+  getUser(uId) {
+    return new Promise(resolve => {
+      this.httpc.get(this.apiUrl+'/users/'+uId).subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
   }
 
  smEvents(cId, eId) {

@@ -1,0 +1,32 @@
+<!--
+  Generated template for the TermsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-padding no-margin>
+
+    <ion-toolbar color="bizzy">
+        <ion-buttons start>
+          <button ion-button (click)="dismiss()">
+            <span showWhen="ios">CLOSE</span>
+            <ion-icon name="md-close" showWhen="android"></ion-icon>
+          </button>
+        </ion-buttons>
+        <ion-title>
+          {{title}}
+        </ion-title>
+      </ion-toolbar>
+
+</ion-header>
+
+<ion-content no-padding>
+    <div style="height: 40px; margin: 0; background-color: #ebebeb;">
+        <ion-row>
+          <ion-col col-12>
+            <h1 no-margin style="padding-left: 30px; color: #424242; padding-top: 3px;">{{title}}</h1>
+          </ion-col>
+        </ion-row>
+      </div>
+      <div style="padding: 0 30px;" class="item item-text-wrap" [innerHTML]="info"></div>
+</ion-content>

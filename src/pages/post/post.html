@@ -1,10 +1,5 @@
 <ion-header no-margin no-padding>
     <ion-navbar color="bizzy">
-        <ion-buttons end>
-            <button ion-button icon-only>
-              <ion-icon color="white" name="more"></ion-icon>
-            </button>
-          </ion-buttons>
     </ion-navbar>
    </ion-header>
   
@@ -38,9 +33,8 @@
             </div>
           </section>
 
-          <ion-item no-lines *ngIf="!address.place">
-              <button ion-button outline block (click)="showAddressModal()"> Click to enter event address
-                  <ion-icon name="ios-navigate"></ion-icon></button>
+          <ion-item style="background-color: #ebebeb;" no-lines *ngIf="!address.place" (click)="showAddressModal()">
+              <h2 text-center text-wrap>Click here to add event location and map</h2>
           </ion-item>
 
               <ion-item no-lines *ngIf="address.place">
@@ -139,9 +133,13 @@
             </ion-select>
           </ion-item>
           <ion-item>
-              <ion-input type="text" formControlName="title" placeholder="Event Title" clearInput="true"></ion-input>
+              <ion-label stacked>Event Title</ion-label>
+              <ion-input style="font-size: 12px;" type="text" formControlName="title"></ion-input>
               <ion-input type="text" formControlName="pub" value="{{userDetails.user_id}}" hidden></ion-input>
               <ion-input type="text" formControlName="place" value="{{address.place}}" hidden></ion-input>
+              <ion-input type="text" formControlName="map" value="{{eventPlace}}" hidden></ion-input>
+              <ion-input type="text" formControlName="lng" value="{{longitude}}" hidden></ion-input>
+              <ion-input type="text" formControlName="lat" value="{{latitude}}" hidden></ion-input>
             </ion-item>
           <ion-row>
             <ion-col col-6>
@@ -160,13 +158,14 @@
         </ion-row>
 
               <ion-item>
-                  <ion-label stacked>About Event</ion-label>
-                  <ion-textarea rows="5" type="text" formControlName="about"></ion-textarea>
+                  <ion-label stacked>Enter event content here</ion-label>
+                  <ion-textarea [froalaEditor] rows="5" type="text" formControlName="about"> </ion-textarea>
                 </ion-item>
 
                 <div>
                   <h1>Other Informations</h1>
                 </div>
+                <ion-row>
                   <ion-col col-6>
                       <ion-item>
                           <ion-label stacked>Event Website</ion-label>
@@ -194,6 +193,7 @@
                                   <ion-input type="text" formControlName="fb"></ion-input>
                                 </ion-item>
                           </ion-col>
+                        </ion-row>
                           <ion-fab right bottom>
                               <button ion-fab color="bizzy" type="submit" [disabled]="!post.valid"><ion-icon color="white" name="ios-arrow-dropright-outline"></ion-icon></button>   
                           </ion-fab>

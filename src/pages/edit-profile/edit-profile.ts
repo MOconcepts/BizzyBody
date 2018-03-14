@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {AuthService} from "../../providers/auth-service";
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 /**
  * Generated class for the EditProfilePage page.
  *
@@ -22,30 +23,29 @@ public userDetails: any;
     token: ""
   };
   passData: any;
-  prefData: any;
   resposeData : any;
- userData: any;
  pass: any;
- pref: any;
+ 
+ public userData: FormGroup;
  public profile_segment:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authService : AuthService, private toastCtrl:ToastController){  
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authService : AuthService, private toastCtrl:ToastController, private _FB: FormBuilder){  
     const data = JSON.parse(localStorage.getItem("userData"));
     this.userDetails = data.userData;
 
-    this.userData = {"fname":this.userDetails.name,
-                      "lname":this.userDetails.surname,
-                      "gender":this.userDetails.gender,
-                      "bd":this.userDetails.birthday,
-                      "phone":this.userDetails.number,
-                      "fb":this.userDetails.fb,
-                      "twt":this.userDetails.twt,
-                      "ig":this.userDetails.ig,
-                      "web":this.userDetails.web,
-                      "user":this.userDetails.username,
-                      "uid":this.userDetails.user_id };
-
-                     this.pref = {"where":this.userDetails.city};
+    this.userData	 = _FB.group({
+      'fname'       : ['', Validators.required],
+      'lname'       : ['', Validators.required],
+      'gender'      : [''],
+      'phone'       : [''],
+      'fb'          : [''],
+      'twt'         : [''],
+      'ig'          : [''],
+      'web'         : [''],
+      'user'        : [''],
+      'uid'         : ['']
+      // 'birthday'          : [''],
+   });
       
  this.pass = {"p1":"","p2":"",
  "user":this.userDetails.username,
@@ -53,42 +53,18 @@ public userDetails: any;
   }
 
   editProfile() {
-    if(this.userData.fname && this.userData.lname){
+    this.presentToast("Updating...");
       //Api connections
-      console.log(this.userData);
-    this.authService.postData(this.userData, "editProfile").then((result) =>{
-      this.presentToast("Connecting...");
+    this.authService.postData(this.userData.value, "editProfile").then((result) =>{
     this.resposeData = result;
+    this.presentToast("Account update was successful");
     if(this.resposeData.userData){
-      this.presentToast("Account update was successful");
       localStorage.setItem('userData', JSON.stringify(this.resposeData) )
       this.navCtrl.push('TabsPage');
     }
     else{
       this.presentToast("Please provide valid username, password and email");
     }
-    
-    }, (err) => {
-      //Connection failed message
-    });
-  }
-  else {
-    this.presentToast("Give valid information.");
-  }
-  
-  }
-
-  updatePref() {
-      //Api connections
-    this.authService.postData(this.pref, "updatePref").then((result) =>{
-      this.presentToast("Connecting...");
-    this.prefData = result;
-    if(this.passData){
-      this.presentToast("Preference change was successful");
-    }
-      localStorage.setItem('userData', JSON.stringify(this.prefData) )
-      this.navCtrl.push('Profile');
- 
     
     }, (err) => {
       //Connection failed message

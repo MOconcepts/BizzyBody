@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, ToastController} from 'ionic-angular';
+import { IonicPage, ModalController, NavController, ToastController} from 'ionic-angular';
 import {AuthService} from "../../providers/auth-service";
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
@@ -16,7 +16,9 @@ export class Signup {
   resposeData : any;
   public userData: FormGroup;
   //userData = {"username":"", "password":"","email":"","fname":"","lname":"","where":""};
-  constructor(public navCtrl : NavController, public authService : AuthService, private toastCtrl:ToastController,
+  constructor(
+    public modal: ModalController,
+    public navCtrl : NavController, public authService : AuthService, private toastCtrl:ToastController,
     private _FB: FormBuilder) {
 
       this.userData	 = _FB.group({
@@ -60,6 +62,16 @@ export class Signup {
     console.log("All form fields are required - Please check and try again.");
   }
   
+  }
+
+  showTermsModal() {
+    let modal = this.modal.create('TermsPage');
+    modal.present();
+  }
+
+  showPrivacyModal() {
+    let modal = this.modal.create('PrivacyPage');
+    modal.present();
   }
 
   login() {

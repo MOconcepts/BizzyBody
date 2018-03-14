@@ -167,6 +167,12 @@
   color: #ffffff;
 }
 
+.datetime-md {
+  padding: 13px 8px 3px 16px;
+}
+.list-md .item-input:last-child {
+  border-bottom: unset;
+}
 .refresher-pulling-icon, 
 .refresher-refreshing-icon {
   text-align: center;
