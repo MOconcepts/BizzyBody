@@ -120,6 +120,12 @@
   //width: 100vw !important;
 //}
 
+.avt{
+  object-fit: cover;
+  border-radius: 100px;
+  border:1px solid white;
+}
+
 .bg{
   background-image: url('../assets/img/chat-back.png');
   background-repeat: no-repeat;

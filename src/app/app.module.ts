@@ -30,8 +30,8 @@ import { AppVersion } from '@ionic-native/app-version';
 import { AppRate } from '@ionic-native/app-rate';
 import { OneSignal } from '@ionic-native/onesignal';
 
-
 import { SuperTabsModule } from '../ionic2-super-tabs/src';
+import { Calendar } from '@ionic-native/calendar';
 // import { SuperTabsModule } from 'ionic2-super-tabs';
 
 // The translate loader needs to know where to load i18n files
@@ -74,6 +74,7 @@ export function createTranslateLoader(http: HttpClient) {
     OneSignal,
     ThemeableBrowser,
     File,
+    Calendar,
     AppVersion,
     AppRate,
     Transfer,

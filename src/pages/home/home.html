@@ -3,8 +3,7 @@
       <ion-buttons end>
           <button ion-button icon-only (click)="goToProfile()">
               <ion-avatar>
-                  <img clSrc="https://res.cloudinary.com/bizzybody-ng/image/upload/c_fill,g_faces,h_25,r_50,w_25/users/{{userDetails.img}}" style=" object-fit: cover;border-radius: 100px;">
-
+                  <img clSrc="https://res.cloudinary.com/bizzybody-ng/image/upload/c_fill,g_faces,h_25,r_50,w_25/users/{{userDetails.img}}" class="avt">
               </ion-avatar>
             </button>
           <button ion-button icon-only (click)="openPopover($event)">
@@ -173,9 +172,14 @@
                             
                             <ion-item>
                               <cs-ghost class="lg isLoading">
-                                <p style="color: #4F4F4F; font-size: 14px;"><ion-icon name="ios-calendar-outline" color="bizzy"></ion-icon>  {{event.countdown | moment:'MMM D, YYYY'}}        <span style="padding-left: 20px;">
+                                <p style="color: #4F4F4F; font-size: 14px;"><ion-icon name="ios-calendar-outline" color="bizzy"></ion-icon>  {{event.countdown | moment:'MMM D, YYYY'}}        
+                                  <!-- <span style="padding-left: 20px;">
                                     <ion-icon name="ios-clock-outline" color="bizzy"></ion-icon>   {{event.countdown | moment:'HH:mm'}}
-                                </span></p>
+                                </span>       -->
+                                <span style="padding-left: 20px;">
+                                    <ion-icon name="ios-stopwatch-outline" color="bizzy"></ion-icon>    {{event.countdown | togo:'true'}} toGo
+                              </span>
+                              </p>
                               </cs-ghost>
 
                                 <cs-ghost class="lg isLoading">

@@ -8,6 +8,8 @@ import { Common } from "../../providers/common";
 import { PopoverController} from 'ionic-angular';
 import { GhotsProvider } from '../../providers/ghots/ghots'; 
 
+import * as numeral from 'numeral';
+
 /**
  * Generated class for the UserPage page.
  *
@@ -53,26 +55,10 @@ export class UserPage implements OnInit {
       const data = JSON.parse(localStorage.getItem("userData"));
       this.userDetails = data.userData;
       this.uid = this.userDetails.user_id;
+
   }
   ngOnInit() {
-    console.log(this.date);
     this._setLoaded();
-    this.publisher = this.navParams.get('pub');
-    this.restProvider.getUser(this.publisher)
-    .then(data => {
-      this.user = data;
-      this.usr = this.user.user.username;
-      this.usrImg = this.user.user.img;
-    })
-    .catch(err => {
-      console.error(err)
-    });
-
-    this.usrEvents();
-
-    this.data2 = {"ff_id": this.publisher, "ffn_id": this.uid};
-    this.followingMe();
-    this.getFollowIn();
   }
 
   getFollowIn() {
@@ -112,14 +98,42 @@ export class UserPage implements OnInit {
     this.restProvider.followingMe(this.publisher)
     .then(data => {
       this.ffMe = data;
-      this.lentffMe = this.ffMe.length;
+     var count = this.ffMe.length;
+
+        var number = numeral(count);
+        this.lentffMe = number.format('0a');
+
+        console.log(this.lentffMe)
+
+
     })
     .catch(err => {
       console.error(err)
     });
   } 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     console.log(this.publisher);
+
+    var pub = this.navParams.get('pub');
+    this.restProvider.getUser(pub)
+    .then(data => {
+      this.user = data;
+      this.usr = this.user.user.username;
+      this.usrImg = this.user.user.img;
+      this.publisher = this.user.user.user_id;
+    })
+    .catch(err => {
+      console.error(err)
+    });
+  }
+
+  ionViewDidEnter(){
+
+    this.usrEvents();
+
+    this.data2 = {"ff_id": this.publisher, "ffn_id": this.uid};
+    this.followingMe();
+    this.getFollowIn();
   }
 
   followIn() {

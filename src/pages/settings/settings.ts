@@ -19,6 +19,7 @@ import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } fro
 export class SettingsPage {
   appName: any;
   versionNumber: any;
+  buildCode: any;
   userDetails: any;
 
   constructor(
@@ -33,12 +34,13 @@ export class SettingsPage {
 
     this.appVersion.getVersionNumber().then(version => { 
       this.versionNumber = version;
-      console.log(this.versionNumber);
       });
       this.appVersion.getAppName().then(name => {
         this.appName = name;
-        console.log(this.versionNumber);
         });
+        this.appVersion.getVersionCode().then(code => {
+          this.buildCode = code;
+          });
 
   }
 

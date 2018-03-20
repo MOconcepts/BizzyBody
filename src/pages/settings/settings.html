@@ -16,7 +16,7 @@
 
           <img src="assets/img/icon.png" class="avatar">
       
-          <h2 style="color: #ffffff;">{{appName}} <small>v. {{versionNumber}}</small></h2>
+          <h2 style="color: #ffffff;">{{appName}} <small>v. {{versionNumber}} ({{buildCode}})</small></h2>
 
     <button style="border-radius: 5px; height: 36px; color:#fecb00;" ion-button color="white" ion-button icon-right (click)="rateApp()"> <i class="fa fa-star" aria-hidden="true" style="padding-right: 5px;"></i>  Rate App</button>
 
@@ -27,19 +27,19 @@
       <div style="height: 30px; margin: 0; background-color: #ebebeb;">
           <ion-row>
             <ion-col col-12 style="padding-left: 30px;">
-              <h6 no-margin style="color: #424242; font-size: 14px; padding-top: 3px;"> ACCOUNT</h6>
+              <h6 no-margin style="color: #424242; font-size: 14px; padding-top: 3px;"> NOTIFICATIONS</h6>
             </ion-col>
           </ion-row>
         </div>
 
       <ion-list style="padding: 0 30px;">
-          <button ion-item>Push Notification <ion-icon name="ios-arrow-dropright-outline" item-end></ion-icon></button> 
+          <button ion-item>Notification Settings<ion-icon name="ios-arrow-dropright-outline" item-end></ion-icon></button> 
         </ion-list>
 
       <div style="height: 30px; margin: 0; background-color: #ebebeb;">
           <ion-row>
             <ion-col col-12 style="padding-left: 30px;">
-              <h6 no-margin style="color: #424242; font-size: 14px; padding-top: 3px;"> ABOUT</h6>
+              <h6 no-margin style="color: #424242; font-size: 14px; padding-top: 3px;"> INSIDE BIZZYBODY</h6>
             </ion-col>
           </ion-row>
         </div>
@@ -53,24 +53,24 @@
       <div style="height: 30px; margin: 0; background-color: #ebebeb;">
           <ion-row>
             <ion-col col-12 style="padding-left: 30px;">
-              <h6 no-margin style="color: #424242; font-size: 14px; padding-top: 3px;"> SOCIALS</h6>
+              <h6 no-margin style="color: #424242; font-size: 14px; padding-top: 3px;"> WE ARE SOCIAL!</h6>
             </ion-col>
           </ion-row>
         </div>
 
-        <ion-list style="padding: 0 30px;">
+        <ion-list no-lines style="padding: 0 30px;">
           <ion-row>
               <button ion-item col-2 (click)="openWithInAppBrowser('https://fb.me/bizzybodyNG')"><ion-icon name="logo-facebook" item-start></ion-icon></button> 
               <button ion-item col-2 (click)="openWithInAppBrowser('https://instagram.com/bizzybodyNG')"><ion-icon name="logo-instagram" item-start></ion-icon></button> 
               <button ion-item col-2 (click)="openWithInAppBrowser('https://twitter.com/@bizzybodyNG')"><ion-icon name="logo-twitter" item-start></ion-icon></button> 
-              <button ion-item col-6 (click)="openWithInAppBrowser('https://bizzybody.ng/')">@bizzybodyNG</button> 
+              <button ion-item col-6 (click)="openWithInAppBrowser('https://bizzybody.ng/')">@BizzyBodyNG</button> 
           </ion-row>
           </ion-list>
 
       <div style="height: 30px; margin: 0; background-color: #ebebeb;">
           <ion-row>
             <ion-col col-12 style="padding-left: 30px;">
-              <h6 no-margin style="color: #424242; font-size: 14px; padding-top: 3px;"> PROFILE</h6>
+              <h6 no-margin style="color: #424242; font-size: 14px; padding-top: 3px;"> MY PROFILE</h6>
             </ion-col>
           </ion-row>
         </div>

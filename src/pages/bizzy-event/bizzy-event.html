@@ -72,18 +72,18 @@
                 </span> </p>
             </div>
 
+            <div style="padding-top: 16px">
+            <button style="border-radius: 5px; color: gray; font-size: 10px !important;" ion-button outline color="gray" ion-button icon-right (click)="saveEvent()"  [disabled]="disableSave"> add to calendar<ion-icon color="gray" name="ios-calendar"></ion-icon></button>
+
             <div *ngIf="event.countdown > date; then next"></div>
             <ng-template #next>
-            <div *ngIf="checkLent == 0;else other_content"> 
-                <div style="padding-top: 16px">
-      <button style="border-radius: 5px; color: gray;" ion-button outline color="gray" ion-button icon-right [disabled]="disableButton" (click)="checkIn()"> Checkin Event <ion-icon color="gray" name="checkmark-circle-outline"></ion-icon></button>
-                </div>
-                </div>
+      <button *ngIf="checkLent == 0;else other_content" style="border-radius: 5px; color: gray; font-size: 10px !important;" ion-button outline color="gray" ion-button icon-right [disabled]="disableButton" (click)="checkIn()"> Checkin Event <ion-icon color="gray" name="checkmark-circle-outline"></ion-icon></button>
             </ng-template>
             <ng-template #other_content>
-  <button style="border-radius: 5px; color:#FECB00;" ion-button outline color="bizzy" ion-button icon-right disabled> Checked in<ion-icon color="bizzy" name="checkmark-circle-outline"></ion-icon></button>
+  <button style="border-radius: 5px; color:#FECB00; font-size: 10px !important;" ion-button outline color="bizzy" ion-button icon-right disabled> Checked in<ion-icon color="bizzy" name="checkmark-circle-outline"></ion-icon></button>
             </ng-template>
 
+          </div>
         </div>
       <ion-row>
           <ion-col col-12>
@@ -116,8 +116,8 @@
     <!-- Cards -->
     <ion-card no-padding padding-bottom no-margin class="card">
         <div class="divPad">
-        <ion-card-header>
-          Location
+        <ion-card-header style="padding-top: 20px;">
+          Location <button transparent item-end><img src="assets/icon/taxify.svg" style="height: 30px;"></button>
         </ion-card-header>
     
         <ion-card-content style="height: 200px;">
@@ -205,6 +205,7 @@
                   <button ion-fab (click)="facebookShare()"><ion-icon color="facebook" name="logo-facebook"></ion-icon></button>
                   <button ion-fab (click)="twitterShare()"><ion-icon color="twitter" name="logo-twitter"></ion-icon></button>
                   <button ion-fab (click)="whatsappShare()"><ion-icon color="secondary" name="logo-whatsapp"></ion-icon></button>
+                  <button ion-fab (click)="share()"><ion-icon color="bizzy" name="ios-more-outline"></ion-icon></button>
                 </ion-fab-list>
               </ion-fab>
         </ng-template>

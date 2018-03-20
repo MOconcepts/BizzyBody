@@ -69,7 +69,7 @@ geo: any
       'what'        : ['', Validators.required],
       'where'       : ['', Validators.required],
       'timeStarts'  : ['', Validators.required],
-      'timeStops'   : [''],
+      'timeStops'   : ['', Validators.required],
       'about'       : [''],
       'web'         : [''],
       'phone'       : [''],
@@ -209,7 +209,6 @@ public postEvent(){
 
   showAddressModal () {
     let modal = this.modalCtrl.create('AutocompletePage');
-    let me = this;
     modal.onDidDismiss(data => {
       this.address.place = data;
       

@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild  } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, AlertController, ToastController } from 'ionic-angular';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
@@ -7,7 +7,7 @@ import 'rxjs/add/observable/interval';
 import { RestProvider } from '../../providers/rest/rest';
 import { PopoverController} from 'ionic-angular';
 import {AuthService} from "../../providers/auth-service";
-
+import { Calendar } from '@ionic-native/calendar';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import moment from 'moment'
 /**
@@ -62,12 +62,15 @@ export class BizzyEventPage implements OnInit {
   ffLent: any;
   getFollow: any;
   disableButton;
+  disableSave;
   
   public date: string = new Date().toISOString();
   
   //apiUrl = 'https://rest.bizzybody.ng/api/v1/events/';
 
   constructor(
+    public alertCtrl: AlertController,
+    private calendar: Calendar,
     private sharingVar: SocialSharing,
     public popoverCtrl: PopoverController,public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public events: Events, public http: HttpClient, public restProvider: RestProvider, public authService : AuthService, private toastCtrl:ToastController) {
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
@@ -96,6 +99,25 @@ export class BizzyEventPage implements OnInit {
     this.getFollowIn();
 
   } 
+
+  saveEvent(){
+    this.disableSave = true;
+    this.calendar.createEvent(this.event.title, this.event.place, this.event.tags, 
+    new Date(this.event.countdown), 
+    new Date(this.event.stop)).then(
+      (msg) => {
+    this.presentToast("Success! " + this.event.title + " has been added to your calender");
+      },
+      (err) => {
+        let alert = this.alertCtrl.create({
+          title: 'Failed!',
+          subTitle: err,
+          buttons: ['OK']
+        });
+        alert.present();
+      }
+    );
+  }
 
   ionViewDidLoad() {
     this.startMap();
@@ -175,6 +197,16 @@ export class BizzyEventPage implements OnInit {
   
   }
 
+  share(){
+    this.sharingVar.share("", this.event.title , "https://bizzybody.ng/uploads/events/"+this.event.image,  "https://bizzybody.ng/event/"+this.event.slug)
+      .then(()=>{
+        alert("Success");
+      },
+      ()=>{
+         alert("failed")
+      })
+
+  }
   
  whatsappShare(){
   this.sharingVar.shareViaWhatsApp(this.event.title , "https://bizzybody.ng/uploads/events/"+this.event.image,  "https://bizzybody.ng/event/"+this.event.slug)

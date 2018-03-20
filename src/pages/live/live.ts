@@ -44,7 +44,10 @@ export class LivePage {
       }, 1000);
     });
   }
-
+  goToUser(user) {
+    this.navCtrl.push('UserPage', {pub: user});
+    console.log('this user '+ {pub: user})
+  }
   sendMessage() {
     if(this.data.message){
       let newData = firebase.database().ref('chatrooms/'+this.roomkey+'/chats').push();

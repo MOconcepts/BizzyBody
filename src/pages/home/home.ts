@@ -4,6 +4,7 @@ import { RestProvider } from '../../providers/rest/rest';
 import { Common } from "../../providers/common";
 import { PopoverController} from 'ionic-angular';
 
+import moment from 'moment'
 import { GhotsProvider } from '../../providers/ghots/ghots';
 /**
  * Generated class for the IndexPage page.
@@ -77,14 +78,14 @@ export class HomePage {
       ev: myEvent
     });
   }
+
   locEvents() {
     // this.common.presentLoading();
     this.restProvider.locEvents(this.locId)
     .then(data => {
       this.myLoc = data;
       this.locLent = this.myLoc.length;
-      // this.common.closeLoading();
-      console.log(this.myLoc);
+
     })
     .catch(err => {
       console.error(err)
