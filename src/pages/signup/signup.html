@@ -3,6 +3,7 @@
         </ion-navbar>
       </ion-header>
 <ion-content no-margin no-padding scroll="false">
+    <form class="login-form auth-form" [formGroup]="userData" (ngSubmit)="signup(userData.value)" >
         <section class="login-container">
         <div text-center style="height: 200px; margin: 0; background-color: #fecb00;">
       
@@ -11,7 +12,7 @@
                     <ion-col class="key" col-10 offset-1>
                             <ion-item transparent>
                                   <ion-label color="white" stacked>Where?</ion-label>
-                                  <ion-select required class="formF" [(ngModel)]="userData.where">
+                                  <ion-select required class="formF" formControlName="where">
                                       <ion-option value=""><span style="color:#ffffff !important;">Event City</span></ion-option>
                       
                                       <ion-option value="1">Lagos Mainland, Nigeria</ion-option>
@@ -45,35 +46,37 @@
                              <!---Input field username-->
               <ion-item col-6 no-padding transparent>
                     <ion-label color="dark" stacked>Firstname</ion-label>
-                    <ion-input required type="text" [(ngModel)]="userData.fname"></ion-input>
+                    <ion-input required type="text" formControlName="fname"></ion-input>
                 </ion-item>
 
               <!---Input field username-->
               <ion-item col-6 no-padding transparent>
                     <ion-label color="dark" stacked>Surname</ion-label>
-                    <ion-input required type="text" [(ngModel)]="userData.lname"></ion-input>
+                    <ion-input required type="text" formControlName="lname"></ion-input>
                 </ion-item>
 
                 </ion-row>
                 <!---Input field username-->
                 <ion-item no-padding transparent>
                     <ion-label color="dark" stacked>Username</ion-label>
-                    <ion-input required type="text" [(ngModel)]="userData.username"></ion-input>
+                    <ion-input required type="text" formControlName="username"></ion-input>
                 </ion-item>
                 <!---Input field password-->
                 <ion-item no-padding transparent>
                     <ion-label color="dark" stacked>Password</ion-label>
-                    <ion-input required type="password" [(ngModel)]="userData.password"></ion-input>
+                    <ion-input required type="password" formControlName="password"></ion-input>
                 </ion-item>
                 <!---Input field email-->
                 <ion-item no-padding transparent>
                     <ion-label color="dark" stacked>Email</ion-label>
-                    <ion-input requiredtype="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required [(ngModel)]="userData.email"></ion-input>
+                    <ion-input requiredtype="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required formControlName="email"></ion-input>
                 </ion-item>
+
+                
                 <!---Register button-->
                 <div style="padding-top: 20px;">
-                        <button ion-button block text-capitalize style="color: #ffffff" (click)="signup()">Submit</button>
-                </div>
+                  <button ion-button block text-capitalize style="color: #ffffff" class="auth-action-button login-button" type="submit" [disabled]="!userData.valid">Submit</button>
+          </div>
             </ion-col>
                     </div>
               </ion-col>
@@ -82,13 +85,14 @@
       
       </div>
     </section>
+    </form>
       </ion-content>
       <ion-footer >
             <ion-toolbar color="white">
               <ion-row>
                 <ion-col col-12 text-center>
                     <p style="font-size: 10px;">By using this app, you agree to BizzyBodyNG’s <br>
-                        <a href="https://bizzybody.ng/terms" target="_blank"><span>Terms of Use</span></a> and <a href="http://bizzybody.ng/privacy" target="_blank"><span>Privacy Policy</span></a></p>
+                        <a (click)="showTermsModal()" ><span>Terms of Use</span></a> and <a (click)="showPrivacyModal()" ><span>Privacy Policy</span></a></p>
                 </ion-col>
               </ion-row>
             </ion-toolbar>

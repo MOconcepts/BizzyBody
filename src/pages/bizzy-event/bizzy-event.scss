@@ -2,6 +2,15 @@ page-bizzy-event {
     .mytoolbar{
     height: 100px !important;
   }
+      /* Profile avatar */
+      .avatar {
+        max-height: 75px !important;
+        max-width: 75px !important;
+        object-fit: cover;
+        border-radius: 50%;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+      }
 
   .divPad {
     padding: 0px 20px 0px 30px;

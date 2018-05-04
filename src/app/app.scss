@@ -120,6 +120,12 @@
   //width: 100vw !important;
 //}
 
+.avt{
+  object-fit: cover;
+  border-radius: 100px;
+  border:1px solid white;
+}
+
 .bg{
   background-image: url('../assets/img/chat-back.png');
   background-repeat: no-repeat;
@@ -165,6 +171,26 @@
 
 .toolbar-ios-bizzy .toolbar-title-ios, .toolbar-ios-bizzy .bar-button-clear-ios, .toolbar-ios-bizzy .bar-button-default-ios {
   color: #ffffff;
+}
+
+.datetime-md {
+  padding: 13px 8px 3px 16px;
+}
+.list-md .item-input:last-child {
+  border-bottom: unset;
+}
+.refresher-pulling-icon, 
+.refresher-refreshing-icon {
+  text-align: center;
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  font-size: 30px;
+  color: #fff !important;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+}
+.refresher-refreshing .spinner-crescent circle {
+  stroke: #fff !important;
 }
 /* ==========================================================================
  Countdown styles

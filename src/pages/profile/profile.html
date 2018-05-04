@@ -12,7 +12,8 @@
   <ion-row style="padding: 10px 30px;">
       <!-- Avatar -->
       <ion-col col-3>
-        <img src="https://bizzybody.ng/uploads/users/{{userDetails.img}}" class="avatar" alt="">
+      <!-- (click)="presentActionSheet()" -->
+              <img src="https://res.cloudinary.com/bizzybody-ng/image/upload/c_fill,g_faces,h_200,r_50,w_200/users/{{userDetails.img}}"  class="avatar">
       </ion-col>
       <!-- Information about user -->
       <ion-col col-9>
@@ -60,49 +61,57 @@
 
   <!-- Segment content -->
   <div [ngSwitch]="profile_segment" style="padding: 0px 20px 0px 30px;">
-    <!-- <ion-list *ngSwitchCase="'myEvent'">
-      <ion-grid>
-        <ion-row >
-          <ion-col col-4 class="grid_img" *ngFor="let i of (evnt)">
-            <img class="sqr" src="https://bizzybody.ng/uploads/events/{{i.image}}" alt="">
-          </ion-col>
-        </ion-row>
-
-        <ion-card *ngIf="noRecords">
-            <ion-item>
-              No Records
-            </ion-item>
-          </ion-card>
-
-          <ion-fab right bottom>
-            <button ion-fab color="bizzy"><ion-icon color="white" name="add"></ion-icon></button>   
-        </ion-fab>
-      </ion-grid>
-    </ion-list> -->
 
     <ion-list *ngSwitchCase="'myEvent'">
       <div *ngIf="lent != 0;else other_content"> 
       <div>
-        <h3 style="color: gray; font-size: 16px;">MY PUBLISHED EVENTS</h3>
+        <h3 style="color: gray; font-size: 16px;">MY PUBLISHED EVENTS<span style="float: right; font-size: 8px;"><i class="fa fa-angle-double-left" aria-hidden="true"></i> swipe for options</span></h3>
       </div>
-      <ion-item no-padding no-lines>
-        <ion-row *ngFor="let i of (evnt)" style="padding: 10px 0px;">
-          <ion-col col-4 no-padding>
-              <ion-card class="card" no-margin>
-          <img src="https://bizzybody.ng/uploads/events/{{i.image}}" alt="" style="height: 100px; object-fit: cover;">
-                </ion-card>
-      </ion-col>
+      <ion-list no-lines no-padding no-margin *ngFor="let i of (evnt); let eIndex = index" style="padding: 10px 0px;">
+          <ion-item-sliding>
+      <ion-item no-padding no-lines (click)="goBizzyEvent(i)">
+        <ion-row>
+            <ion-col col-4 no-padding>
+                <ion-card class="card" no-margin>
+                    <cs-ghost class="img2 square isLoading">
+                    <cl-image public-id="events/{{i.image}}" >
+                      <cl-transformation gravity="faces" height="100" radius="5" width="105" crop="fill">
+                      </cl-transformation>
+                    </cl-image>
+                    </cs-ghost>
+                  </ion-card>
+        </ion-col>
+  
+        <ion-col col-8 style="padding-left: 20px;">
+            <cs-ghost class="lg isLoading">
+          <h5 text-wrap style="font-weight:500; text-transform: uppercase; padding-bottom: 8px;">{{i.title}}</h5>
+            </cs-ghost>
 
-      <ion-col col-8 style="padding-left: 20px;">
-        <h5 text-wrap style="font-weight:500; text-transform: uppercase; padding-bottom: 8px;">{{i.title}}</h5>
-
-        <p style="color: #000000; font-size: 12px;"><ion-icon name="ios-calendar-outline" color="bizzy" style="font-size: unset;"></ion-icon>  {{i.countdown | moment:'dddd, MMMM D, YYYY'}} </p>
-        <p text-wrap style="color: #4F4F4F; font-size: 10px;"><ion-icon color="bizzy" name="ios-navigate-outline" style="font-size: unset;"></ion-icon>  {{i.place}} | {{i.loc_city}}</p>
-      </ion-col>
+            <cs-ghost class="lg isLoading">
+              <p style="color: #4F4F4F; font-size: 10px;"><ion-icon name="ios-calendar-outline" color="bizzy" style="font-size: unset;"></ion-icon>  {{i.countdown | moment:'dddd, MMMM D, YYYY'}} </p>
+            </cs-ghost>
+            <cs-ghost class="lg isLoading">
+          <p text-wrap style="color: #4F4F4F; font-size: 10px;"><ion-icon name="ios-navigate-outline" color="bizzy"></ion-icon>  {{i.place}} | {{i.loc_city}}</p>
+            </cs-ghost>
+        </ion-col>
     </ion-row>
       </ion-item>
+      <ion-item-options side="right">
+          <button ion-button color="primary" (click)="openMore(i.id)">
+              <i class="fa fa-ellipsis-h"></i>
+              more
+          </button>
+        <button ion-button color="danger" (click)="deleteEvent(i.id, eIndex)">
+            <i class="fa fa-trash"></i>
+            delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
       <ion-fab right bottom>
-          <button ion-fab color="bizzy" (click)="openWithInAppBrowser('https://bizzybody.ng/post/app/' + userDetails.user_id)"><ion-icon color="white" name="add"></ion-icon></button>   
+
+          <button ion-fab color="bizzy" (click)="postPage()"><ion-icon color="white" name="add"></ion-icon></button> 
+          <!-- <button ion-fab color="bizzy" (click)="openWithInAppBrowser('https://bizzybody.ng/post/app/' + userDetails.user_id)"><ion-icon color="white" name="add"></ion-icon></button>    -->
       </ion-fab>
     </div>
 
@@ -114,7 +123,9 @@
           <p style="color: #4F4F4F;">Your have no events published yet.<br>
               Feel free to publish an event you are hosting.</p>
 
-              <button ion-button padding color="bizzy" (click)="openWithInAppBrowser('http://bizzybody.ng/post/app/' + userDetails.user_id)" style="color: #ffffff;font-weight: bolder;">PUBLISH YOUR FIRST EVENT</button>
+              <button ion-button padding color="bizzy" (click)="postPage()" style="color: #ffffff;font-weight: bolder; padding: 25px !important;">PUBLISH YOUR FIRST EVENT</button>
+<!-- 
+              <button ion-button padding color="bizzy" (click)="openWithInAppBrowser('http://bizzybody.ng/post/app/' + userDetails.user_id)" style="color: #ffffff;font-weight: bolder;">PUBLISH YOUR FIRST EVENT</button> -->
         </ion-col>
       </ion-row>
     </div>
@@ -124,24 +135,45 @@
     <ion-list *ngSwitchCase="'like'">
         <div *ngIf="lentIn != 0;else other_content1"> 
         <div>
-          <h3 style="color: gray; font-size: 16px;">EVENTS I CHECKED INTO</h3>
+          <h3 style="color: gray; font-size: 16px;">EVENTS I CHECKED INTO<span style="float: right; font-size: 8px;"><i class="fa fa-angle-double-left" aria-hidden="true"></i> swipe for options</span></h3>
         </div>
-        <ion-item no-padding no-lines>
-          <ion-row *ngFor="let i of (evntIn)" style="padding: 10px 0px;">
-            <ion-col col-4 no-padding>
-                <ion-card class="card" no-margin>
-            <img src="https://bizzybody.ng/uploads/events/{{i.image}}" alt="" style="height: 100px; object-fit: cover;">
-                  </ion-card>
-        </ion-col>
+        <ion-list no-lines no-padding no-margin *ngFor="let i of (evntIn); let cIndex = index" style="padding: 10px 0px;">
+            <ion-item-sliding>
+        <ion-item no-padding no-lines (click)="goBizzyEvent(i)">
+          <ion-row>
+              <ion-col col-4 no-padding>
+                  <ion-card class="card" no-margin>
+                      <cs-ghost class="img2 square isLoading">
+                      <cl-image public-id="events/{{i.image}}" >
+                        <cl-transformation gravity="faces" height="100" radius="5" width="105" crop="fill">
+                        </cl-transformation>
+                      </cl-image>
+                      </cs-ghost>
+                    </ion-card>
+          </ion-col>
+    
+          <ion-col col-8 style="padding-left: 20px;">
+              <cs-ghost class="lg isLoading">
+            <h5 text-wrap style="font-weight:500; text-transform: uppercase; padding-bottom: 8px;">{{i.title}}</h5>
+              </cs-ghost>
   
-        <ion-col col-8 style="padding-left: 20px;">
-          <h5 text-wrap style="font-weight:500; text-transform: uppercase; padding-bottom: 8px;">{{i.title}}</h5>
-  
-          <p style="color: #000000; font-size: 12px;"><ion-icon name="ios-calendar-outline" color="bizzy" style="font-size: unset;"></ion-icon>  {{i.countdown | moment:'dddd, MMMM D, YYYY'}} </p>
-          <p text-wrap style="color: #4F4F4F; font-size: 10px;"><ion-icon color="bizzy" name="ios-navigate-outline" style="font-size: unset;"></ion-icon>  {{i.place}} | {{i.loc_city}}</p>
-        </ion-col>
+              <cs-ghost class="lg isLoading">
+                <p style="color: #4F4F4F; font-size: 10px;"><ion-icon name="ios-calendar-outline" color="bizzy" style="font-size: unset;"></ion-icon>  {{i.countdown | moment:'dddd, MMMM D, YYYY'}} </p>
+              </cs-ghost>
+              <cs-ghost class="lg isLoading">
+            <p text-wrap style="color: #4F4F4F; font-size: 10px;"><ion-icon name="ios-navigate-outline" color="bizzy"></ion-icon>  {{i.place}} | {{i.loc_city}}</p>
+              </cs-ghost>
+          </ion-col>
       </ion-row>
         </ion-item>
+        <ion-item-options side="right">
+            <button ion-button color="primary" (click)="checkOut(i.id, cIndex)">
+                <i class="fa fa fa-times-circle-o"></i>
+                Checkout
+            </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
       </div>
   
       <ng-template #other_content1>
@@ -152,7 +184,7 @@
             <p style="color: #4F4F4F;">Your have not checked into any Event.<br>
                 Let's show you some Fun.</p>
   
-                <button ion-button padding color="bizzy" style="color: #ffffff;font-weight: bolder;"  (click)="goToSearch()">BROWSE EVENTS</button>
+                <button ion-button padding color="bizzy" style="color: #ffffff;font-weight: bolder; padding: 25px !important;"  (click)="goToSearch()">BROWSE EVENTS</button>
           </ion-col>
         </ion-row>
       </div>
@@ -164,19 +196,18 @@
         <div>
           <h3 style="color: gray; font-size: 16px;">USERS FOLLOWING ME</h3>
         </div>
-        <ion-item no-padding no-lines>
-          <ion-row *ngFor="let i of (ffMe)" style="padding: 10px 0px;">
-              <ion-col col-4 no-padding>
-                  <ion-card class="card" no-margin>
-              <img src="https://bizzybody.ng/uploads/users/{{i.img}}" alt="" style="height: 80px; object-fit: cover;">
-                    </ion-card>
-          </ion-col>
-    
-          <ion-col col-8 style="padding-left: 20px;">
-            <h3 text-wrap style="font-weight:500; text-transform: uppercase; padding-top: 30px; padding-bottom: 8px;">{{i.username}}</h3>
-          </ion-col>
-      </ion-row>
-        </ion-item>
+        <ion-list *ngFor="let i of (ffMe)"  no-margin no-padding>
+            <ion-item>
+                  <img item-start clSrc="https://res.cloudinary.com/bizzybody-ng/image/upload/c_fill,g_faces,h_40,r_100,w_40/users/{{i.img}}" style=" object-fit: cover;border-radius: 100px;" class="avatar" (click)="goToUser(i.user_id)">
+              <h2 (click)="goToUser(i.user_id)">{{i.username}}</h2>
+
+              <button *ngIf="i.follow_status == 2;else btn" style="border-radius: 5px; font-size: 10px; color: gray;" item-end ion-button outline small color="gray"> Following</button>
+
+              <ng-template #btn>
+                <button style="border-radius: 5px; font-size: 10px; color:#FECB00;" item-end ion-button outline small color="bizzy" (click)="followIn(i)"> Follow Back</button>
+              </ng-template>
+            </ion-item>
+          </ion-list>
       </div>
   
       <ng-template #other_content2>
@@ -197,20 +228,14 @@
         <div>
           <h3 style="color: gray; font-size: 16px;">USERS I AM FOLLOWING</h3>
         </div>
-        
-        <ion-item no-padding no-lines>
-            <ion-row *ngFor="let i of (Iff)" style="padding: 10px 0px;">
-              <ion-col col-4 no-padding>
-                  <ion-card class="card" no-margin>
-              <img src="https://bizzybody.ng/uploads/users/{{i.img}}" alt="" style="height: 80px; object-fit: cover;">
-                    </ion-card>
-          </ion-col>
-    
-          <ion-col col-8 style="padding-left: 20px;">
-            <h3 text-wrap style="font-weight:500; text-transform: uppercase; padding-top: 30px; padding-bottom: 8px;">{{i.username}}</h3>
-          </ion-col>
-        </ion-row>
-          </ion-item>
+        <ion-list *ngFor="let i of (Iff); let msgIndex = index" no-margin no-padding>
+            <ion-item>
+                  <img item-start clSrc="https://res.cloudinary.com/bizzybody-ng/image/upload/c_fill,g_faces,h_40,r_100,w_40/users/{{i.img}}" style=" object-fit: cover;border-radius: 100px;" class="avatar" (click)="goToUser(i.user_id)">
+              <h2 (click)="goToUser(i.user_id)">{{i.username}}</h2>
+
+      <button style="border-radius: 5px; font-size: 10px; color:#FECB00;" item-end ion-button outline small color="bizzy" (click)="unFollow(i.id, msgIndex)"> Unfollow</button>
+            </ion-item>
+          </ion-list>
       </div>
   
       <ng-template #other_content3>

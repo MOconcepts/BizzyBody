@@ -108,3 +108,15 @@ $loading-md-box-shadow: none;
 
 @import 'font-awesome';
 
+@import "../assets/scss/font-awesome/fontawesome";
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('../assets/fonts/font-awesome/fontawesome-webfont.eot');
+    src: url('../assets/fonts/font-awesome/fontawesome-webfont.eot') format('embedded-opentype'),
+    url('../assets/fonts/font-awesome/fontawesome-webfont.woff2') format('woff2'),
+    url('../assets/fonts/font-awesome/fontawesome-webfont.woff') format('woff'),
+    url('../assets/fonts/font-awesome/fontawesome-webfont.ttf') format('truetype'),
+    url('../assets/fonts/font-awesome/fontawesome-webfont.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

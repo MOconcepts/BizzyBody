@@ -3,6 +3,8 @@ page-profile {
   .avatar {
     max-height: 85px !important;
     max-width: 85px !important;
+    object-fit: cover;
+    border:2px solid white;
     border-radius: 50%;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
@@ -24,7 +26,6 @@ page-profile {
     padding: 4px; 
     font-weight: bold;
   }
-
   .info {
     padding-top: 4px;
   }

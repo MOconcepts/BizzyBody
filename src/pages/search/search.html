@@ -3,7 +3,8 @@
         <ion-buttons end>
             <button ion-button icon-only (click)="goToProfile()">
                 <ion-avatar>
-                  <img height="25px" width="25px" style=" object-fit: cover;border-radius: 100px;" src="https://bizzybody.ng/uploads/users/{{userDetails.img}}">
+                    <img clSrc="https://res.cloudinary.com/bizzybody-ng/image/upload/c_fill,g_faces,h_25,r_50,w_25/users/{{userDetails.img}}" class="avt">
+  
                 </ion-avatar>
               </button>
             <button ion-button icon-only (click)="openPopover($event)">

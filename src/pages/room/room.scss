@@ -1,3 +1,8 @@
 page-room {
-
+    .card, .list-inset {
+        overflow: hidden;
+        margin: 5px 30px;
+        border-radius: 5px;
+        background-color: #fff;
+    }
 }

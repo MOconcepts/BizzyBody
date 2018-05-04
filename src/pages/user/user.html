@@ -1,0 +1,130 @@
+<ion-header no-margin no-padding>
+    <ion-navbar color="bizzy">
+        <ion-buttons end>
+            <button ion-button icon-only (click)="openPopover($event)">
+              <ion-icon color="white" name="more"></ion-icon>
+            </button>
+          </ion-buttons>
+    </ion-navbar>
+   </ion-header>
+<ion-content>
+    <div style="height: 280px; margin: 0; background-color: #fecb00;">
+  <ion-row style="padding: 10px 30px;">
+      <!-- Avatar -->
+      <ion-col col-12 text-center>
+
+        <div *ngIf="usrImg;then img"></div>
+
+        <ng-template #img>
+          <img src="https://res.cloudinary.com/bizzybody-ng/image/upload/c_fill,g_faces,h_200,r_50,w_200/users/{{usrImg}}" class="avatar">
+        </ng-template>
+          
+              <!-- <img clSrc="https://res.cloudinary.com/bizzybody-ng/image/upload/c_fill,g_faces,h_200,r_50,w_200/users/{{usrImg}}" style=" object-fit: cover;border-radius: 100px; border:5px solid white" class="avatar"> -->
+      </ion-col>
+      <!-- Information about user -->
+      <ion-col col-12 text-center>
+      <h2 style="color: #ffffff;">{{usr}}</h2>
+
+      <div *ngIf="usr != userDetails.username ;then ff">
+        </div>
+        <ng-template #ff>
+          <div *ngIf="ffLent == 0;else other_content2">
+
+      <button style="border-radius: 5px; font-size: 10px; color:#ffffff;" ion-button outline color="white" ion-button icon-right (click)="followIn()"> Follow</button> 
+      <button style="border-radius: 5px; width: 36px; height: 36px; color:#fecb00;" ion-button color="white" ion-button icon-right> <i class="fa fa-dot-circle-o" aria-hidden="true"></i></button>
+           </div>
+        </ng-template>
+        <ng-template #other_content2>
+            <button style="border-radius: 5px; font-size: 10px; color:#fecb00;" ion-button disabled color="white" ion-button icon-right> Following</button> 
+            <button style="border-radius: 5px; width: 36px; height: 36px; color:#fecb00;" ion-button color="white" ion-button icon-right> <i class="fa fa-dot-circle-o" aria-hidden="true"></i></button>
+        </ng-template>
+      </ion-col>
+    </ion-row>
+      </div>
+      <div style="height: 50px; margin: 0; background-color: #ffffff;">
+        <ion-row>
+          <ion-col col-6 style="border-right: 1px solid #ebebeb;">
+            <h6 text-center style="color:#fecb00; margin-top: 10px !important;"><ion-icon name="ios-calendar-outline"></ion-icon> {{lent}} Events</h6>
+          </ion-col>
+          <ion-col col-6>
+              <h6 text-center style="color:#fecb00; margin-top: 10px !important"><ion-icon name="ios-people-outline"></ion-icon> {{lentffMe}} Followers</h6>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div *ngIf="lent != 0;else other_content"> 
+      <div style="height: 30px; margin: 0; background-color: #ebebeb;">
+        <ion-row>
+          <ion-col col-12>
+            <h6 no-margin style="padding-left: 30px; color: #424242; font-size: 14px; padding-top: 3px;"> Upcoming Events</h6>
+          </ion-col>
+        </ion-row>
+      </div>
+          <ion-list no-lines no-padding no-margin *ngFor="let i of (evnt)" style="padding: 0 30px !important;">
+          <ion-item *ngIf="i.countdown > date" no-padding no-lines (click)="goBizzyEvent(i)">
+            <ion-row>
+                <ion-col col-4 no-padding>
+                    <ion-card class="card" no-margin>
+                        <cs-ghost class="img2 square isLoading">
+                        <cl-image public-id="events/{{i.image}}" >
+                          <cl-transformation gravity="faces" height="100" radius="5" width="105" crop="fill">
+                          </cl-transformation>
+                        </cl-image>
+                        </cs-ghost>
+                      </ion-card>
+            </ion-col>
+      
+            <ion-col col-8 style="padding-left: 20px;">
+                <cs-ghost class="lg isLoading">
+              <h5 text-wrap style="font-weight:500; text-transform: uppercase; padding-bottom: 8px;">{{i.title}}</h5>
+                </cs-ghost>
+    
+                <cs-ghost class="lg isLoading">
+                  <p style="color: #4F4F4F; font-size: 10px;"><ion-icon name="ios-calendar-outline" color="bizzy" style="font-size: unset;"></ion-icon>  {{i.countdown | moment:'dddd, MMMM D, YYYY'}} </p>
+                </cs-ghost>
+                <cs-ghost class="lg isLoading">
+              <p text-wrap style="color: #4F4F4F; font-size: 10px;"><ion-icon name="ios-navigate-outline" color="bizzy"></ion-icon>  {{i.place}} | {{i.loc_city}}</p>
+                </cs-ghost>
+            </ion-col>
+        </ion-row>
+          </ion-item>
+      </ion-list>
+
+      <div style="height: 30px; margin: 0; background-color: #ebebeb;">
+          <ion-row>
+            <ion-col col-12>
+              <h6 no-margin style="padding-left: 30px; color: #424242; font-size: 14px; padding-top: 3px;"> Past Events</h6>
+            </ion-col>
+          </ion-row>
+        </div>
+            <ion-list no-lines no-padding no-margin *ngFor="let i of (evnt)" style="padding: 0 30px !important;">
+            <ion-item *ngIf="date > i.countdown" no-padding no-lines (click)="goBizzyEvent(i)">
+              <ion-row>
+                  <ion-col col-4 no-padding>
+                      <ion-card class="card" no-margin>
+                          <cs-ghost class="img2 square isLoading">
+                          <cl-image public-id="events/{{i.image}}" >
+                            <cl-transformation gravity="faces" height="100" radius="5" width="105" crop="fill">
+                            </cl-transformation>
+                          </cl-image>
+                          </cs-ghost>
+                        </ion-card>
+              </ion-col>
+        
+              <ion-col col-8 style="padding-left: 20px;">
+                  <cs-ghost class="lg isLoading">
+                <h5 text-wrap style="font-weight:500; text-transform: uppercase; padding-bottom: 8px;">{{i.title}}</h5>
+                  </cs-ghost>
+      
+                  <cs-ghost class="lg isLoading">
+                    <p style="color: #4F4F4F; font-size: 10px;"><ion-icon name="ios-calendar-outline" color="bizzy" style="font-size: unset;"></ion-icon>  {{i.countdown | moment:'dddd, MMMM D, YYYY'}} </p>
+                  </cs-ghost>
+                  <cs-ghost class="lg isLoading">
+                <p text-wrap style="color: #4F4F4F; font-size: 10px;"><ion-icon name="ios-navigate-outline" color="bizzy"></ion-icon>  {{i.place}} | {{i.loc_city}}</p>
+                  </cs-ghost>
+              </ion-col>
+          </ion-row>
+            </ion-item>
+        </ion-list>
+          </div>
+</ion-content>
