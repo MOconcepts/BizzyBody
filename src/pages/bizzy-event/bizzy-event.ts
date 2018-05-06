@@ -9,6 +9,7 @@ import { PopoverController} from 'ionic-angular';
 import {AuthService} from "../../providers/auth-service";
 import { Calendar } from '@ionic-native/calendar';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
 import moment from 'moment'
 /**
  * Generated class for the BizzyEventPage page.
@@ -72,6 +73,7 @@ export class BizzyEventPage implements OnInit {
     public alertCtrl: AlertController,
     private calendar: Calendar,
     private sharingVar: SocialSharing,
+    private iab: ThemeableBrowser,
     public popoverCtrl: PopoverController,public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public events: Events, public http: HttpClient, public restProvider: RestProvider, public authService : AuthService, private toastCtrl:ToastController) {
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
     const data = JSON.parse(localStorage.getItem("userData"));
@@ -195,6 +197,37 @@ export class BizzyEventPage implements OnInit {
       //Connection failed message
     });
   
+  }
+
+  OpenUber(){
+    let url= 'https://m.uber.com/ul/?client_id=OxE042bv6gc_ZYQfftrBGEyf0UkQs4Gy&action=setPickup&dropoff[latitude]='+this.event.lat+'&dropoff[longitude]='+this.event.lng+'&dropoff[nickname]='+this.event.place+'&dropoff[formatted_address]='+this.event.place;
+    let target = "_system";
+
+    const options: ThemeableBrowserOptions = {
+      statusbar: {
+          color: '#FECB00'
+      },
+      toolbar: {
+          height: 50,
+          color: '#FECB00'
+      },
+      title: {
+          color: '#ffffff',
+          showPageTitle: true
+      },
+      closeButton: {
+        wwwImage: 'assets/images/close.png',
+        wwwImagePressed: 'assets/images/close.png',
+        wwwImageDensity: 2,
+          align: 'left',
+          event: 'closePressed'
+      },
+      backButtonCanClose: true,
+    
+    };
+
+    const browser: ThemeableBrowserObject = this.iab.create(url,target,options);
+    browser.show()
   }
 
   share(){

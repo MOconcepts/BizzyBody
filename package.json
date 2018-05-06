@@ -27,7 +27,7 @@
     "@cloudinary/angular-5.x": "^1.0.1",
     "@ionic-native/app-rate": "^4.5.2",
     "@ionic-native/app-version": "^4.5.3",
-    "@ionic-native/calendar": "^4.5.3",
+    "@ionic-native/calendar": "^4.7.0",
     "@ionic-native/call-number": "4.5.2",
     "@ionic-native/camera": "^4.5.3",
     "@ionic-native/core": "4.5.2",

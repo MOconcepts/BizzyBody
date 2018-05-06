@@ -52,5 +52,12 @@ page-home {
         top: calc(100% - 4px);
         transition: left 0.3s ease-out;
       }
-
+      ion-scroll {
+        white-space: nowrap;
+        height: 300px
+      }
+      .inner{
+        width: 2000px;
+        height: 100%;
+      }
 }
