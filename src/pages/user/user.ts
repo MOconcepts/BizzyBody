@@ -112,8 +112,6 @@ export class UserPage implements OnInit {
     });
   } 
   ionViewWillEnter() {
-    console.log(this.publisher);
-
     var pub = this.navParams.get('pub');
     this.restProvider.getUser(pub)
     .then(data => {
@@ -121,10 +119,13 @@ export class UserPage implements OnInit {
       this.usr = this.user.user.username;
       this.usrImg = this.user.user.img;
       this.publisher = this.user.user.user_id;
+
+    console.log(this.publisher);
     })
     .catch(err => {
       console.error(err)
     });
+
   }
 
   ionViewDidEnter(){

@@ -23,7 +23,7 @@
         <ion-col col-8>
         <p class="pgTitle1">Wetin dey for</p>
         <span class="pgTitle2">Lagos Mainland?</span>
-        <p style="margin-top: 30px; margin-left: 30px; padding-bottom:5px; color: #ffffff; font-size: 18px; font-weight: 300; font-style: medium;">Upcoming</p>
+        <!-- <p style="margin-top: 30px; margin-left: 30px; padding-bottom:5px; color: #ffffff; font-size: 18px; font-weight: 300; font-style: medium;">Featured</p> -->
         </ion-col>
         <ion-col col-4>
             <img src="assets/icon/lag.svg" class="svgImg">
@@ -40,7 +40,7 @@
         <ion-col col-8>
         <p style="color: #ffffff; margin-left: 30px; margin-bottom: 0;">Wetin dey for</p>
         <span style="color: #ffffff; margin-left: 30px; font-size: 25px; font-weight: 300; font-style: light;">Lagos Island?</span>
-        <p style="margin-top: 30px; margin-left: 30px; padding-bottom:5px; color: #ffffff; font-size: 18px; font-weight: 300; font-style: medium;">Upcoming</p>
+        <!-- <p style="margin-top: 30px; margin-left: 30px; padding-bottom:5px; color: #ffffff; font-size: 18px; font-weight: 300; font-style: medium;">Featured</p> -->
         </ion-col>
         <ion-col col-4>
             <img src="assets/icon/ilnd.svg" class="svgImg">
@@ -58,7 +58,7 @@
           <ion-col col-8>
           <p style="color: #ffffff; margin-left: 30px; margin-bottom: 0;">Wetin dey for</p>
           <span style="color: #ffffff; margin-left: 30px; font-size: 25px; font-weight: 300; font-style: light;">Abuja naa?</span>
-          <p style="margin-top: 30px; margin-left: 30px; padding-bottom:5px; color: #ffffff; font-size: 18px; font-weight: 300; font-style: medium;">Upcoming</p>
+          <!-- <p style="margin-top: 30px; margin-left: 30px; padding-bottom:5px; color: #ffffff; font-size: 18px; font-weight: 300; font-style: medium;">Featured</p> -->
           </ion-col>
           <ion-col col-4>
               <img src="assets/icon/abj.svg" class="svgImg">
@@ -76,7 +76,7 @@
               <ion-col col-8>
               <p style="color: #ffffff; margin-left: 30px; margin-bottom: 0;">Abobi, we dey</p>
               <span style="color: #ffffff; margin-left: 30px; font-size: 25px; font-weight: 300; font-style: light;">Portharcourt oo</span>
-              <p style="margin-top: 30px; margin-left: 30px; padding-bottom:5px; color: #ffffff; font-size: 18px; font-weight: 300; font-style: medium;">Upcoming</p>
+              <!-- <p style="margin-top: 30px; margin-left: 30px; padding-bottom:5px; color: #ffffff; font-size: 18px; font-weight: 300; font-style: medium;">Featured</p> -->
               </ion-col>
               <ion-col col-4>
                   <img src="assets/icon/phc.svg" class="svgImg">
@@ -94,7 +94,7 @@
                   <ion-col col-8>
                   <p style="color: #ffffff; margin-left: 30px; margin-bottom: 0;">Wetin dey for</p>
                   <span style="color: #ffffff; margin-left: 30px; font-size: 25px; font-weight: 300; font-style: light;">Other Naija States?</span>
-                  <p style="margin-top: 30px; margin-left: 30px; padding-bottom:5px; color: #ffffff; font-size: 18px; font-weight: 300; font-style: medium;">Upcoming</p>
+                  <!-- <p style="margin-top: 30px; margin-left: 30px; padding-bottom:5px; color: #ffffff; font-size: 18px; font-weight: 300; font-style: medium;">Featured</p> -->
                   </ion-col>
                   <ion-col col-4>
                       <img src="assets/icon/9ja.svg" class="svgImg">
@@ -112,7 +112,7 @@
                       <ion-col col-8>
                       <p style="color: #ffffff; margin-left: 30px; margin-bottom: 0;">Charlie, wetin dey</p>
                       <span style="color: #ffffff; margin-left: 30px; font-size: 25px; font-weight: 300; font-style: light;">Ghana Inside?</span>
-                      <p style="margin-top: 30px; margin-left: 30px; padding-bottom:5px; color: #ffffff; font-size: 18px; font-weight: 300; font-style: medium;">Upcoming</p>
+                      <!-- <p style="margin-top: 30px; margin-left: 30px; padding-bottom:5px; color: #ffffff; font-size: 18px; font-weight: 300; font-style: medium;">Featured</p> -->
                       </ion-col>
                       <ion-col col-4>
                           <img src="assets/icon/acc.svg" class="svgImg">
@@ -130,7 +130,7 @@
                           <ion-col col-8>
                           <p style="color: #ffffff; margin-left: 30px; margin-bottom: 0;">Maximum fun in</p>
                           <span style="color: #ffffff; margin-left: 30px; font-size: 25px; font-weight: 300; font-style: light;">Yonder</span>
-                          <p style="margin-top: 30px; margin-left: 30px; padding-bottom:5px; color: #ffffff; font-size: 18px; font-weight: 300; font-style: medium;">Upcoming</p>
+                          <!-- <p style="margin-top: 30px; margin-left: 30px; padding-bottom:5px; color: #ffffff; font-size: 18px; font-weight: 300; font-style: medium;">Featured</p> -->
                           </ion-col>
                           <ion-col col-4>
                               <img src="assets/icon/os.svg" class="svgImg">
@@ -142,10 +142,9 @@
                     </ng-template>
 
     <div style="margin-top:-100px; margin-bottom: 40px;">
-      
-        <ion-scroll scrollX="true" style="width:100%; height: 500px;" >
+        <ion-scroll scrollX="true" style="width:100%; height: 320px;" >
             <ion-row nowrap style="height: 100%;">
-                <ion-card col-6 *ngFor="let event of (myLoc)" (click)="goBizzyEvent(event)">
+                <ion-card style="margin-top: 20px; margin-left: 20px; margin-right: 10px;" col-10 *ngFor="let event of (ftEvt)" (click)="goBizzyEvent(event)">
   
                     <ion-row>
                       <ion-col col-12>
@@ -177,9 +176,14 @@
                             <!-- <span style="padding-left: 20px;">
                               <ion-icon name="ios-clock-outline" color="bizzy"></ion-icon>   {{event.countdown | moment:'HH:mm'}}
                           </span>       -->
-                          <span style="padding-left: 20px;">
-                              <ion-icon name="ios-stopwatch-outline" color="bizzy"></ion-icon>    {{event.countdown | togo:'true'}} toGo
+                          <span style="padding-left: 20px;" *ngIf="date < event.countdown;else ongoing">
+                              <ion-icon name="ios-stopwatch-outline" color="bizzy"></ion-icon> {{event.countdown | togo:'true'}} toGo
                         </span>
+                        <ng-template #ongoing>
+                            <span style="padding-left: 20px;">
+                                <ion-icon name="ios-stopwatch-outline" color="bizzy"></ion-icon> onGoing Event
+                          </span>
+                        </ng-template>
                         </p>
                         </cs-ghost>
 
@@ -195,6 +199,7 @@
             </ion-row>
             </ion-scroll>
 
+            <h2 style="padding-left: 30px;">Upcoming Events</h2>
         <div *ngIf="locLent != 0;else nodata"> 
                       <!-- Cards -->
                       <ion-card class="card" *ngFor="let event of (myLoc)" (click)="goBizzyEvent(event)">
@@ -229,9 +234,14 @@
                                   <!-- <span style="padding-left: 20px;">
                                     <ion-icon name="ios-clock-outline" color="bizzy"></ion-icon>   {{event.countdown | moment:'HH:mm'}}
                                 </span>       -->
-                                <span style="padding-left: 20px;">
-                                    <ion-icon name="ios-stopwatch-outline" color="bizzy"></ion-icon>    {{event.countdown | togo:'true'}} toGo
-                              </span>
+                          <span style="padding-left: 20px;" *ngIf="date < event.countdown;else ongoing">
+                              <ion-icon name="ios-stopwatch-outline" color="bizzy"></ion-icon> {{event.countdown | togo:'true'}} toGo
+                        </span>
+                        <ng-template #ongoing>
+                            <span style="padding-left: 20px;">
+                                <ion-icon name="ios-stopwatch-outline" color="bizzy"></ion-icon> onGoing Event
+                          </span>
+                        </ng-template>
                               </p>
                               </cs-ghost>
 
@@ -312,10 +322,49 @@
             </div>
           </ion-card>
         </div>
+
+        <div style="padding-top: 10px; padding-bottom: 20px; background-color: #f4f4f4;">
+            <h2 style="padding-left: 30px; padding-right: 30px;">BizzyBlog</h2>
+
+        <ion-scroll scrollX="true" style="width:100%;" >
+            <ion-row nowrap style="height: 100%;">
+                <ion-card style="margin-top: 20px; margin-left: 20px; margin-right: 10px;" col-10 *ngFor="let blog of (bBlog)" (click)="goBizzyEvent(blog)">
+  
+                    <ion-row>
+                      <ion-col col-12>
+                        <ion-item>
+                          <cs-ghost class="lg isLoading">
+                            <h4 style="text-transform: uppercase;" text-wrap>{{blog.title}}</h4>
+                          </cs-ghost>
+                          <cs-ghost class="sm isLoading">
+                            <p style="color: #B0B0B0; font-size: 10px;"><ion-icon name="ios-folder-outline"></ion-icon> {{blog.blog_pcategory}} 
+                              <span style="padding-left: 20px;"><ion-icon name="ios-calendar-outline"></ion-icon> {{blog.date | moment:'MMM D, YYYY'}} </span>
+                            </p>
+                          </cs-ghost>
+                      
+                    </ion-item>
+                      </ion-col>
+                    </ion-row>
+                    <cs-ghost class="img square isLoading">
+
+                <cl-image public-id="blog/{{blog.image}}"> 
+                  <cl-transformation gravity="face" height="410" width="960" crop="fill">
+                    </cl-transformation>
+                  </cl-image>
+                      <!-- <img style="max-height: 150px; object-fit: cover;" width="100%" src="https://bizzybody.ng/uploads/events/{{event.image}}"> -->
+                    </cs-ghost>
+            
+              </ion-card>
+            </ion-row>
+            </ion-scroll>
+            <div style="margin-left: 20px">
+            <button ion-button outline color="dark"> See more blog posts</button>
+            </div>
+        </div>
+
                     <h2 style="padding-left: 30px;">More Events</h2>
                 <!-- Cards -->
                 <ion-card class="card" *ngFor="let event of (events)" (click)="goBizzyEvent(event)">
-        
                     <ion-row>
                       <ion-col col-12>
                         <ion-item>

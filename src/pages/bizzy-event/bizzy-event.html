@@ -24,9 +24,14 @@
 
     <ion-row  style="background-color:#FECB00">
         <ion-col col-10>
-          <div *ngIf="date > event.countdown;else count">
-            <h1 style="color:#ffffff; font-size: 30px; padding: 10px 30px;">Past Event</h1>
+          <div *ngIf="date > event.countdown;else ongoing">
+            <h1 style="color:#ffffff; font-size: 30px; padding: 10px 30px;">Ongoing Event</h1>
           </div>
+          <ng-template #ongoing>
+              <div *ngIf="date > event.stop;else count">
+                <h1 style="color:#ffffff; font-size: 30px; padding: 10px 30px;">Past Event</h1>
+              </div>
+          </ng-template>
           <ng-template #count>
               <div text-center>
                   <ul class="countdown" style="padding-left: unset;">
@@ -117,11 +122,15 @@
     <ion-card no-padding padding-bottom no-margin class="card">
         <div class="divPad">
         <ion-card-header style="padding-top: 20px;">
-          Location <button transparent item-end (click)="OpenUber();"><img src="assets/icon/taxify.svg" style="height: 30px;"></button>
+              Location 
         </ion-card-header>
     
         <ion-card-content style="height: 200px;">
             <div #map id="map"></div>
+            <div style="float: left; padding: 20px 0px;">
+                  <a href="https://m.uber.com/ul/?client_id=OxE042bv6gc_ZYQfftrBGEyf0UkQs4Gy&action=setPickup&dropoff[latitude]={{event.lat}}&dropoff[longitude]={{event.lng}}&dropoff[nickname]={{event.place}}&dropoff[formatted_address]={{event.place}}" target="_blank"><img src="assets/icon/Uber.svg" style="height: 30px; width: unset;"></a>
+            
+            </div>
         </ion-card-content>
         </div>
       </ion-card>

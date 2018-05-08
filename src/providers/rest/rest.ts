@@ -115,6 +115,17 @@ return new Promise(resolve => {
      });
    }
 
+
+  ftEvents(locId) {
+    return new Promise(resolve => {
+      this.httpc.get(this.apiUrl+'/ftEvents/'+locId).subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
+  }
+
   myEvents(usr) {
     return new Promise(resolve => {
       this.httpc.get(this.apiUrl+'/events/'+usr).subscribe(data => {
@@ -177,7 +188,15 @@ return new Promise(resolve => {
     });
   }
 
-
+  getBlog() {
+    return new Promise(resolve => {
+      this.httpc.get(this.apiUrl+'/blog').subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
+  }
 
 
 }

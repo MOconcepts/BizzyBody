@@ -7,3 +7,5 @@ export const EDIT_PROFILE_PAGE = 'EditProfilePage';
 export const SHOW_PAGE = 'ShowPage';
 export const EDIT_PREF_PAGE = 'EditPrefPage';
 export const USER_PAGE = 'UserPage';
+export const BLOG_DETAILS_PAGE = 'BlogDetailsPage';
+export const BLOG_PAGE = 'BlogPage';

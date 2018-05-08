@@ -30,8 +30,12 @@ export class HomePage {
   totalPage = 0;
   locId: any;
   myLoc: any;
+  ftEvt: any;
   eTix: any;
+  bBlog: any;
   locLent: any;
+
+  public date: string = new Date().toISOString();
 
   constructor(
     public popoverCtrl: PopoverController,
@@ -51,13 +55,17 @@ export class HomePage {
       this._setLoaded()
 
     this.locEvents();
+    this.ftEvents();
     this.tixEvents();
+    this.getBlog();
     this.getEvents();
   }
   doRefresh(refresher) {
     this._setLoaded()
     this.locEvents();
+    this.ftEvents();
     this.tixEvents();
+    this.getBlog();
     this.getEvents();
 
     setTimeout(() => {
@@ -93,6 +101,19 @@ export class HomePage {
     ;
   }
 
+  ftEvents() {
+    // this.common.presentLoading();
+    this.restProvider.ftEvents(this.locId)
+    .then(data => {
+      this.ftEvt = data;
+
+    })
+    .catch(err => {
+      console.error(err)
+    })
+    ;
+  }
+
   tixEvents() {
     this.restProvider.tixEvents()
     .then(data => {
@@ -104,6 +125,19 @@ export class HomePage {
     })
     ;
   }
+
+  getBlog() {
+    this.restProvider.getBlog()
+    .then(data => {
+      this.bBlog = data;
+      console.log(this.bBlog);
+    })
+    .catch(err => {
+      console.error(err)
+    })
+    ;
+  }
+
   getEvents() {
     this.restProvider.getEvents(this.page)
     .subscribe(
